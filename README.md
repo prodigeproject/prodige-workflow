@@ -358,9 +358,8 @@ Or read [PRODIGE.md](./PRODIGE.md) for detailed guide.
 
 ## 🙏 Credits
 
-- **Claude-Boris** by [@llcoolblaze](https://x.com/llcoolblaze) - UX patterns and workflow design
-- **Boris Cherny** - Creator of Claude Code, workflow philosophy
-- **Original Prodige** - Governance and enterprise patterns
+- **Original Prodige** - Governance and enterprise patterns 
+- **Boris Cherny** - Creator of Claude Code, workflow philosophy, UX patterns and workflow design
 - **Karpathy Behavioral Principles** - Code quality philosophy
 
 ---
