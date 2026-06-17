@@ -1,0 +1,10 @@
+{
+  "session_id": "example-backend-session",
+  "role": "backend",
+  "goal": "Implement backend part of feature",
+  "status": "planned",
+  "snapshot": "context-v1",
+  "allowed_files": [],
+  "locked_files": [],
+  "handoff_file": ".ai/runtime/handoffs/example-backend-session.md"
+}

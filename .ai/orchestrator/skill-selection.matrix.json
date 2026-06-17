@@ -1,0 +1,95 @@
+{
+  "/init": [
+    "repomap",
+    "context-bootstrap",
+    "rtk",
+    "documentation"
+  ],
+  "/design": [
+    "brainstorming",
+    "writing-plans",
+    "rtk",
+    "prd-design",
+    "architecture-design",
+    "implementation-planning",
+    "roastme"
+  ],
+  "/build": [
+    "test-driven-development",
+    "verification-before-completion",
+    "subagent-driven-development",
+    "executing-plans",
+    "repomap",
+    "ripgrep",
+    "reuse-rebuild",
+    "clean-code",
+    "test-planning",
+    "roastme",
+    "context-sync"
+  ],
+  "/fix": [
+    "systematic-debugging",
+    "test-driven-development",
+    "verification-before-completion",
+    "ripgrep",
+    "root-cause",
+    "minimal-change",
+    "test-planning",
+    "context-sync"
+  ],
+  "/review": [
+    "requesting-code-review",
+    "receiving-code-review",
+    "roastme",
+    "clean-code",
+    "security-review",
+    "context-sync"
+  ],
+  "/audit": [
+    "repomap",
+    "ripgrep",
+    "roastme",
+    "security-review",
+    "dependency-review",
+    "debt-detection",
+    "context-sync"
+  ],
+  "/refactor": [
+    "test-driven-development",
+    "verification-before-completion",
+    "repomap",
+    "reuse-rebuild",
+    "clean-code",
+    "test-planning",
+    "context-sync"
+  ],
+  "/docs": [
+    "documentation",
+    "context-sync"
+  ],
+  "/release": [
+    "finishing-a-development-branch",
+    "review-gate",
+    "test-planning",
+    "documentation",
+    "context-sync"
+  ],
+  "/sync": [
+    "context-sync",
+    "debt-detection",
+    "documentation"
+  ],
+  "/parallel": [
+    "using-git-worktrees",
+    "dispatching-parallel-agents",
+    "parallel-planner",
+    "snapshot-manager",
+    "cache-manager",
+    "lock-manager",
+    "handoff-manager"
+  ],
+  "/cache": [
+    "cache-manager",
+    "repomap"
+  ]
+}

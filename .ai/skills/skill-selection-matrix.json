@@ -1,0 +1,57 @@
+{
+  "version": "2.0.0",
+  "description": "Centralized skill auto-loading configuration",
+  "lastUpdated": "2026-06-17",
+  
+  "globalSkills": {
+    "description": "Skills loaded for ALL commands",
+    "skills": ["karpathy-behavioral"]
+  },
+  
+  "commandSkills": {
+    "/init": {
+      "required": ["repomap"],
+      "optional": ["brainstorming"]
+    },
+    "/design": {
+      "required": ["repomap", "roastme"],
+      "optional": ["brainstorming", "implementation-planning"]
+    },
+    "/build": {
+      "required": ["test-driven-development", "verification-before-completion", "repomap", "ripgrep"],
+      "optional": ["clean-code", "executing-plans", "context-sync"]
+    },
+    "/fix": {
+      "required": ["systematic-debugging", "test-driven-development", "verification-before-completion", "repomap", "ripgrep"],
+      "optional": ["clean-code", "context-sync"]
+    },
+    "/refactor": {
+      "required": ["test-driven-development", "verification-before-completion", "clean-code", "repomap"],
+      "optional": ["roastme", "debt-detection"]
+    },
+    "/review": {
+      "required": ["roastme", "verification-before-completion"],
+      "optional": ["security-review", "clean-code", "debt-detection"]
+    },
+    "/test": {
+      "required": ["test-driven-development"],
+      "optional": ["verification-before-completion"]
+    },
+    "/verify": {
+      "required": ["verification-before-completion"],
+      "optional": []
+    },
+    "/magic": {
+      "required": ["test-driven-development", "verification-before-completion", "repomap"],
+      "optional": ["brainstorming", "implementation-planning", "roastme"]
+    },
+    "/audit": {
+      "required": ["repomap", "roastme", "security-review", "debt-detection"],
+      "optional": ["dependency-review", "context-sync"]
+    },
+    "/parallel": {
+      "required": ["parallel-planner", "snapshot-manager", "lock-manager", "handoff-manager", "repomap"],
+      "optional": ["test-driven-development", "verification-before-completion"]
+    }
+  }
+}

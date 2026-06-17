@@ -1,0 +1,165 @@
+{
+  "commands": {
+    "/magic": {
+      "workflow": "magic-orchestrator",
+      "hitl": true,
+      "description": "🎯 Main entry point - auto-routes to appropriate workflow with planning and verification",
+      "category": "primary",
+      "examples": [
+        "/magic create user authentication",
+        "/magic fix the login bug",
+        "/magic add API documentation"
+      ]
+    },
+    "/session-start": {
+      "workflow": "session-start",
+      "hitl": false,
+      "description": "📚 Load Memory Bank and orient to project - start every session with this",
+      "category": "memory"
+    },
+    "/session-end": {
+      "workflow": "session-end",
+      "hitl": false,
+      "description": "💾 Save session context to Memory Bank - end every session with this",
+      "category": "memory"
+    },
+    "/verify": {
+      "workflow": "verification",
+      "hitl": false,
+      "description": "🔍 Run automated verification (tests, lint, types, build)",
+      "category": "quality"
+    },
+    "/undo": {
+      "workflow": "git-undo",
+      "hitl": false,
+      "description": "🔄 Revert last AI change - your safety net",
+      "category": "safety"
+    },
+    "/checkpoint": {
+      "workflow": "git-checkpoint",
+      "hitl": false,
+      "description": "📍 Create named save point for easy rollback",
+      "category": "safety"
+    },
+    "/rollback": {
+      "workflow": "git-rollback",
+      "hitl": true,
+      "description": "⏮️ Restore to previous checkpoint",
+      "category": "safety"
+    },
+    "/init": {
+      "workflow": "init",
+      "hitl": true,
+      "description": "🚀 Initialize project brain and structure",
+      "category": "workflow"
+    },
+    "/design": {
+      "workflow": "design",
+      "hitl": true,
+      "description": "📐 Create or update PRD, Architecture, Implementation plan",
+      "category": "workflow"
+    },
+    "/build": {
+      "workflow": "build",
+      "hitl": true,
+      "description": "🔨 Implement approved design",
+      "category": "workflow"
+    },
+    "/fix": {
+      "workflow": "fix",
+      "hitl": "conditional",
+      "description": "🐛 Fix bugs or issues",
+      "category": "workflow"
+    },
+    "/review": {
+      "workflow": "review",
+      "hitl": false,
+      "description": "👀 Review code quality",
+      "category": "workflow"
+    },
+    "/audit": {
+      "workflow": "audit",
+      "hitl": false,
+      "description": "🔎 Audit repository for issues",
+      "category": "workflow"
+    },
+    "/refactor": {
+      "workflow": "refactor",
+      "hitl": true,
+      "description": "♻️ Refactor code for better quality",
+      "category": "workflow"
+    },
+    "/docs": {
+      "workflow": "docs",
+      "hitl": "conditional",
+      "description": "📝 Update documentation",
+      "category": "workflow"
+    },
+    "/release": {
+      "workflow": "release",
+      "hitl": true,
+      "description": "🚀 Prepare release",
+      "category": "workflow"
+    },
+    "/sync": {
+      "workflow": "sync",
+      "hitl": "conditional",
+      "description": "🔄 Sync context and state",
+      "category": "system"
+    },
+    "/status": {
+      "workflow": "status",
+      "hitl": false,
+      "description": "📊 Check project status",
+      "category": "system"
+    },
+    "/cache": {
+      "workflow": "cache",
+      "hitl": false,
+      "description": "💾 Manage cache",
+      "category": "system"
+    },
+    "/parallel": {
+      "workflow": "parallel",
+      "hitl": true,
+      "description": "⚡ Multi-agent planning and execution",
+      "category": "advanced"
+    },
+    "/agent": {
+      "workflow": "agent-session",
+      "hitl": false,
+      "description": "🤖 Worker session",
+      "category": "advanced"
+    }
+  },
+  "categories": {
+    "primary": {
+      "name": "Primary Commands",
+      "description": "Start here - these are the main commands you'll use"
+    },
+    "memory": {
+      "name": "Memory Management",
+      "description": "Session persistence and context management"
+    },
+    "safety": {
+      "name": "Safety & Recovery",
+      "description": "Undo, checkpoint, and rollback features"
+    },
+    "quality": {
+      "name": "Quality Assurance",
+      "description": "Verification and quality checks"
+    },
+    "workflow": {
+      "name": "Development Workflows",
+      "description": "Specific development tasks"
+    },
+    "system": {
+      "name": "System Commands",
+      "description": "System maintenance and status"
+    },
+    "advanced": {
+      "name": "Advanced Features",
+      "description": "Multi-agent and parallel execution"
+    }
+  }
+}

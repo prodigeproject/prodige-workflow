@@ -1,0 +1,20 @@
+{
+  "context_version": 1,
+  "project_status": "draft",
+  "prd_status": "draft",
+  "architecture_status": "draft",
+  "implementation_status": "draft",
+  "last_sync": null,
+  "approved_for_build": false,
+  "current_snapshot": null,
+  "behavioral_compliance": {
+    "karpathy_enabled": true,
+    "karpathy_version": "1.0",
+    "last_roastme_design": null,
+    "last_roastme_build": null,
+    "simplicity_violations": 0,
+    "assumption_clarity_score": null,
+    "surgical_precision_score": null,
+    "goal_verification_score": null
+  }
+}

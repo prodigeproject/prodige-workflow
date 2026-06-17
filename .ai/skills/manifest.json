@@ -1,0 +1,58 @@
+{
+  "skills": {
+    "repomap": {
+      "path": ".ai/skills/repomap/SKILL.md"
+    },
+    "ripgrep": {
+      "path": ".ai/skills/ripgrep/SKILL.md"
+    },
+    "reuse-rebuild": {
+      "path": ".ai/skills/reuse-rebuild/SKILL.md"
+    },
+    "rtk": {
+      "path": ".ai/skills/rtk/SKILL.md"
+    },
+    "clean-code": {
+      "path": ".ai/skills/clean-code/SKILL.md"
+    },
+    "roastme": {
+      "path": ".ai/skills/roastme/SKILL.md"
+    },
+    "security-review": {
+      "path": ".ai/skills/security-review/SKILL.md"
+    },
+    "dependency-review": {
+      "path": ".ai/skills/dependency-review/SKILL.md"
+    },
+    "debt-detection": {
+      "path": ".ai/skills/debt-detection/SKILL.md"
+    },
+    "context-sync": {
+      "path": ".ai/skills/context-sync/SKILL.md"
+    },
+    "cache-manager": {
+      "path": ".ai/skills/cache-manager/SKILL.md"
+    },
+    "snapshot-manager": {
+      "path": ".ai/skills/snapshot-manager/SKILL.md"
+    },
+    "lock-manager": {
+      "path": ".ai/skills/lock-manager/SKILL.md"
+    },
+    "handoff-manager": {
+      "path": ".ai/skills/handoff-manager/SKILL.md"
+    },
+    "parallel-planner": {
+      "path": ".ai/skills/parallel-planner/SKILL.md"
+    },
+    "documentation": {
+      "path": ".ai/skills/documentation/SKILL.md"
+    },
+    "test-planning": {
+      "path": ".ai/skills/test-planning/SKILL.md"
+    },
+    "implementation-planning": {
+      "path": ".ai/skills/implementation-planning/SKILL.md"
+    }
+  }
+}
