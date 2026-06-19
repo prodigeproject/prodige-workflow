@@ -1,4 +1,4 @@
-# Prodige Workflow v2.0
+# Prodige Workflow
 
 **Production-Grade Development Made Easy**
 
@@ -130,28 +130,28 @@ See [PRODIGE.md](./PRODIGE.md) for all commands and detailed usage.
 
 ```
 .ai/
-├── memory/              # 🆕 Session persistence
+├── memory/              # Session persistence
 │   ├── projectContext.md
 │   ├── activeContext.md
 │   ├── progress.md
 │   ├── decisionLog.md
 │   ├── conventions.md
 │   └── sessionHistory.md
-├── agents/              # 🆕 Enhanced agents
-│   ├── magic-orchestrator.md    # 🆕 Main entry point
-│   ├── memory-manager.md         # 🆕 Memory system
-│   ├── verification-runner.md    # 🆕 Quality checks
-│   ├── git-guardian.md           # 🆕 Safety features
-│   └── [existing agents]
-├── commands/            # 🆕 Extended commands
-│   ├── magic.md                  # 🆕 Auto-routing
-│   ├── session-start.md          # 🆕 Load context
-│   ├── session-end.md            # 🆕 Save context
-│   ├── verify.md                 # 🆕 Quality checks
-│   ├── undo.md                   # 🆕 Safety
-│   ├── checkpoint.md             # 🆕 Safety
-│   ├── rollback.md               # 🆕 Safety
-│   └── [existing commands]
+├── agents/              # Role-based agents
+│   ├── magic-orchestrator.md    # Main entry point
+│   ├── memory-manager.md        # Memory system
+│   ├── verification-runner.md   # Quality checks
+│   ├── git-guardian.md          # Safety features
+│   └── [other agents]
+├── commands/            # Command specs
+│   ├── magic.md                 # Auto-routing
+│   ├── session-start.md         # Load context
+│   ├── session-end.md           # Save context
+│   ├── verify.md                # Quality checks
+│   ├── undo.md                  # Safety
+│   ├── checkpoint.md            # Safety
+│   ├── rollback.md              # Safety
+│   └── [other commands]
 ├── context/             # Formal documentation
 ├── governance/          # Quality rules
 └── [other folders]
@@ -191,7 +191,7 @@ Use specific workflows:
 
 ---
 
-## 💪 Why Prodige v2?
+## 💪 Why Prodige?
 
 ### vs Manual Development
 - ⚡ **10x faster** - AI handles implementation details
@@ -204,14 +204,7 @@ Use specific workflows:
 - 📚 **Memory persistence** - No re-explanation needed
 - ✅ **Quality mandatory** - Verification built-in
 - 🏢 **Enterprise-ready** - Governance and compliance
-
-### vs Original Prodige
-- ➕ **Added Memory Bank** - Session persistence
-- ➕ **Added Magic Command** - Simplified UX
-- ➕ **Added Safety Features** - Undo/checkpoint/rollback
-- ➕ **Added Verification** - Automatic quality checks
-- ✅ **Kept governance** - Quality gates, HITL
-- ✅ **Kept formal docs** - PRD, Architecture, ADRs
+- 🔌 **Tool-agnostic** - Works in any AI assistant, no per-tool setup
 
 ---
 
@@ -374,15 +367,9 @@ Or read [PRODIGE.md](./PRODIGE.md) for detailed guide.
 
 ## 🙏 Influences
 
-<<<<<<< HEAD
 Prodige is built in-house. Its design draws lessons from prior art across the
 AI-workflow space — beginner-friendly UX, enterprise governance, and code-quality
 discipline — but the architecture, structure, and skills here are our own work.
-=======
-- **Original Prodige** - Governance and enterprise patterns 
-- **Boris Cherny** - Creator of Claude Code, workflow philosophy, UX patterns and workflow design
-- **Karpathy Behavioral Principles** - Code quality philosophy
->>>>>>> 13d9e05391257e6c5cac9d4324e64d88690504d6
 
 ---
 
@@ -394,8 +381,6 @@ discipline — but the architecture, structure, and skills here are our own work
 
 ---
 
-**Version**: 2.0  
-**Release Date**: 2026-06-17  
 **Status**: Production Ready ✅
 
 **Welcome to production-grade development made easy!** 🚀

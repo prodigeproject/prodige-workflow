@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-**Get started with Prodige Workflow v2.0 in 5 minutes**
+**Get started with Prodige Workflow in 5 minutes**
 
 ---
 
