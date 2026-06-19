@@ -1,13 +1,52 @@
 # Workflow: Code Review
 
 ## Purpose
-Systematic evaluation of code changes for correctness, quality, security, and merge readiness. Validate adherence to Karpathy principles and Prodige standards.
+Systematic evaluation of code changes for correctness, quality, security, and merge readiness. Validate adherence to engineering principles and Prodige standards.
 
 **Core principle:** Thorough but surgical. Catch issues before merge, ensure simplicity and correctness.
 
 ---
 
 ## Steps
+
+### 0. Pre-Review Automation Gate (NEW)
+
+**Before any human/AI attention is spent, run the automated gate.** This filters out
+trivial issues (lint, broken tests, secrets, debug statements) so the reviewer
+focuses on judgment-level concerns.
+
+```bash
+# Unix / Git Bash
+bash .ai/scripts/pre-review-check.sh origin/main
+# Windows
+pwsh .ai/scripts/pre-review-check.ps1 -BaseRef origin/main
+```
+
+**Gate logic (exit codes):**
+- `1` (blocking failure) → **STOP.** Do not dispatch the Reviewer Agent. Return the
+  failed checks to the implementing agent to fix first.
+- `2` (warnings only) → proceed, attach the warnings to reviewer context.
+- `0` (clean) → proceed.
+
+For security-sensitive diffs (auth/payment/data), also run:
+```bash
+bash .ai/scripts/security-scan.sh origin/main   # or .ps1 on Windows
+```
+
+**Select the review template by change type** (branch prefix or PR label):
+
+| Branch / label | Template |
+|----------------|----------|
+| `feature/*`, `feat/*` | `.ai/templates/REVIEW_FEATURE.md` |
+| `fix/*`, `bugfix` | `.ai/templates/REVIEW_BUGFIX.md` |
+| `refactor/*` | `.ai/templates/REVIEW_REFACTORING.md` |
+| `hotfix/*` | `.ai/templates/REVIEW_HOTFIX.md` |
+| other | `.ai/templates/CODE_REVIEW.md` (generic) |
+
+**Severity vocabulary:** Use Prodige's canonical **Critical (🚫) / Important (⚠️) /
+Minor (💡)** throughout (maps to merge-blocking behavior). The older MUST/SHOULD/NICE
+labels below are retained as aliases: MUST FIX = Critical, SHOULD FIX = Important,
+NICE TO HAVE = Minor.
 
 ### 1. Load Full Context
 
@@ -63,7 +102,7 @@ Requirements from PRD:
 - Partial implementations
 - Scope creep (unrequested features)
 
-**Karpathy principle:** Goal-driven - verify all success criteria met.
+**Engineering principle:** Goal-driven - verify all success criteria met.
 
 ### 4. Check Correctness and Logic
 
@@ -97,7 +136,7 @@ For each changed function/method:
 - Nested conditionals >3 levels → Flag for refactoring
 - Duplicated logic → Flag for extraction
 
-**Karpathy principle:** Simplicity first - minimum code that solves problem.
+**Engineering principle:** Simplicity first - minimum code that solves problem.
 
 **Red flags:**
 - Cryptic variable names
@@ -105,7 +144,7 @@ For each changed function/method:
 - Complex nested logic
 - Magic numbers without explanation
 
-### 6. Run Karpathy Simplicity Check
+### 6. Run Simplicity Check
 
 **Ask the critical question:** "Would a senior engineer say this is overcomplicated?"
 
@@ -129,7 +168,7 @@ For each changed function/method:
 
 **The test:** If implementation is 200 lines and could be 50, flag it.
 
-**Skill:** `karpathy-behavioral` (Simplicity principle)
+**Skill:** `clean-code` (Simplicity principle)
 
 ### 7. Verify Surgical Precision
 
@@ -156,7 +195,7 @@ For each changed function/method:
 
 **The test:** Every changed line should trace directly to the request.
 
-**Skill:** `karpathy-behavioral` (Surgical changes)
+**Skill:** `clean-code` (Surgical changes)
 
 ### 8. Review Test Coverage and Quality
 
@@ -213,7 +252,9 @@ npm test -- --coverage
 
 **Flag any security issues as MUST FIX.**
 
-**Skill:** Security review checklist
+**Skill:** `security-review` — run `.ai/scripts/security-scan.sh` first, then the
+OWASP-mapped checklist in `.ai/skills/security-review/SKILL.md`. Use the Prodige
+severity mapping (any exploitable vuln = Critical).
 
 ### 10. Assess Performance Implications
 
@@ -238,6 +279,23 @@ npm test -- --coverage
 
 **Flag concerns, but don't require premature optimization.**
 
+**Skill:** `performance-review` — use the severity table (crash/OOM/timeout =
+Critical; N+1 on core list / >2s UX = Important; micro-opt = Minor) and detection
+patterns in `.ai/skills/performance-review/SKILL.md`.
+
+### 10b. Assess Accessibility (UI changes only) (NEW)
+
+**If the diff touches UI components, forms, or interactive elements:**
+
+Run the `accessibility-review` skill checklist (`.ai/skills/accessibility-review/SKILL.md`):
+- Keyboard operability (mouse-only action = Critical)
+- Screen-reader support (unlabeled form field = Critical)
+- Focus management for modals/route changes
+- Color contrast ≥ 4.5:1 and info-not-by-color-alone
+
+Recommend `eslint-plugin-jsx-a11y` / axe-core for shift-left detection. Note that
+full WCAG compliance needs manual assistive-tech testing.
+
 ### 11. Verify Documentation Completeness
 
 **Check documentation updates:**
@@ -258,7 +316,7 @@ npm test -- --coverage
 - Internal refactoring → No docs needed
 - New features or architecture changes → Docs required
 
-### 12. Run RoastMe Questions (Karpathy Deep Check)
+### 12. Run RoastMe Questions (Deep Behavioral Check)
 
 **Execute mental RoastMe critique:**
 
@@ -332,6 +390,8 @@ From `checklists/pre-merge.md`:
 - Refactoring opportunities
 - Code style preferences
 
+**Record any new technical debt to `.ai/governance/debt/technical-debt.md`** — append (do not overwrite) SHOULD FIX / NICE TO HAVE items that are deferred rather than fixed before merge, so the canonical debt registry stays current.
+
 **Format findings:**
 ```markdown
 ## Review Findings
@@ -359,7 +419,7 @@ From `checklists/pre-merge.md`:
 - Tests passing with good coverage
 - No security issues
 - Clean, surgical diff
-- Follows Karpathy principles
+- Follows engineering principles
 
 **🔄 REQUEST CHANGES - Needs Revision:**
 - MUST FIX items: 1-3
@@ -450,7 +510,7 @@ From `checklists/pre-merge.md`:
 
 ---
 
-## Karpathy Behavioral Check
+## Engineering Discipline Check
 
 | Principle | Status | Notes |
 |-----------|--------|-------|
@@ -517,7 +577,7 @@ From `checklists/pre-merge.md`:
 | Principle | Meaning | Test |
 |-----------|---------|------|
 | **Thorough** | Check all dimensions systematically | Used full checklist |
-| **Fair** | Judge by standards, not preferences | Applied Karpathy principles |
+| **Fair** | Judge by standards, not preferences | Applied engineering principles |
 | **Clear** | Findings are specific and actionable | Each issue has file:line |
 | **Goal-focused** | Verify requirements met | Requirements checklist complete |
 
@@ -540,15 +600,33 @@ From `checklists/pre-merge.md`:
 ## Integration Points
 
 **Skills:**
-- `karpathy-behavioral` - Simplicity, surgical, assumptions (Steps 6, 7, 12)
+- `clean-code` - Simplicity, surgical, assumptions (Steps 6, 7, 12)
 - `test-driven-development` - Verify TDD compliance (Step 8)
 - `verification-before-completion` - Evidence required (Step 8)
+- `security-review` - OWASP-mapped security gate (Step 9)
+- `performance-review` - Performance severity & patterns (Step 10)
+- `accessibility-review` - WCAG AA baseline for UI (Step 10b)
+- `review-learning` - Loads codebase-specific recurring-issue focus (Step 0)
 - `requesting-code-review` - Context for reviewer role
 
+**Scripts:**
+- `.ai/scripts/pre-review-check.{sh,ps1}` - Automated gate (Step 0)
+- `.ai/scripts/security-scan.{sh,ps1}` - Automated security pass (Step 9)
+- `.ai/scripts/generate-review-metrics.js` - Aggregated metrics/trends
+- `.ai/scripts/update-review-patterns.js` - Updates learning patterns post-review
+
+**Templates (selected by change type in Step 0):**
+- `REVIEW_FEATURE.md`, `REVIEW_BUGFIX.md`, `REVIEW_REFACTORING.md`, `REVIEW_HOTFIX.md`
+
+**Related workflows:**
+- `.ai/workflows/review-multi.md` - Multi-reviewer for high-risk changes
+- `.ai/workflows/review-interactive.md` - Dialogue mode for complex PRs
+
 **Commands:**
-- `/roastme build` - Automated Karpathy check (can run as supplement)
+- `/roastme build` - Automated behavioral check (can run as supplement)
 
 **Checklists:**
+- `pre-review.md` - Automated gate definition (Step 0)
 - `pre-merge.md` - Comprehensive checklist (Step 13)
 
 **Agents:**

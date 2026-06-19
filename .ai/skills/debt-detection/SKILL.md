@@ -1,4 +1,18 @@
+---
+name: debt-detection
+description: "Detects and quantifies technical, knowledge, architecture, documentation, and testing debt; rates severity and produces a prioritized paydown plan in time/risk/money terms."
+auto_load: [audit, refactor, sync]
+applies_to: [architect, reviewer, backend, frontend]
+---
+
 # Skill: debt-detection
+
+## Quick Protocol (your next action)
+1. Scan the codebase for debt across 5 types: technical, knowledge, architecture, documentation, testing.
+2. Back each finding with metrics/evidence (size, complexity, coverage, TODO age).
+3. Rate severity and estimate remediation effort (hours/days/weeks).
+4. Produce a prioritized paydown plan; express impact in time/risk/money terms.
+Analyze the real codebase state; do not invent metrics.
 
 ## Purpose
 

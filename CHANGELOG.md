@@ -9,9 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.0.0] - 2026-06-17
 
-### 🎉 Major Release - Boris Integration
+### 🎉 Major Release - UX & Governance Hybrid
 
-Complete overhaul integrating Claude-Boris workflow patterns while maintaining Prodige governance.
+Complete overhaul adding beginner-friendly UX patterns while maintaining Prodige governance.
 
 ### Added
 
@@ -273,18 +273,17 @@ Complete overhaul integrating Claude-Boris workflow patterns while maintaining P
 
 ## Version History
 
-- **2.0.0** (2026-06-17) - Boris Integration - Major feature release
+- **2.0.0** (2026-06-17) - UX & Governance Hybrid - Major feature release
 - **1.0.0** - Original Prodige Workflow
 
 ---
 
-## Credits
+## Influences
 
-### v2.0 Contributors
+### v2.0
 - **Kiro AI** - Implementation
-- **Claude-Boris** by @llcoolblaze - UX patterns and workflow design
-- **Boris Cherny** - Claude Code creator, workflow philosophy
-- **Original Prodige Team** - Foundation and governance patterns
+- Built in-house, informed by prior art in the AI-workflow space (beginner-friendly UX,
+  enterprise governance, code-quality discipline). Architecture and skills are our own.
 
 ---
 

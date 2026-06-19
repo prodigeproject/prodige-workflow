@@ -1,4 +1,19 @@
+---
+name: clean-code
+description: "Clean code and engineering discipline: modularity, readability, sizing, naming, duplication, separation of concerns, plus the four behavioral principles - think before coding, simplicity first, surgical changes, and goal-driven execution. Global skill applied to all coding work."
+global: true
+auto_load: [build, fix, refactor, review, design]
+applies_to: [orchestrator, architect, backend, frontend, qa, reviewer, docs]
+---
+
 # Skill: clean-code
+
+## Quick Protocol (your next action)
+1. Read the target file(s); measure function/class size, nesting depth, duplication, and naming.
+2. Flag each violation with file:line and a severity (Critical/High/Medium/Low).
+3. For each, give a concrete refactor: extract method, rename, dedupe, or split responsibility.
+4. Order fixes by severity; keep tests green and public APIs intact while refactoring.
+Base every finding on actual code, not assumptions.
 
 ## Purpose
 
@@ -160,3 +175,80 @@ Output:
 - Balance pragmatism with perfectionism
 - Consider team capacity and deadlines
 - Prioritize changes by impact and effort
+
+---
+
+## Engineering Discipline (Behavioral Principles)
+
+Beyond static code quality, this skill enforces four behavioral principles that prevent
+the most common coding mistakes. They are mandatory for all non-trivial work (use
+judgment on trivial one-liners). They bias toward caution over raw speed.
+
+### 1. Think Before Coding
+
+**Don't assume. Don't hide confusion. Surface tradeoffs.**
+
+- State assumptions explicitly; if uncertain, ask instead of silently picking an interpretation.
+- If multiple interpretations exist, present them with pros/cons — don't choose silently.
+- If a simpler approach exists, say so and push back when warranted.
+- If something is unclear, stop and name what's confusing before proceeding.
+
+**Red flags:** starting implementation immediately on a vague request, picking an
+interpretation silently, building the complex option when a simple one fits, coding on guesses.
+
+### 2. Simplicity First
+
+**Minimum code that solves the problem. Nothing speculative.**
+
+- No features beyond what was asked ("add login" ≠ add 2FA, OAuth, password reset).
+- No abstractions for single-use code — wait for 2+ real use cases before abstracting.
+- No "flexibility"/configurability that wasn't requested.
+- No error handling for impossible scenarios.
+- If you wrote 200 lines and it could be 50, rewrite it.
+
+**The overcomplication test:** "Would a senior engineer call this overcomplicated?"
+If YES or MAYBE → simplify. Add complexity only with 2+ real use cases, an explicit
+request, or a measurable problem it solves.
+
+### 3. Surgical Changes
+
+**Touch only what you must. Clean up only your own mess.**
+
+- Don't "improve" adjacent code, comments, or formatting while doing an unrelated task.
+- Don't refactor things that aren't broken ("while we're here" is how scope creeps).
+- Match existing style even if you'd do it differently.
+- Notice unrelated dead code? Mention it, don't delete it.
+- Remove imports/variables/functions that *your* change made unused — but leave
+  pre-existing dead code alone unless asked.
+
+**Traceability test:** every changed line should trace directly to the request. For each
+diff hunk ask "did the task require this?" If no → revert it.
+
+### 4. Goal-Driven Execution
+
+**Define verifiable success criteria up front. Loop until verified.**
+
+Don't just say what you'll do — state how you'll prove it worked.
+
+```
+Plan:
+1. Add POST /auth/login        → verify: curl returns JWT token
+2. Protect /api/users          → verify: request without token returns 401
+3. Add auth unit tests         → verify: test suite passes
+```
+
+Good criteria are automatically checkable, have a clear pass/fail, and need no subjective
+judgment. Weak criteria ("make it work", "clean it up", "fix the issue") force constant
+clarification. Strong criteria let the agent verify its own work and know when it's done.
+(Final evidence-gathering before any completion claim is enforced by
+`verification-before-completion`.)
+
+### Self-Check Before Finishing
+
+- [ ] Did I state assumptions and ask about real ambiguities?
+- [ ] Did I choose the simplest approach that works?
+- [ ] Does every changed line trace to the task?
+- [ ] Did I define and verify success criteria?
+- [ ] Would a senior engineer approve this?
+
+Any NO → revise before submitting.

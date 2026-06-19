@@ -8,8 +8,8 @@ Implement approved design using Test-Driven Development.
 - Implementation approved
 
 ## Skills Auto-Loaded
-- `.ai/skills/tdd/SKILL.md` (MANDATORY)
-- `.ai/skills/verification-before-completion.md`
+- `.ai/skills/test-driven-development/SKILL.md` (MANDATORY)
+- `.ai/skills/verification-before-completion/SKILL.md`
 
 ## Workflow
 
@@ -17,7 +17,7 @@ Implement approved design using Test-Driven Development.
 - Read `.ai/context/ARCHITECTURE.md`
 - Read `.ai/context/IMPLEMENTATION.md`
 - Read `.ai/context/CONTEXT.md` (domain glossary)
-- Load `.ai/cache/` (reusable patterns)
+- Load `.ai/runtime/cache/` (reusable patterns)
 
 ### 2. Search and Reuse
 - Search existing codebase for similar patterns
@@ -28,7 +28,7 @@ Implement approved design using Test-Driven Development.
 Break implementation into vertical slices:
 - Each slice = complete user-facing feature
 - Avoid horizontal slicing (backend-only or frontend-only)
-- See: `.ai/skills/tdd/ANTI-PATTERNS.md` (horizontal slicing danger)
+- See: `.ai/skills/test-driven-development/ANTI-PATTERNS.md` (horizontal slicing danger)
 
 ### 4. Implement with TDD
 For each feature slice:
@@ -49,7 +49,7 @@ For each feature slice:
 - Improve names
 - Run tests after each change
 
-**Reference**: `.ai/skills/tdd/SKILL.md`
+**Reference**: `.ai/skills/test-driven-development/SKILL.md`
 
 **Progressive Disclosure**: Load additional TDD resources as needed:
 - `PHILOSOPHY.md` - Behavior vs implementation testing
@@ -112,7 +112,7 @@ Before claiming build complete:
 ---
 
 **Integration Points**:
-- Uses: `.ai/skills/tdd/SKILL.md` (main TDD workflow)
-- Uses: `.ai/skills/tdd/ANTI-PATTERNS.md` (horizontal slicing warning)
-- Uses: `.ai/skills/verification-before-completion.md`
+- Uses: `.ai/skills/test-driven-development/SKILL.md` (main TDD workflow)
+- Uses: `.ai/skills/test-driven-development/ANTI-PATTERNS.md` (horizontal slicing warning)
+- Uses: `.ai/skills/verification-before-completion/SKILL.md`
 - Updates: `.ai/context/*.md` (if needed)

@@ -1,41 +1,41 @@
 {
-  "version": "2.0.0",
-  "description": "Centralized skill auto-loading configuration",
-  "lastUpdated": "2026-06-17",
-  
+  "version": "3.0.0",
+  "description": "CANONICAL skill auto-loading configuration. Single source of truth for which skills load per command. .ai/orchestrator/skill-selection.matrix.json must stay consistent with this file. Every skill named here must exist in manifest.json.",
+  "lastUpdated": "2026-06-18",
+
   "globalSkills": {
     "description": "Skills loaded for ALL commands",
-    "skills": ["karpathy-behavioral"]
+    "skills": ["clean-code", "efficient-communication"]
   },
-  
+
   "commandSkills": {
     "/init": {
-      "required": ["repomap"],
-      "optional": ["brainstorming"]
+      "required": ["repomap", "reality-check", "documentation"],
+      "optional": ["brainstorming", "context-sync"]
     },
     "/design": {
-      "required": ["repomap", "roastme"],
-      "optional": ["brainstorming", "implementation-planning"]
+      "required": ["repomap", "roastme", "reality-check"],
+      "optional": ["brainstorming", "implementation-planning", "memory-search", "grill-with-docs"]
     },
     "/build": {
-      "required": ["test-driven-development", "verification-before-completion", "repomap", "ripgrep"],
-      "optional": ["clean-code", "executing-plans", "context-sync"]
+      "required": ["test-driven-development", "verification-before-completion", "repomap", "ripgrep", "reuse-rebuild"],
+      "optional": ["subagent-driven-development", "executing-plans", "clean-code", "test-planning", "context-sync", "memory-search", "grill-with-docs"]
     },
     "/fix": {
       "required": ["systematic-debugging", "test-driven-development", "verification-before-completion", "repomap", "ripgrep"],
-      "optional": ["clean-code", "context-sync"]
+      "optional": ["clean-code", "test-planning", "context-sync", "memory-search"]
     },
     "/refactor": {
       "required": ["test-driven-development", "verification-before-completion", "clean-code", "repomap"],
-      "optional": ["roastme", "debt-detection"]
+      "optional": ["reuse-rebuild", "roastme", "debt-detection", "test-planning", "context-sync"]
     },
     "/review": {
-      "required": ["roastme", "verification-before-completion"],
-      "optional": ["security-review", "clean-code", "debt-detection"]
+      "required": ["requesting-code-review", "receiving-code-review", "roastme", "verification-before-completion", "review-learning"],
+      "optional": ["security-review", "performance-review", "accessibility-review", "clean-code", "debt-detection", "context-sync"]
     },
     "/test": {
       "required": ["test-driven-development"],
-      "optional": ["verification-before-completion"]
+      "optional": ["verification-before-completion", "test-planning"]
     },
     "/verify": {
       "required": ["verification-before-completion"],
@@ -43,15 +43,31 @@
     },
     "/magic": {
       "required": ["test-driven-development", "verification-before-completion", "repomap"],
-      "optional": ["brainstorming", "implementation-planning", "roastme"]
+      "optional": ["brainstorming", "implementation-planning", "roastme", "memory-search"]
     },
     "/audit": {
-      "required": ["repomap", "roastme", "security-review", "debt-detection"],
-      "optional": ["dependency-review", "context-sync"]
+      "required": ["repomap", "ripgrep", "roastme", "security-review", "debt-detection"],
+      "optional": ["dependency-review", "performance-review", "accessibility-review", "context-sync", "memory-search", "project-history"]
+    },
+    "/docs": {
+      "required": ["documentation"],
+      "optional": ["context-sync"]
+    },
+    "/release": {
+      "required": ["finishing-a-development-branch", "test-planning", "documentation"],
+      "optional": ["context-sync"]
+    },
+    "/sync": {
+      "required": ["context-sync"],
+      "optional": ["debt-detection", "documentation"]
     },
     "/parallel": {
       "required": ["parallel-planner", "snapshot-manager", "lock-manager", "handoff-manager", "repomap"],
-      "optional": ["test-driven-development", "verification-before-completion"]
+      "optional": ["using-git-worktrees", "dispatching-parallel-agents", "cache-manager", "test-driven-development", "verification-before-completion"]
+    },
+    "/cache": {
+      "required": ["cache-manager"],
+      "optional": ["repomap"]
     }
   }
 }

@@ -1,0 +1,11 @@
+{
+  "case": "case-001",
+  "description": "Login endpoint: SQL injection (Critical) + unrelated scope creep (Important). Includes a must_not_flag on already-validated input.",
+  "expected_findings": [
+    { "severity": "Critical", "theme": "injection", "location": "src/auth/login.js:23" },
+    { "severity": "Important", "theme": "scope_creep", "location": "src/auth/reset.js:5" }
+  ],
+  "must_not_flag": [
+    { "location": "src/auth/login.js:10", "reason": "request body already validated by a zod schema upstream" }
+  ]
+}

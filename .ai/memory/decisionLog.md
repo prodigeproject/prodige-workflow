@@ -67,21 +67,23 @@ Architecture Decision Records (ADRs) for important technical decisions.
 
 ## Example Decisions
 
-### [2026-06-17] - Adopt Hybrid Workflow Architecture
+### M-0002 — Hybrid architecture: adopt beginner-friendly UX, keep strong governance
+
+*Decision date: 2026-06-17*
 
 #### Context
-We needed a workflow system that works for both beginner vibe coders and production-grade applications. Two systems were evaluated: Claude-Boris (excellent UX) and Prodige (strong governance).
+We needed a workflow system that works for both beginner vibe coders and production-grade applications. Two approaches were evaluated: a UX-first beginner workflow (excellent UX) and a governance-first model (strong governance).
 
 #### Decision
-Implement hybrid architecture that adopts Boris's UX features (Memory Bank, Magic Command, Safety System) while keeping Prodige's governance model (HITL gates, formal context docs, quality gates).
+Implement hybrid architecture that adopts beginner-friendly UX features (Memory Bank, Magic Command, Safety System) while keeping a strong governance model (HITL gates, formal context docs, quality gates).
 
 #### Options Considered
 
-**Option 1: Pure Boris**
+**Option 1: Pure UX-first**
 - Pros: Simple, beginner-friendly, proven
 - Cons: Lacks enterprise governance, no HITL gates
 
-**Option 2: Pure Prodige**
+**Option 2: Pure governance-first**
 - Pros: Strong governance, team-ready
 - Cons: Steep learning curve for beginners
 

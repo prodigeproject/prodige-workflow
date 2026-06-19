@@ -11,9 +11,9 @@ Fix bugs using the 6-phase debugging protocol. No guessing, no shortcuts.
 - Recent changes context (if known)
 
 ## Skills Auto-Loaded
-- `.ai/skills/diagnose/SKILL.md` (MANDATORY - 6-phase protocol)
-- `.ai/skills/tdd/SKILL.md` (for fix implementation)
-- `.ai/skills/verification-before-completion.md` (for fix verification)
+- `.ai/skills/systematic-debugging/SKILL.md` (MANDATORY - 6-phase protocol)
+- `.ai/skills/test-driven-development/SKILL.md` (for fix implementation)
+- `.ai/skills/verification-before-completion/SKILL.md` (for fix verification)
 
 ## 6-Phase Debugging Protocol
 
@@ -32,9 +32,9 @@ Phase 6: CLEANUP & POST-MORTEM ← Document and improve
 
 ## Workflow
 
-### Step 1: Load Diagnose Skill
+### Step 1: Load Systematic Debugging Skill
 ```
-Read .ai/skills/diagnose/SKILL.md
+Read .ai/skills/systematic-debugging/SKILL.md
 ```
 
 ### Step 2: Phase 1 - Build Feedback Loop (CRITICAL)
@@ -62,7 +62,7 @@ Build a fast, deterministic, agent-runnable pass/fail signal:
 **Be aggressive. Be creative. Refuse to give up.**
 
 **Progressive Disclosure**: Load detailed strategies:
-→ See `.ai/skills/diagnose/PHASE1-FEEDBACK-LOOP.md` for all 10 ways + iteration strategies
+→ See `.ai/skills/systematic-debugging/PHASE1-FEEDBACK-LOOP.md` for all 10 ways + iteration strategies
 
 **Cannot build loop? STOP. Say so explicitly.** Ask user for help.
 
@@ -88,7 +88,7 @@ Systematic evidence gathering:
 5. **Check dependencies** (services, versions, config)
 
 **Progressive Disclosure**: Load instrumentation strategies:
-→ See `.ai/skills/diagnose/INSTRUMENTATION.md` for tagged logging patterns
+→ See `.ai/skills/systematic-debugging/INSTRUMENTATION.md` for tagged logging patterns
 
 **DO NOT attempt fixes until root cause identified.**
 
@@ -106,7 +106,7 @@ THEN <changing Y> will make bug disappear
 **Checkpoint with user**: Show ranked list BEFORE testing (don't block if AFK).
 
 **Progressive Disclosure**: Load hypothesis formation guide:
-→ See `.ai/skills/diagnose/HYPOTHESIS-GUIDE.md` for IF-THEN format + ranking
+→ See `.ai/skills/systematic-debugging/HYPOTHESIS-GUIDE.md` for IF-THEN format + ranking
 
 ### Step 6: Phase 5 - Fix + Regression Test (TDD)
 
@@ -119,7 +119,7 @@ THEN <changing Y> will make bug disappear
 5. **Re-run Phase 1 loop**: Confirm original scenario works
 
 **Progressive Disclosure**: Load test seam analysis:
-→ See `.ai/skills/diagnose/REGRESSION-TESTING.md` for correct seam selection
+→ See `.ai/skills/systematic-debugging/REGRESSION-TESTING.md` for correct seam selection
 
 **If Fix Doesn't Work:**
 
@@ -186,7 +186,7 @@ Run `/sync` to verify context accuracy.
 ```
 User: /fix Login button not working on mobile
 
-Agent: Loading diagnose skill...
+Agent: Loading systematic-debugging skill...
 
 Phase 1: Build Feedback Loop (THE CRITICAL PHASE)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -397,22 +397,22 @@ Phase 5 uses TDD for regression test:
 ## Progressive Disclosure Resources
 
 **Phase 1 Deep Dive** (10 ways to build feedback loops):
-→ `.ai/skills/diagnose/PHASE1-FEEDBACK-LOOP.md`
+→ `.ai/skills/systematic-debugging/PHASE1-FEEDBACK-LOOP.md`
 
 **Hypothesis Formation** (3-5 ranked, falsifiable):
-→ `.ai/skills/diagnose/HYPOTHESIS-GUIDE.md`
+→ `.ai/skills/systematic-debugging/HYPOTHESIS-GUIDE.md`
 
 **Instrumentation Strategies** (tagged logging, debugger preference):
-→ `.ai/skills/diagnose/INSTRUMENTATION.md`
+→ `.ai/skills/systematic-debugging/INSTRUMENTATION.md`
 
 **Regression Testing** (correct seam analysis):
-→ `.ai/skills/diagnose/REGRESSION-TESTING.md`
+→ `.ai/skills/systematic-debugging/REGRESSION-TESTING.md`
 
 ---
 
 **Remember**: Find root cause BEFORE attempting fixes. Phase 1 (feedback loop) is 90% of the work.
 
 **Skills Used**:
-- `.ai/skills/diagnose/SKILL.md` (6-phase protocol - MAIN)
-- `.ai/skills/tdd/SKILL.md` (fix implementation)
-- `.ai/skills/verification-before-completion.md` (fix verification)
+- `.ai/skills/systematic-debugging/SKILL.md` (6-phase protocol - MAIN)
+- `.ai/skills/test-driven-development/SKILL.md` (fix implementation)
+- `.ai/skills/verification-before-completion/SKILL.md` (fix verification)

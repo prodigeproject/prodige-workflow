@@ -1,4 +1,18 @@
-# Skill: handoff-manager
+---
+name: handoff-manager
+description: "Creates and validates comprehensive handoff documentation capturing context, decisions, files affected, and next steps for seamless continuity across sessions and agents."
+auto_load: ["/parallel"]
+applies_to: [orchestrator, architect, backend, frontend, qa]
+---
+
+# Handoff Manager
+
+## Quick Protocol (your next action)
+1. Write a 2-3 sentence summary of what was accomplished this session.
+2. Capture current state, key decisions + rationale, and files affected.
+3. List prioritized next steps and any blockers (with contact + unblock estimate).
+4. Note open questions, then assess handoff completeness (Complete/Partial).
+5. Save to `.ai/runtime/handoffs/handoff-<timestamp>.md`. Write for someone with zero context.
 
 ## Purpose
 
@@ -161,7 +175,7 @@ Output:
     - Reconstruct context from code and tests
     - Create proper handoff documentation
   Risks: Lost context, duplicate work, wrong assumptions
-  Files affected: .ai/handoffs/session-XYZ.md (needs updating)
+  Files affected: .ai/runtime/handoffs/session-XYZ.md (needs updating)
 ```
 
 ### Example 5: Blocker escalation
@@ -237,7 +251,11 @@ Output:
 - Escalate critical blockers immediately
 
 ### Handoff Storage
-- Store in `.ai/handoffs/` directory
+- Store in `.ai/runtime/handoffs/` directory
+- Use the canonical template [`HANDOFF_TEMPLATE.md`](../../runtime/handoffs/HANDOFF_TEMPLATE.md);
+  its sections map 1:1 to this skill's standard format (session summary, current
+  state, context, files affected, tests run, next steps, blockers, open questions,
+  and handoff quality)
 - Name by timestamp: `handoff-2024-01-15-1430.md`
 - Link handoffs chronologically
 - Archive old handoffs after completion

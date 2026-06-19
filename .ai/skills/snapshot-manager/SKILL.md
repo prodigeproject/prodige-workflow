@@ -7,6 +7,23 @@ description: "Creates and manages stable context snapshots for parallel agent wo
 
 Create stable, consistent snapshots of project state to enable safe parallel agent execution.
 
+## Quick Protocol (your next action)
+1. Define snapshot scope (full repo / partial / dependency) and capture state + git ref.
+2. Generate a unique snapshot ID with metadata (timestamp, purpose, expiration).
+3. Assign the same snapshot to all parallel agents so they share one baseline.
+4. Update snapshots only at integration/merge points, then notify dependent agents.
+5. Clean up snapshots once agents complete. Never let agents work off a moving target.
+
+## Canonical Storage
+
+Snapshot state and metadata live **only** under `.ai/runtime/snapshots/` (never a
+top-level `.ai/snapshots/`). Each snapshot is identified by a `snapshot_id` of the
+form `snapshot-<timestamp>` (e.g. `snapshot-20240115-143022`). That same
+`snapshot_id` is the field session configs carry in
+[`SESSION_TEMPLATE.json`](../../runtime/sessions/SESSION_TEMPLATE.json) — the
+`snapshot_id` written here MUST match the `snapshot_id` each dispatched session
+references, so agents and the snapshot registry always agree on the baseline.
+
 ## Purpose
 
 Provide stable context for parallel work by:
@@ -308,12 +325,12 @@ Track essential information:
   "scope": "full-repository",
   "agents": [
     {
-      "agent_id": "frontend-agent-1",
+      "agent_role": "frontend",
       "scope": "src/components/*, src/hooks/*",
       "status": "active"
     },
     {
-      "agent_id": "backend-agent-2",
+      "agent_role": "backend",
       "scope": "src/api/*, prisma/*",
       "status": "completed"
     }

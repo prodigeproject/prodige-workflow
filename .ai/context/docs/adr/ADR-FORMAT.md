@@ -18,7 +18,7 @@
 
 ## File Location & Naming
 
-**Location**: `docs/adr/`  
+**Location**: `.ai/context/docs/adr/` (canonical ADR directory)  
 **Naming**: `NNNN-slug.md` (sequential numbering)
 
 **Examples**:
@@ -26,7 +26,7 @@
 - `0002-event-sourcing-for-orders.md`
 - `0003-monorepo-structure.md`
 
-**Numbering**: Scan `docs/adr/` for highest existing number, increment by one.
+**Numbering**: Scan `.ai/context/docs/adr/` for highest existing number, increment by one.
 
 ---
 
@@ -348,7 +348,7 @@ Services communicate via RabbitMQ events for loose coupling.
 2. Check 3 criteria: Hard to reverse? Surprising? Trade-off?
 3. If all true, offer: "Should I create ADR for this decision?"
 4. If yes:
-   a. Scan docs/adr/ for highest number
+   a. Scan .ai/context/docs/adr/ for highest number
    b. Create NNNN-slug.md (increment number)
    c. Write 1-3 sentence summary
    d. Add optional sections only if valuable
@@ -361,7 +361,7 @@ Services communicate via RabbitMQ events for loose coupling.
 1. Making architectural decision
 2. Check: Is this ADR-worthy? (3 criteria)
 3. If yes:
-   a. Create docs/adr/NNNN-slug.md
+   a. Create .ai/context/docs/adr/NNNN-slug.md
    b. Write context, decision, why (1-3 sentences)
    c. Add optional sections if helpful
 4. Commit with decision
@@ -378,7 +378,7 @@ Services communicate via RabbitMQ events for loose coupling.
 **Find next number**:
 ```bash
 # List existing ADRs
-ls docs/adr/
+ls .ai/context/docs/adr/
 
 # Output:
 # 0001-use-postgresql.md
@@ -414,7 +414,7 @@ superseded:  Replaced by newer decision (link to new ADR)
 ```
 Architect makes hard-to-reverse decision
 → Agent asks: "Create ADR?"
-→ If yes, create docs/adr/NNNN-slug.md
+→ If yes, create .ai/context/docs/adr/NNNN-slug.md
 → Record in DECISIONS.md as well (high-level)
 ```
 
@@ -558,7 +558,7 @@ We're using event sourcing.
 ### File Naming
 
 ```
-docs/adr/NNNN-short-slug.md
+.ai/context/docs/adr/NNNN-short-slug.md
 
 Examples:
 0001-use-postgresql.md

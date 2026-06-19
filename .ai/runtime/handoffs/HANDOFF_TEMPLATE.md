@@ -1,67 +1,47 @@
 # Agent Handoff Template
 
 > **File**: `.ai/runtime/handoffs/HANDOFF_TEMPLATE.md`  
-> **Purpose**: Standard format for worker-to-reviewer handoffs  
+> **Purpose**: Standard format for worker-to-reviewer (and agent-to-agent) handoffs  
+> **Produced by**: the `handoff-manager` skill  
+> **Saved as**: `.ai/runtime/handoffs/handoff-<timestamp>.md`  
 > **Related**: [Runtime README](../README.md), [ORCHESTRATOR](../../orchestrator/ORCHESTRATOR.md)
 
 ---
 
 ## Overview
 
-This template ensures consistent communication when an agent completes work and hands off to a reviewer or next agent. Complete all sections thoroughly.
+This template mirrors the `handoff-manager` skill output. Complete every section so the
+handoff can be understood by someone with zero context about your session. Sections map
+1:1 to the skill's standard format: session summary, current state, context, next steps,
+blockers, open questions, files affected, and a handoff-quality assessment.
 
 ---
 
 ## Handoff Metadata
 
-**Session ID**: `[unique session identifier]`  
-**Agent Role**: `[e.g., backend, frontend, architect]`  
-**Snapshot Reference**: `[snapshot ID if applicable]`  
-**Date**: `[YYYY-MM-DD]`  
-**Time Spent**: `[approximate duration]`
+**Session ID**: `[unique session identifier, e.g. session-backend-feature-20240115-143022]`  
+**Agent Role**: `[e.g., orchestrator, architect, backend, frontend, qa]`  
+**Snapshot Reference**: `[snapshot_id if applicable, e.g. snapshot-20240115-143022]`  
+**Started**: `[YYYY-MM-DD HH:MM]`  
+**Completed**: `[YYYY-MM-DD HH:MM]`  
+**Duration**: `[approximate duration]`
 
 ---
 
-## Goal
+## Session Summary
 
-**Original Task**:
-```
-[Describe the original task or command that initiated this work]
-```
-
-**Scope**:
-- [What was in scope]
-- [What was explicitly out of scope]
+[2-3 sentences describing what was accomplished this session. Be specific.]
 
 ---
 
-## Completed Work
+## Current State
 
-### Tasks Completed
-
-- [ ] [Specific task 1]
-- [ ] [Specific task 2]
-- [ ] [Specific task 3]
-
-### Implementation Summary
-
-[Provide a brief narrative of what was built, fixed, or changed]
+[Where the work stands now. Include an approximate completeness assessment, what is
+working, what is mocked or stubbed, and what is not started.]
 
 ---
 
-## Files Changed
-
-| File Path | Change Type | Summary |
-|-----------|-------------|---------|
-| `path/to/file1.js` | Modified | [What changed and why] |
-| `path/to/file2.js` | Created | [Purpose of new file] |
-| `path/to/file3.js` | Deleted | [Reason for deletion] |
-
-**Total Files Changed**: [number]
-
----
-
-## Decisions Made
+## Context (Decisions and Rationale)
 
 ### Technical Decisions
 
@@ -77,23 +57,15 @@ This template ensures consistent communication when an agent completes work and 
 
 ---
 
-## Risks / Known Issues
+## Files Affected
 
-### Critical Issues
+| File Path | Change Type | Summary |
+|-----------|-------------|---------|
+| `path/to/file1.js` | Modified | [What changed and why] |
+| `path/to/file2.js` | Created | [Purpose of new file] |
+| `path/to/file3.js` | Deleted | [Reason for deletion] |
 
-- **[Issue]**: [Description and recommended action]
-
-### Medium Issues
-
-- **[Issue]**: [Description]
-
-### Minor Issues
-
-- **[Issue]**: [Description]
-
-### Technical Debt Introduced
-
-- **[Debt]**: [Why it was necessary and how to address later]
+**Total Files Changed**: [number]
 
 ---
 
@@ -119,15 +91,57 @@ This template ensures consistent communication when an agent completes work and 
 
 ---
 
+## Next Steps
+
+Prioritized, actionable steps for the reviewer or next agent:
+
+1. [Action required next]
+2. [Follow-up task]
+3. [Future improvement]
+
+---
+
+## Blockers
+
+- **[Blocker]**: [Description, contact info, and estimated unblock time]
+- _If none: write "None"._
+
+---
+
+## Open Questions
+
+1. **[Question]**: [Context for the decision needed]
+- _If none: write "None"._
+
+---
+
+## Risks / Known Issues
+
+### Critical Issues
+
+- **[Issue]**: [Description and recommended action]
+
+### Medium Issues
+
+- **[Issue]**: [Description]
+
+### Technical Debt Introduced
+
+- **[Debt]**: [Why it was necessary and how to address later]
+
+---
+
+## Verification
+
+[How can the reviewer verify these changes are correct? List concrete steps.]
+
+---
+
 ## Needs Reviewer Attention
 
 ### High Priority
 
 1. **[Item]**: [Why this needs careful review]
-
-### Questions for Reviewer
-
-1. **[Question]**: [Context for the question]
 
 ### Approval Required
 
@@ -143,9 +157,9 @@ This template ensures consistent communication when an agent completes work and 
 
 ### Cache Updates
 
-- [ ] Architecture summary
-- [ ] API documentation
-- [ ] [Other cache files]
+- [ ] `repo-map.md`
+- [ ] `architecture-summary.md`
+- [ ] `module-summaries/[module].md`
 
 ### Related Work
 
@@ -155,23 +169,11 @@ This template ensures consistent communication when an agent completes work and 
 
 ---
 
-## Next Steps
+## Handoff Quality
 
-### Immediate Actions
+**Assessment**: `[Complete | Partial | Complete with blocker]`
 
-1. [Action required by reviewer or next agent]
-2. [Follow-up task]
-
-### Future Improvements
-
-- [Enhancement idea]
-- [Refactoring opportunity]
-
----
-
-## Notes
-
-[Any additional context, observations, or information that doesn't fit above categories]
+**Reasoning**: [Why this assessment - what, if anything, is missing for full continuity]
 
 ---
 
@@ -179,13 +181,15 @@ This template ensures consistent communication when an agent completes work and 
 
 Before submitting this handoff, ensure:
 
-- [ ] All sections are completed
-- [ ] Files changed are accurate and complete
-- [ ] Critical risks are clearly flagged
+- [ ] Session summary is clear and specific
+- [ ] Current state reflects reality
+- [ ] All decisions have rationale documented
+- [ ] Files affected list is accurate and complete
 - [ ] Tests were run and results documented
-- [ ] Questions are clearly articulated
-- [ ] Next steps are actionable
-- [ ] Related documentation is referenced
+- [ ] Next steps are actionable and prioritized
+- [ ] Blockers are clearly flagged with contact info
+- [ ] Open questions are explicit
+- [ ] Handoff quality is assessed
 
 ---
 

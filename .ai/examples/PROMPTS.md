@@ -109,7 +109,7 @@ Koleksi contoh prompts untuk berbagai scenarios dalam Prodige Workflow.
 
 ### Resume Work
 ```text
-/resume
+/session-start
 ```
 **Kapan digunakan:** Continue dari previous session
 
@@ -117,9 +117,9 @@ Koleksi contoh prompts untuk berbagai scenarios dalam Prodige Workflow.
 
 ## 7. Collaboration Commands
 
-### Create Handoff
+### Delegate to an Agent
 ```text
-/handoff to backend: Implement user authentication endpoints
+/agent backend Implement user authentication endpoints
 ```
 **Kapan digunakan:** Delegate task ke specific agent
 

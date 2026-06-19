@@ -13,7 +13,7 @@ Mendeteksi context drift dengan membandingkan berbagai sumber kebenaran dalam si
 Sistem AI bekerja dengan multiple sources of truth:
 - Repository code
 - Documentation
-- Project brain (`.ai/brain/`)
+- Context (`.ai/context/`)
 - Runtime state (`.ai/state/`)
 - Cache (`.ai/runtime/cache/`)
 
@@ -121,7 +121,7 @@ Issues Found:
 4. Brain: UNKNOWNS.md lists auth strategy, but JWT implemented
    → Brain needs update
    
-5. State: CURRENT_STATE.md shows "planning phase", but code exists
+5. State: CURRENT.md shows "planning phase", but code exists
    → State is stale
    
 6. Cache: Last updated 7 days ago, 45 files changed since
@@ -131,7 +131,7 @@ Recommended Actions:
 1. Update brain: /init from repo
 2. Update README: Edit README.md (manual)
 3. Generate docs: /docs generate
-4. Update state: Edit .ai/state/CURRENT_STATE.md
+4. Update state: Edit .ai/state/CURRENT.md
 5. Refresh cache: /cache clear && /cache update
 
 Run '/sync --fix' to auto-fix what's possible.
@@ -157,7 +157,7 @@ Critical Issues:
    → Cannot trust system recommendations
 
 Required Actions (MANUAL):
-1. Audit architecture: Review .ai/brain/ARCHITECTURE.md vs actual code
+1. Audit architecture: Review .ai/context/ARCHITECTURE.md vs actual code
 2. Validate state: Verify .ai/state/ reflects reality
 3. Reconcile dependencies: Sync package.json with brain
 
@@ -210,9 +210,9 @@ Human approval and manual intervention required.
 Would execute:
 1. /cache clear
 2. /cache update
-3. Update .ai/state/CURRENT_STATE.md:
+3. Update .ai/state/CURRENT.md:
    - line 5: "phase: planning" → "phase: implementation"
-4. Update .ai/brain/UNKNOWNS.md:
+4. Update open-questions in .ai/context/PRD.md:
    - Remove: "Auth strategy unclear"
 
 Run without --dry-run to apply.
@@ -222,11 +222,11 @@ Run without --dry-run to apply.
 
 ### 1. Repository ↔ Brain
 ```
-Repository State          Brain Content
+Repository State          Context Content
 ├── src/                 ├── ARCHITECTURE.md
-├── package.json         ├── TECH_STACK.md
-├── README.md            ├── DEPENDENCIES.md
-└── docs/                └── UNKNOWNS.md
+├── package.json         ├── PRD.md
+├── README.md            ├── PROJECT.md
+└── docs/                └── DECISIONS.md
 
 Checks:
 - Tech stack matches
@@ -301,6 +301,11 @@ Checks:
 - Update phase based on code analysis
 - Sync task completion
 - Refresh timestamps
+
+✓ **Manifest Update**
+- Bump `context_version` (integer) in `.ai/context/manifest.json`
+- Update `last_sync` (ISO timestamp) in `.ai/context/manifest.json`
+- Record sync summary in history
 
 ✓ **Brain Sync**
 - Re-scan repository

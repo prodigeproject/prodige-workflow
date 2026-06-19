@@ -16,18 +16,49 @@ The Memory Bank provides **persistent context across AI sessions**, solving the 
 **Update Frequency:** Every session start/end
 
 **Files:**
-- `activeContext.md` - What you're currently working on
-- `progress.md` - Task completion status
+
+*Index (read FIRST):*
+- `index.md` - **Searchable index of all entries (owner: memory-manager; read this FIRST, see below)**
+
+*Indexed historical files (entries carry `### M-NNNN — <topic>` anchors):*
 - `sessionHistory.md` - Rolling log of recent sessions
-- `conventions.md` - Learned patterns specific to this project's style
 - `decisionLog.md` - Recent technical decisions (not yet formalized)
+- `conventions.md` - Learned patterns specific to this project's style
+- `progress.md` - Task completion status
+
+*Current-state files (read directly, NOT indexed, no anchors):*
+- `activeContext.md` - What you're currently working on
 - `projectContext.md` - Quick project identity reference
+
+*Other memory assets:*
+- `review-patterns.json` - Review heuristics (owner: **review-learning** skill, updated by `.ai/scripts/update-review-patterns.js` — NOT memory-manager)
+- `lessons/` - Durable lessons (owner: memory-manager; read by project-history)
+- `patterns/` - Reusable patterns (owner: memory-manager; read by project-history)
 
 **When to use:**
 - Session continuity (resume work after break)
 - Track daily/weekly progress
 - Remember informal decisions
 - Learn team-specific patterns
+
+---
+
+## Token-Efficient Retrieval (3-Layer)
+
+**Do not read every memory file in full.** The Memory Bank grows over time; loading it all wastes ~8-20k tokens per session. Use the `memory-search` skill instead:
+
+```
+1. Read index.md            → scan entry table (id, date, type, topic)
+2. Filter to relevant IDs   → discard the rest
+3. Fetch only those entries → jump to the M-NNNN anchor in the source file
+```
+
+- `index.md` keeps one line per entry (~10-30 tokens each).
+- Each full historical entry (`sessionHistory.md`, `decisionLog.md`, `conventions.md`, `progress.md`) lives in its source file under a `### M-NNNN — <topic>` anchor.
+- `activeContext.md` and `projectContext.md` are small current-state files — read them directly; they are not indexed and carry no anchors.
+- The index is maintained automatically at `/session-end` (memory-manager). If it drifts, rebuild it per the instructions in `index.md`.
+
+This mirrors the "filter before fetch" discipline of search-backed memory systems, but stays pure-markdown and git-trackable (no runtime, no database required).
 
 ---
 
@@ -113,12 +144,16 @@ Informal decision (memory/decisionLog.md)
 
 | File | Owner Agent | Update Trigger | Approval Required |
 |------|-------------|----------------|-------------------|
-| memory/activeContext.md | memory-manager | Session start/end | No |
-| memory/progress.md | memory-manager | Task completion | No |
-| memory/sessionHistory.md | memory-manager | Session end | No |
-| memory/conventions.md | memory-manager | Pattern learned | No |
-| memory/decisionLog.md | memory-manager | Decision made | No |
-| memory/projectContext.md | memory-manager | Session start | No |
+| memory/index.md | memory-manager | Session end / entry recorded | No |
+| memory/sessionHistory.md (indexed) | memory-manager | Session end | No |
+| memory/decisionLog.md (indexed) | memory-manager | Decision made | No |
+| memory/conventions.md (indexed) | memory-manager | Pattern learned | No |
+| memory/progress.md (indexed) | memory-manager | Task completion | No |
+| memory/activeContext.md (current-state, not indexed) | memory-manager | Session start/end | No |
+| memory/projectContext.md (current-state, not indexed) | memory-manager | Session start | No |
+| memory/review-patterns.json | review-learning (skill) | `.ai/scripts/update-review-patterns.js` | No |
+| memory/lessons/ | memory-manager | Durable lesson captured (read by project-history) | No |
+| memory/patterns/ | memory-manager | Reusable pattern captured (read by project-history) | No |
 | context/PROJECT.md | architect | Project init | Yes (HITL) |
 | context/PRD.md | architect | Design phase | Yes (HITL) |
 | context/ARCHITECTURE.md | architect | Design phase | Yes (HITL) |
@@ -210,10 +245,13 @@ Informal decision (memory/decisionLog.md)
 - Structured sections for programmatic parsing
 - Git-trackable (can see history)
 
-### Size Management
-- sessionHistory.md: Rolling 30-day window
-- conventions.md: Max 50 patterns (oldest pruned)
-- decisionLog.md: Cleared monthly after promotion
+### Size Management (Compaction Policy)
+
+One compaction policy, triggered at `/session-end` and `/sync`, guarded by size (~5000 tokens / ~50KB):
+
+- **sessionHistory.md**: rolling 30-day window. Older entries move to `.ai/memory/archive/sessionHistory-<YYYY-Qn>.md`. **Keep their index rows**, but set each row's `source_file` to `archive/...`.
+- **conventions.md**: soft cap of ~50 patterns (oldest pruned).
+- **archive/**: created lazily (only when the first archive write happens).
 
 ### Performance
 - Memory files loaded in <100ms
@@ -226,7 +264,7 @@ Informal decision (memory/decisionLog.md)
 
 - Implementation: See `/session-start` and `/session-end` commands
 - Agent: See `memory-manager.md` agent documentation
-- Philosophy: Part of Boris v2.0 integration (see CHANGELOG.md)
+- Philosophy: Part of the v2.0 UX & governance hybrid (see CHANGELOG.md)
 
 ---
 

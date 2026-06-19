@@ -7,6 +7,13 @@ description: "Identifies comprehensive test cases, regression scenarios, and edg
 
 Design comprehensive test strategies by identifying test cases, regression scenarios, and edge cases before implementation.
 
+## Quick Protocol (your next action)
+1. Understand the requirements and acceptance criteria for what needs testing.
+2. List happy-path cases, then edge/boundary cases, then negative/error cases.
+3. Add regression tests for existing features the change could affect.
+4. Organize by layer (unit/integration/E2E) and prioritize by risk (Critical/Important/Nice).
+5. Specify test data needs. Think adversarially: how would you break this?
+
 ## Purpose
 
 Ensure thorough testing by:
@@ -305,7 +312,7 @@ Focus on:
 
 - Works with **brainstorming** to define acceptance criteria
 - Informs **implementation-planning** about testability
-- Used by **tdd** or **test-driven-development** for TDD workflow
+- Used by **test-driven-development** for TDD workflow
 - Feeds **qa** agent with test execution plans
 
 ## Common Test Patterns

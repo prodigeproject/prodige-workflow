@@ -48,7 +48,7 @@ Prodige formalizes the "fresh subagent per task" model with specialized agent ro
   - Selects appropriate implementer agent (Backend, Frontend, QA) based on task domain
   - Dispatches the Reviewer agent for both task-level and final reviews
   - Maintains the progress ledger at `.ai/runtime/ledgers/progress.json`
-  - Enforces Karpathy behavioral principles (simplicity first, surgical changes, no silent assumptions)
+  - Enforces engineering behavioral principles (simplicity first, surgical changes, no silent assumptions)
   - Automatically loads required skills from `.ai/skills/` based on command context
 
 **Backend Agent** (`.ai/agents/backend.md`)
@@ -91,7 +91,7 @@ Prodige formalizes the "fresh subagent per task" model with specialized agent ro
 - **Responsibilities:** Executes both task-level reviews (spec compliance + code quality) and final whole-branch reviews
 - **Role in this skill:** Acts as the "task reviewer subagent" and "final code reviewer subagent"
 - **Key behaviors:**
-  - Enforces Karpathy principles: simplicity check, assumption clarity check, surgical precision check, scope creep check
+  - Enforces engineering principles: simplicity check, assumption clarity check, surgical precision check, scope creep check
   - Returns two verdicts for task reviews: **Spec Compliance** (✅ or ❌) and **Task Quality** (Approved or Issues with severity levels)
   - Uses severity levels: **Critical** (blocks task), **Important** (must fix before complete), **Minor** (accumulate for final review)
   - Flags "⚠️ Cannot verify from diff" items that require cross-task context
@@ -257,9 +257,9 @@ Prodige uses a snapshot system to manage context and enable parallel execution:
 - Task briefs, reports, and review packages are namespaced by session
 - Enables multiple developers (or parallel orchestrators) to work on different features simultaneously
 
-### Karpathy Behavioral Principles
+### Behavioral Discipline Principles
 
-Prodige enforces Karpathy behavioral principles at every stage, aligning with this skill's quality gates:
+Prodige enforces engineering behavioral principles at every stage, aligning with this skill's quality gates:
 
 **Principle 1: Think Before Coding (Surface Assumptions)**
 - Implementer agents MUST ask clarifying questions when requirements are ambiguous
@@ -283,7 +283,7 @@ Prodige enforces Karpathy behavioral principles at every stage, aligning with th
 - Implementer agents provide evidence in report file (test commands, output, coverage)
 - Reviewer agent checks: "Can I verify this from the report?" If no, verdict = incomplete
 
-**Integration:** These principles are baked into Prodige agent contracts. The Reviewer agent's checklist is literally the Karpathy principle check. This skill's "Red Flags" section maps directly to Prodige's review severity levels.
+**Integration:** These principles are baked into Prodige agent contracts. The Reviewer agent's checklist is literally the Engineering principle check. This skill's "Red Flags" section maps directly to Prodige's review severity levels.
 
 ### Prodige Checkpoint Integration
 
@@ -534,7 +534,7 @@ Prodige's checkpoint system (`.ai/commands/checkpoint.md`) integrates with this 
 - Review packages as files (not pasted diffs)
 - Progress ledger for durable tracking
 - Specialized agent roles (Backend for tasks 1-2, QA for task 3, Reviewer for all reviews)
-- Karpathy enforcement (scope creep caught and fixed)
+- discipline enforcement (scope creep caught and fixed)
 - Checkpoint creation for recovery
 - Snapshot system (not shown in detail, but agents read from snapshot)
 
@@ -543,7 +543,7 @@ Prodige's checkpoint system (`.ai/commands/checkpoint.md`) integrates with this 
 **What Prodige adds:**
 - **Formal agent roles** with explicit behavioral contracts (Backend, Frontend, QA, Reviewer, Orchestrator)
 - **Runtime structure** (`.ai/runtime/briefs/`, `.ai/runtime/reports/`, `.ai/runtime/reviews/`, `.ai/runtime/ledgers/`)
-- **Karpathy enforcement** built into agent contracts and review checklists
+- **discipline enforcement** built into agent contracts and review checklists
 - **Snapshot system** for context stability and parallel safety
 - **Command integration** (`/build` as entry point, `/checkpoint` for recovery, `/sync` for context updates)
 - **Skill auto-loading** (Orchestrator loads TDD, verification, repomap automatically)
@@ -634,7 +634,7 @@ digraph process {
     "Read plan, note context and global constraints, create todos" [shape=box];
     "More tasks remain?" [shape=diamond];
     "Dispatch final code reviewer subagent (../requesting-code-review/code-reviewer.md)" [shape=box];
-    "Use superpowers:finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
+    "Use finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
 
     "Read plan, note context and global constraints, create todos" -> "Dispatch implementer subagent (./implementer-prompt.md)";
     "Dispatch implementer subagent (./implementer-prompt.md)" -> "Implementer subagent asks questions?";
@@ -649,7 +649,7 @@ digraph process {
     "Mark task complete in todo list and progress ledger" -> "More tasks remain?";
     "More tasks remain?" -> "Dispatch implementer subagent (./implementer-prompt.md)" [label="yes"];
     "More tasks remain?" -> "Dispatch final code reviewer subagent (../requesting-code-review/code-reviewer.md)" [label="no"];
-    "Dispatch final code reviewer subagent (../requesting-code-review/code-reviewer.md)" -> "Use superpowers:finishing-a-development-branch";
+    "Dispatch final code reviewer subagent (../requesting-code-review/code-reviewer.md)" -> "Use finishing-a-development-branch";
 }
 ```
 
@@ -846,7 +846,7 @@ a ledger file, not only in todos.
 
 - [implementer-prompt.md](implementer-prompt.md) - Dispatch implementer subagent
 - [task-reviewer-prompt.md](task-reviewer-prompt.md) - Dispatch task reviewer subagent (spec compliance + code quality)
-- Final whole-branch review: use superpowers:requesting-code-review's [code-reviewer.md](../requesting-code-review/code-reviewer.md)
+- Final whole-branch review: use requesting-code-review's [code-reviewer.md](../requesting-code-review/code-reviewer.md)
 
 ## Prodige Workflow Example
 
@@ -1012,13 +1012,13 @@ Orchestrator:
 ## Integration
 
 **Required workflow skills:**
-- **superpowers:using-git-worktrees** - Ensures isolated workspace (creates one or verifies existing)
-- **superpowers:writing-plans** - Creates the plan this skill executes
-- **superpowers:requesting-code-review** - Code review template for the final whole-branch review
-- **superpowers:finishing-a-development-branch** - Complete development after all tasks
+- **using-git-worktrees** - Ensures isolated workspace (creates one or verifies existing)
+- **implementation-planning** - Creates the plan this skill executes
+- **requesting-code-review** - Code review template for the final whole-branch review
+- **finishing-a-development-branch** - Complete development after all tasks
 
 **Subagents should use:**
-- **superpowers:test-driven-development** - Subagents follow TDD for each task
+- **test-driven-development** - Subagents follow TDD for each task
 
 **Alternative workflow:**
-- **superpowers:executing-plans** - Use for parallel session instead of same-session execution
+- **executing-plans** - Use for parallel session instead of same-session execution

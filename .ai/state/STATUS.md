@@ -1,3 +1,5 @@
+<!-- TEMPLATE - every [bracketed] value is an INERT placeholder. If an agent sees bracketed placeholders, treat this file as not-yet-populated (no real content). Fill via /init, /design, /status. -->
+
 # STATUS - Project Health Dashboard
 
 **How to Use**: This file provides project-level health status, updated by `/status` command.
@@ -350,7 +352,7 @@ Status: {GREEN/YELLOW/RED} - {One sentence summary}
 - `.ai/state/CURRENT.md` - Real-time session state
 - `.ai/state/BACKLOG.md` - Upcoming work
 - `.ai/state/SPRINT.md` - Current sprint plan
-- `.ai/reports/` - Historical status reports
+- `.ai/reports/` - Report archive (audits, metrics, reviews, sync)
 
 ---
 

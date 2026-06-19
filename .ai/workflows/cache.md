@@ -7,7 +7,7 @@ Cache management workflow to build, update, and maintain context snapshots for e
 - Active project repository
 - Read access to all project files
 - Understanding of project structure
-- Existing `.ai/context/` directory (or will be created)
+- Existing `.ai/runtime/cache/` directory (or will be created)
 
 ## Step-by-Step Instructions
 
@@ -18,7 +18,7 @@ Cache management workflow to build, update, and maintain context snapshots for e
 - Map file relationships and dependencies
 - Note recent structural changes since last cache
 
-**Output**: `repo-map.md` in `.ai/context/`
+**Output**: `repo-map.md` in `.ai/runtime/cache/`
 
 **Tools**: File system traversal, dependency analysis
 
@@ -183,16 +183,17 @@ Cache management workflow to build, update, and maintain context snapshots for e
 
 ```
 .ai/
-└── context/
-    ├── cache-metadata.json       # Version, timestamp, commit
-    ├── repo-map.md               # File structure
-    ├── architecture-summary.md   # System design
-    ├── modules/
-    │   ├── auth-module.md       # Per-module summaries
-    │   ├── api-module.md
-    │   └── ui-module.md
-    ├── routes.json               # All endpoints
-    └── database-schema.md        # Data models
+└── runtime/
+    └── cache/
+        ├── cache-metadata.json       # Version, timestamp, commit
+        ├── repo-map.md               # File structure
+        ├── architecture-summary.md   # System design
+        ├── modules/
+        │   ├── auth-module.md       # Per-module summaries
+        │   ├── api-module.md
+        │   └── ui-module.md
+        ├── routes.json               # All endpoints
+        └── database-schema.md        # Data models
 ```
 
 ## Performance Guidelines
@@ -223,7 +224,7 @@ Cache management workflow to build, update, and maintain context snapshots for e
 - `/cache clear` - Delete all cached data
 
 **Files:**
-- `.ai/context/` - Cache storage location
+- `.ai/runtime/cache/` - Cache storage location
 - `ARCHITECTURE.md` - Source for architecture summary
 - `package.json`, `requirements.txt` - Dependency sources
 

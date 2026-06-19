@@ -33,10 +33,10 @@ For now: Manual domain model review and scenario testing.
 During grilling, update documentation to reflect discoveries:
 - **CONTEXT.md**: Add/refine domain terms found during interview
 - **Architecture Decision Records (ADRs)**: Create for surprising decisions
-  - Location: `.ai/docs/adr/NNNN-title.md`
+  - Location: `.ai/context/docs/adr/NNNN-title.md`
   - Trigger: Hard-to-reverse + surprising + involves trade-offs
   - Format: Tight (1-3 sentences per section)
-  - See: `.ai/docs/adr/ADR-FORMAT.md` for template
+  - See: `.ai/context/docs/adr/ADR-FORMAT.md` for template
 
 ### 4. Human Approval (HITL Gate)
 Present design with:
@@ -60,6 +60,6 @@ Final critique to catch issues missed during grilling.
 
 **Integration Points**:
 - Uses: `.ai/context/CONTEXT.md` (domain glossary)
-- Creates: `.ai/docs/adr/*.md` (architecture decisions)
+- Creates: `.ai/context/docs/adr/*.md` (architecture decisions)
 - Updates: `.ai/context/*.md` (all context files)
 - Future: `.ai/skills/grill-with-docs/SKILL.md` (when created)

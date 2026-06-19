@@ -86,20 +86,32 @@ git worktree add .ai/runtime/worktrees/qa-agent -b parallel/qa $COMMIT
 ```
 
 ### Phase 4: Session Assignment
+
+Session config files follow the canonical schema in
+[`SESSION_TEMPLATE.json`](../../runtime/sessions/SESSION_TEMPLATE.json). Use these
+exact field names (snake_case) so every consumer reads the same shape:
+
 ```bash
 # Backend Agent session
 cat > .ai/runtime/sessions/session-backend-$TIMESTAMP.json <<EOF
 {
-  "agentName": "backend-agent",
-  "taskBrief": ".ai/runtime/briefs/task-001-brief.md",
+  "session_id": "session-backend-$TIMESTAMP",
+  "agent_role": "backend",
+  "snapshot_id": "$SNAPSHOT_ID",
+  "task": "Implement backend part of feature",
+  "status": "pending",
+  "priority": "normal",
+  "created_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+  "timeout_at": null,
   "worktree": ".ai/runtime/worktrees/backend-agent",
-  "assignedFiles": ["src/api/auth/*", "tests/auth/*"],
-  "locks": ["src/api/auth/login.ts"],
-  "expectedTests": ["tests/auth/login.test.ts"]
+  "assigned_files": ["src/api/auth/*", "tests/auth/*"],
+  "locked_files": ["src/api/auth/login.ts"],
+  "expected_tests": ["tests/auth/login.test.ts"],
+  "handoff_file": ".ai/runtime/handoffs/session-backend-$TIMESTAMP.md"
 }
 EOF
 
-# Similar for Frontend and QA
+# Similar for Frontend and QA (change agent_role, worktree, *_files, handoff_file)
 ```
 
 ### Phase 5: File Locks
@@ -856,14 +868,20 @@ The infrastructure that makes parallel agent execution safe and reliable.
 ```
 .ai/runtime/sessions/session-{role}-{task}-{timestamp}/
 │
-├── metadata.json                 # Session configuration
+├── metadata.json                 # Session configuration (see SESSION_TEMPLATE.json)
 │   ├── session_id
 │   ├── agent_role
 │   ├── snapshot_id
+│   ├── task
+│   ├── status (pending|active|completed|failed)
+│   ├── priority
 │   ├── created_at
 │   ├── timeout_at
-│   ├── status (pending|active|completed|failed)
-│   └── priority
+│   ├── worktree
+│   ├── assigned_files
+│   ├── locked_files
+│   ├── expected_tests
+│   └── handoff_file
 │
 ├── context.md                    # Agent-specific context ONLY
 │   ├── Relevant files to examine

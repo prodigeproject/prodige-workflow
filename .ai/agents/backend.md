@@ -1,3 +1,10 @@
+---
+name: backend
+description: Owns backend implementation, APIs, services, database access, and server logic. Works TDD-first.
+tools: Read, Write, Edit
+hitl: false
+---
+
 # Agent: backend
 
 ## Role
@@ -6,7 +13,7 @@ Owns backend implementation, APIs, services, database access, server logic.
 
 ---
 
-## Superpowers Skills Integration
+## Quality Skills Integration
 
 ### TDD Requirement (MANDATORY)
 
@@ -51,7 +58,7 @@ Owns backend implementation, APIs, services, database access, server logic.
 
 **If you write code before test:** DELETE code. Start over with test first.
 
-**Skill Reference:** `.ai/skills/test-driven-development.md`
+**Skill Reference:** `.ai/skills/test-driven-development/SKILL.md`
 
 ---
 
@@ -82,7 +89,7 @@ Claim: Implementation complete and verified.
 
 **NO "done" without evidence.**
 
-**Skill Reference:** `.ai/skills/verification-before-completion.md`
+**Skill Reference:** `.ai/skills/verification-before-completion/SKILL.md`
 
 ---
 
@@ -114,11 +121,11 @@ Claim: Implementation complete and verified.
 
 **NO random fixes.** Root cause first, ALWAYS.
 
-**Skill Reference:** `.ai/skills/systematic-debugging.md`
+**Skill Reference:** `.ai/skills/systematic-debugging/SKILL.md`
 
 ---
 
-## Karpathy Behavioral Rules
+## Behavioral Discipline Rules
 
 ### BEFORE Writing Code
 

@@ -1,3 +1,11 @@
+<!-- ============================================================
+TEMPLATE — every value in [brackets] is a placeholder and is INERT
+until filled. If you are an agent and see bracketed placeholders below,
+treat this file as EMPTY (no active session): do NOT report a "last
+session," current task, or recent changes from this text. Prompt the
+user to run /memory-init instead.
+============================================================ -->
+
 # Active Context
 
 ## Current Session

@@ -1,681 +1,217 @@
 # Setup Guide
 
-## Overview
+Get the Prodige Workflow running in your project, in any AI coding tool.
 
-This guide walks you through setting up **Prodige Workflow** for your project, from initial installation to first productive use.
-
-**Time Required**: 10-30 minutes depending on project size
+**Time required:** 5-15 minutes.
 
 ---
 
-## Who Is This For?
+## What you're installing
 
-- **New projects**: Starting from scratch with AI assistance
-- **Existing projects**: Adding Prodige Workflow to existing codebases
-- **Team projects**: Setting up multi-developer AI workflows
-- **Solo projects**: Individual developers using AI to accelerate development
+Prodige is **prompt-level** — it's a set of instructions, not a program. It consists of:
+
+- **`AGENTS.md`** — the universal entry point every AI tool reads first.
+- **`.ai/`** — the workflow itself (commands, workflows, skills, agents, governance, memory).
+
+There is no binary and no per-tool folder. Installing = copying these into your repo and
+pointing your AI tool at `AGENTS.md`.
 
 ---
 
 ## Prerequisites
 
-### Required
-- An AI coding assistant (Cursor, GitHub Copilot, Claude, ChatGPT, etc.)
-- Git installed
-- Project directory (existing or new)
-
-### Optional
-- Node.js / Python / Your language runtime (for code execution)
-- Code editor / IDE
-- Terminal access
+- An AI coding assistant or agent (Cursor, Claude Code, Copilot, Codex, Gemini, opencode,
+  Windsurf, Cline, or an agentic framework like Hermes / OpenClaw / Pi).
+- Git (recommended — enables the `/undo`, `/checkpoint`, `/rollback` safety commands).
+- Your project directory (new or existing).
 
 ---
 
-## Setup Process
+## Step 1 — Add Prodige to your project
 
-### Option 1: New Project from Idea
-
-If you're starting from scratch:
+Copy the two items into the root of your project:
 
 ```bash
-/init from idea: [describe your project idea]
+# from the Prodige Workflow folder, into your project root
+cp -r .ai /path/to/your-project/
+cp AGENTS.md /path/to/your-project/
+# optional but recommended:
+cp install.sh install.ps1 /path/to/your-project/
 ```
 
-**Example**:
-```bash
-/init from idea: A recipe sharing website where users can post recipes, rate others' recipes, and create meal plans
+On Windows PowerShell:
+
+```powershell
+Copy-Item .ai,AGENTS.md,install.sh,install.ps1 -Destination C:\path\to\your-project\ -Recurse
 ```
 
-**What AI does**:
-1. Creates project structure
-2. Initializes `.ai/` directory
-3. Sets up configuration files
-4. Creates initial documentation
-5. Asks clarifying questions about tech stack and requirements
-
-**AI will ask**:
-```text
-I'll set up a recipe sharing platform. A few questions:
-
-1. User accounts: email/password, social login, or both?
-2. Target devices: web only, or mobile apps too?
-3. Preferred tech stack: React/Node, or something else?
-4. Database: PostgreSQL, MySQL, or MongoDB?
-5. Hosting: Cloud (AWS/GCP/Azure) or simple (Heroku/Vercel)?
-
-What are your preferences?
-```
-
-**Your answers guide the setup.**
+Your project root should now contain `AGENTS.md` and `.ai/`.
 
 ---
 
-### Option 2: Existing Project
+## Step 2 — Wire up your AI tool
 
-If you have an existing codebase:
+Many tools read `AGENTS.md` natively and need **nothing else**: Codex, opencode, Cursor,
+Zed, Jules, RooCode, and most agentic frameworks.
+
+Tools that use their own instruction filename get a one-line pointer generated for them:
 
 ```bash
-/init from repo
+# Unix / macOS / Git Bash
+./install.sh claude,cursor      # specific tools
+./install.sh all --gitignore    # all tools, keep repo footprint minimal
+
+# Windows PowerShell
+powershell -File install.ps1 -Tools claude,cursor
+powershell -File install.ps1 -Tools all -Gitignore
 ```
 
-**What AI does**:
-1. Scans your repository
-2. Detects tech stack (package.json, requirements.txt, etc.)
-3. Maps directory structure
-4. Identifies routes/APIs
-5. Discovers database schema
-6. Analyzes tests
-7. Creates `.ai/` context directory
+| Your tool | What it reads | Action |
+|-----------|---------------|--------|
+| Codex, opencode, Cursor, Zed, Jules, RooCode | `AGENTS.md` | nothing (native) |
+| Claude Code | `CLAUDE.md` | `install … claude` |
+| Gemini CLI | `GEMINI.md` | `install … gemini` |
+| GitHub Copilot | `.github/copilot-instructions.md` | `install … copilot` |
+| Cline | `.clinerules` | `install … cline` |
+| Windsurf | `.windsurfrules` | `install … windsurf` |
+| Hermes / OpenClaw / Pi / custom | system prompt | point it at `AGENTS.md` |
 
-**AI will show**:
-```text
-Analyzing repository...
+Full details and the agentic-framework integration: [COMPATIBILITY.md](./COMPATIBILITY.md).
 
-Detected:
-- Language: TypeScript
-- Framework: Next.js 14
-- Database: PostgreSQL (via Prisma)
-- Tests: Jest + React Testing Library
-- API: REST endpoints in /pages/api
-- Auth: NextAuth.js
+---
 
-I'll create context files based on this structure.
+## Step 3 — Initialize the project brain
 
-Proceed? [yes/customize]
+Open your AI tool in the project and run:
+
+```
+/session-start
+```
+
+This loads the Memory Bank (creating empty files on first run). Then bootstrap context:
+
+**New project (from an idea):**
+```
+/init
+```
+Describe what you want to build; the agent asks clarifying questions and creates the
+context files (PROJECT, PRD, ARCHITECTURE, IMPLEMENTATION).
+
+**Existing codebase:**
+```
+/init
+```
+The agent scans the repo, detects your stack, and populates `.ai/context/` to match what's
+actually there.
+
+Confirm it worked:
+```
+/status
+```
+
+You're ready. The everyday loop is:
+```
+/session-start  →  /magic <what you want>  →  /session-end
 ```
 
 ---
 
-## Directory Structure
-
-After setup, your project will have:
+## Directory structure (what `.ai/` actually contains)
 
 ```text
 your-project/
-├── .ai/                          # Prodige Workflow directory
-│   ├── agents/                   # Agent definitions
-│   │   ├── backend.md
-│   │   ├── frontend.md
-│   │   ├── qa.md
-│   │   └── ...
-│   ├── boot/                     # Initialization files
-│   │   └── BOOT.md
-│   ├── boundaries/               # Context constraints
-│   │   └── context-size-limits.md
-│   ├── commands/                 # Custom commands
-│   │   └── common-commands.md
-│   ├── context/                  # Project context
-│   │   ├── architecture.md
-│   │   ├── codebase.md
-│   │   ├── conventions.md
-│   │   ├── dependencies.md
-│   │   ├── modules.md
-│   │   ├── prd.md
-│   │   └── ...
-│   ├── handbooks/                # Workflow guides
-│   │   └── default-workflow.md
-│   ├── runtime/                  # Runtime data
-│   │   ├── cache/                # Cached summaries
-│   │   ├── handoffs/             # Agent completion reports
-│   │   ├── locks/                # File locks for multi-window
-│   │   ├── sessions/             # Multi-window sessions
-│   │   └── snapshots/            # Context snapshots
-│   └── skills/                   # Reusable capabilities
-│       └── context-refresh.md
-├── docs/                         # Documentation (optional)
-├── src/                          # Your source code
-└── ...                           # Other project files
+├── AGENTS.md                 # Universal entry point (all tools read this)
+├── install.sh / install.ps1  # Generate tool-specific pointer files
+├── .ai/
+│   ├── SOUL.md               # Philosophy and tone
+│   ├── boot/BOOT.md          # Mandatory startup sequence
+│   ├── orchestrator/         # Command routing + skill-selection matrix
+│   ├── commands/             # Command specs + registry.json
+│   ├── workflows/            # Workflow definitions (build, fix, review, …)
+│   ├── skills/               # Skills + manifest.json + skill-selection-matrix.json
+│   ├── agents/               # Agent role definitions
+│   ├── context/              # PROJECT, PRD, ARCHITECTURE, IMPLEMENTATION, manifest.json
+│   ├── memory/               # Session persistence (activeContext, progress, decisionLog…)
+│   ├── governance/           # Rules, quality gates, review gates, debt registry
+│   ├── boundaries/           # What Prodige will NOT do
+│   ├── checklists/           # Pre-build / pre-merge / review checklists
+│   ├── templates/            # Report and review templates
+│   ├── state/                # CURRENT, SPRINT, BACKLOG, STATUS
+│   ├── scripts/              # Helper scripts (security-scan, lint-skills, …)
+│   └── runtime/              # Session-local state (gitignored)
+└── src/                      # Your code
 ```
 
 ---
 
-## Configuration
+## Commands you'll use
 
-### Basic Configuration
+| Command | Purpose |
+|---------|---------|
+| `/session-start` · `/session-end` | Load / save Memory Bank (bookend every session) |
+| `/magic <task>` | Main entry — auto-routes, plans, executes, verifies |
+| `/init` · `/design` · `/build` | Bootstrap → plan → implement (TDD) |
+| `/fix` · `/refactor` · `/review` · `/audit` | Debug, improve, review, analyze |
+| `/test` · `/verify` | TDD cycle / run tests+lint+types+build |
+| `/docs` · `/release` · `/sync` · `/status` | Docs, release prep, context sync, status |
+| `/checkpoint` · `/undo` · `/rollback` | Safety net |
+| `/parallel` · `/cache` | Multi-agent execution / token cache |
 
-The AI will create `.ai/context/project.json`:
+Full registry: `.ai/commands/registry.json`. Per-command docs: `.ai/commands/<name>.md`.
 
-```json
-{
-  "name": "recipe-sharing-app",
-  "type": "web-application",
-  "language": "typescript",
-  "framework": "nextjs",
-  "database": "postgresql",
-  "description": "A recipe sharing platform with meal planning",
-  "version": "0.1.0"
-}
-```
-
-**You can edit this manually** or use:
-
-```bash
-/config update language python
-/config update framework django
-```
+> Slash commands are a **convention** the booted agent follows — they work in every tool.
+> If your chat UI swallows the leading `/`, just type the command without it
+> (e.g. `build login` or "run the build command").
 
 ---
 
-### Agent Configuration
+## Version control
 
-Agents are defined in `.ai/agents/`. Example `.ai/agents/backend.md`:
+Commit the workflow and your project context; ignore session-local runtime state.
 
-```markdown
-# Backend Agent
-
-## Role
-Responsible for server-side logic, APIs, database, and business logic.
-
-## Scope
-- API endpoints
-- Database models and migrations
-- Business logic
-- Authentication/authorization
-- Background jobs
-- Server configuration
-
-## Constraints
-- Must write tests for all endpoints
-- Must validate all inputs
-- Must handle errors gracefully
-- Cannot change database schema without migration plan
-- Cannot modify frontend code
-
-## Skills
-- RESTful API design
-- Database optimization
-- Security best practices
-- Performance optimization
-```
-
----
-
-### Workflow Configuration
-
-Default workflow is in `.ai/handbooks/default-workflow.md`. Customize it:
-
-```bash
-/config workflow set custom
-```
-
-Edit `.ai/handbooks/custom-workflow.md` to define your preferred process.
-
----
-
-## First Steps After Setup
-
-### 1. Verify Setup
-
-```bash
-/status
-```
-
-Should show:
+**Commit:**
 ```text
-Project: recipe-sharing-app
-Status: ✅ Ready
-
-Setup:
-- ✅ .ai/ directory created
-- ✅ Context files initialized
-- ✅ Agents configured
-- ✅ Cache ready
-
-Next steps:
-1. Review context files in .ai/context/
-2. Design your first feature: /design [feature]
-3. Sync cache: /sync
+AGENTS.md
+.ai/                      # except runtime (below)
 ```
 
----
-
-### 2. Review Context Files
-
-Check that AI understood your project correctly:
-
-```bash
-/show context architecture
-```
-
-Should display architecture summary. If incorrect:
-
-```bash
-/fix context architecture
-```
-
-AI will ask questions to correct the understanding.
-
----
-
-### 3. Update Cache
-
-```bash
-/cache update
-```
-
-Creates initial cache for faster AI responses.
-
----
-
-### 4. Test AI Understanding
-
-Ask AI to explain your project:
-
-```bash
-/audit
-```
-
-AI should provide accurate summary of:
-- Architecture
-- Key modules
-- Tech stack
-- Current state
-- Known issues
-
-If AI seems confused, run:
-
-```bash
-/sync
-```
-
----
-
-## Setup for Different Project Types
-
-### Web Application (React/Next.js/Vue)
-
-```bash
-/init from idea: [your web app idea]
-```
-
-AI will set up:
-- Frontend structure
-- API structure
-- Database schema
-- Authentication
-- Deployment config
-
----
-
-### API / Backend Service
-
-```bash
-/init from idea: [your API idea]
-```
-
-Tell AI:
+**Ignore** (already in `.gitignore`):
 ```text
-This is a backend API service (no frontend)
+.ai/runtime/              # sessions, locks, snapshots, cache — generated each session
 ```
 
-AI will focus on:
-- API endpoints
-- Database
-- Authentication
-- Documentation
-- Testing
+If you ran `install … --gitignore`, the generated tool pointers (CLAUDE.md, .cursorrules, …)
+are ignored too, since any teammate can regenerate them with the installer.
+
+For teams: commit `.ai/context/`, `.ai/governance/`, `.ai/agents/`, and `.ai/memory/` so
+everyone shares the same project brain.
 
 ---
 
-### Mobile App
+## Troubleshooting
 
-```bash
-/init from idea: [your mobile app idea]
-```
+**Agent ignores the workflow / doesn't know the commands**
+→ Confirm `AGENTS.md` is at the repo root and your tool's pointer exists
+(`install … <tool>`). As a one-time fallback, tell the agent: "Read `AGENTS.md` and follow it."
 
-Specify platform:
-```text
-React Native for iOS and Android
-```
-or
-```text
-Native iOS (Swift) app
-```
+**Tool can't read files on its own**
+→ Paste the contents of `AGENTS.md` (and, if asked, `.ai/boot/BOOT.md`) into the chat once.
 
----
+**Agent seems to have stale context**
+→ Run `/sync`.
 
-### Data Science / ML Project
+**Safety commands don't work**
+→ `/undo`, `/checkpoint`, `/rollback` require the project to be a Git repository (`git init`).
 
-```bash
-/init from idea: [your ML project idea]
-```
-
-AI will set up:
-- Data processing pipelines
-- Model training structure
-- Experiment tracking
-- Jupyter notebooks structure
-- Documentation
+**Verify the skill registry is intact** (after editing skills)
+→ `powershell -File .ai/scripts/lint-skills.ps1` (or `bash .ai/scripts/lint-skills.sh`).
 
 ---
 
-### Microservices
-
-For each service:
-
-```bash
-/init from idea: [service description]
-```
-
-Then link them:
-
-```bash
-/architecture add-service [service-name]
-```
-
----
-
-## Multi-Developer Setup
-
-### Option A: Shared `.ai/` Directory (Recommended)
-
-**Commit `.ai/` to Git**:
-
-```bash
-git add .ai/
-git commit -m "Add Prodige Workflow setup"
-git push
-```
-
-**Team members pull**:
-
-```bash
-git pull
-```
-
-Now everyone has the same AI context.
-
----
-
-### Option B: Individual `.ai/` (Advanced)
-
-Add to `.gitignore`:
-
-```text
-.ai/runtime/
-.ai/sessions/
-.ai/locks/
-```
-
-Commit only:
-```text
-.ai/agents/
-.ai/context/
-.ai/handbooks/
-```
-
-Each developer has personal runtime state but shared context.
-
----
-
-## Environment Variables
-
-Create `.env` for project-specific settings:
-
-```bash
-# Prodige Workflow Config
-AI_WORKFLOW=default
-AI_AUTO_SYNC=true
-AI_CACHE_TTL=7d
-
-# Project-specific
-DATABASE_URL=postgresql://...
-API_KEY=...
-```
-
-Add to `.gitignore`:
-```text
-.env
-.env.local
-```
-
----
-
-## Customization
-
-### Custom Commands
-
-Add to `.ai/commands/custom.md`:
-
-```markdown
-# Custom Commands
-
-## /deploy
-Deploy to production after passing all checks.
-
-## /test-all
-Run all tests (unit, integration, e2e).
-
-## /review-pr [number]
-Review specific pull request.
-```
-
-Now you can use:
-```bash
-/deploy
-/test-all
-/review-pr 42
-```
-
----
-
-### Custom Agents
-
-Create `.ai/agents/custom-agent.md`:
-
-```markdown
-# DevOps Agent
-
-## Role
-Manages infrastructure, CI/CD, and deployments.
-
-## Scope
-- Docker configuration
-- CI/CD pipelines
-- Deployment scripts
-- Infrastructure as code
-- Monitoring setup
-
-## Constraints
-- Cannot modify application code
-- Must test deployments on staging first
-- Must document all infrastructure changes
-```
-
-Use with:
-```bash
-/agent devops [task]
-```
-
----
-
-## Troubleshooting Setup
-
-### Problem: AI doesn't recognize project structure
-
-**Solution**:
-```bash
-/sync
-```
-
-If still issues:
-```bash
-/init from repo --force
-```
-
----
-
-### Problem: Missing dependencies
-
-**Solution**:
-```bash
-npm install  # or pip install, etc.
-/sync
-```
-
----
-
-### Problem: `.ai/` directory not created
-
-**Solution**:
-```bash
-/init from repo
-```
-
-Or manually create:
-```bash
-mkdir -p .ai/{agents,boot,boundaries,commands,context,handbooks,runtime,skills}
-```
-
----
-
-### Problem: AI is too slow
-
-**Solution**:
-```bash
-/cache update
-```
-
-Cache reduces repeated file scanning.
-
----
-
-## Verification
-
-After setup, verify everything works:
-
-### 1. Check status
-```bash
-/status
-```
-Should show ✅ Ready
-
-### 2. Test design command
-```bash
-/design add health check endpoint
-```
-AI should create a plan
-
-### 3. Test audit
-```bash
-/audit
-```
-AI should analyze your codebase
-
-### 4. Test sync
-```bash
-/sync
-```
-AI should refresh context
-
-If all work, setup is complete! ✅
-
----
-
-## Next Steps
-
-After successful setup:
-
-1. **Read the documentation**
-   - `docs/USAGE.md` - How to use the system
-   - `docs/NEWBIE_MODE.md` - Simple commands for non-technical users
-   - `docs/HITL_REVIEW_GATES.md` - Understanding review gates
-
-2. **Design your first feature**
-   ```bash
-   /design [feature-name]
-   ```
-
-3. **Build after approval**
-   ```bash
-   /build approved [feature-name]
-   ```
-
-4. **Sync regularly**
-   ```bash
-   /sync
-   ```
-
-5. **Use multi-window for complex features**
-   ```bash
-   /parallel build [feature-name]
-   ```
-
----
-
-## Best Practices
-
-### For Non-Technical Users
-- ✅ Start with `/init from idea` and let AI guide you
-- ✅ Review generated context files to ensure AI understands your vision
-- ✅ Use simple commands from NEWBIE_MODE.md
-- ✅ Run `/sync` after any manual changes
-
-### For Technical Users
-- ✅ Review and customize agent definitions
-- ✅ Set up CI/CD to validate AI-generated code
-- ✅ Create custom commands for your workflow
-- ✅ Keep context files updated manually when needed
-- ✅ Use version control for `.ai/` directory
-
-### For Teams
-- ✅ Commit `.ai/context/` and `.ai/agents/` to Git
-- ✅ Add `.ai/runtime/` to `.gitignore`
-- ✅ Document team-specific workflows in `.ai/handbooks/`
-- ✅ Regular context syncs (weekly or after major changes)
-
----
-
-## Summary
-
-**Quick setup**:
-```bash
-# New project
-/init from idea: [your idea]
-
-# Existing project
-/init from repo
-
-# Verify
-/status
-
-# First cache
-/cache update
-
-# You're ready!
-/design [first-feature]
-```
-
-**Setup creates**:
-- `.ai/` directory with context, agents, and workflows
-- Cache for faster AI responses
-- Project understanding for AI assistant
-
-**Now you can**:
-- Design features: `/design [feature]`
-- Build code: `/build approved [feature]`
-- Fix bugs: `/fix [issue]`
-- Audit code: `/audit`
-- Multi-window development: `/parallel build [feature]`
-
-🎉 **Setup complete! Start building with AI assistance.**
+## Next steps
+
+- [COMPATIBILITY.md](./COMPATIBILITY.md) — per-tool and agentic-framework integration
+- [NEWBIE_MODE.md](./NEWBIE_MODE.md) — simplified commands for beginners
+- [USAGE.md](./USAGE.md) — full workflow walkthrough
+- [HITL_REVIEW_GATES.md](./HITL_REVIEW_GATES.md) — human approval gates
+- [MULTI_WINDOW_AGENT_GUIDE.md](./MULTI_WINDOW_AGENT_GUIDE.md) — parallel agent work

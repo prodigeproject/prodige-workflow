@@ -56,7 +56,7 @@
 
 ### File Location
 ```
-docs/adr/
+.ai/context/docs/adr/
 ├── README.md           ← This file
 ├── ADR-FORMAT.md       ← Format guide
 ├── 0001-*.md           ← First ADR
@@ -99,7 +99,7 @@ due to transaction limitations across collections.
 
 1. **Recognize** architectural decision point
 2. **Check** 3 criteria (hard to reverse + surprising + trade-off)
-3. **Scan** `docs/adr/` for highest number
+3. **Scan** `.ai/context/docs/adr/` for highest number
 4. **Create** `NNNN-slug.md` (increment number)
 5. **Write** 1-3 sentences: context, decision, why
 6. **Commit** with the implementation
@@ -111,7 +111,7 @@ Agent: "This is an architectural decision. Checking ADR criteria..."
 Agent: "✓ Hard to reverse ✓ Surprising ✓ Trade-off"
 Agent: "Should I create ADR-0005 for this?"
 User: "Yes"
-Agent: *Creates docs/adr/0005-decision-slug.md*
+Agent: *Creates .ai/context/docs/adr/0005-decision-slug.md*
 ```
 
 ### Lazy Creation
@@ -269,6 +269,8 @@ Agent: "Per ADR-0004, manual SQL for performance"
 **ADRs focus on WHY** (architectural choices and constraints).  
 **ARCHITECTURE.md focuses on WHAT** (current system structure).
 
+> `DECISIONS.md` is the index/log of decisions; the full ADRs live here as individual files in `.ai/context/docs/adr/`. Log the high-level decision in `DECISIONS.md` and link to the detailed ADR.
+
 ---
 
 ## Examples
@@ -362,7 +364,7 @@ and hides performance issues. Trade-off: more code to maintain, but
 ### Step 1: Create Directory
 
 ```bash
-mkdir -p docs/adr
+mkdir -p .ai/context/docs/adr
 ```
 
 **Lazy creation**: Only create when first ADR is needed.
@@ -373,7 +375,7 @@ When you make first ADR-worthy decision:
 
 ```bash
 # Create ADR-0001
-docs/adr/0001-your-first-decision.md
+.ai/context/docs/adr/0001-your-first-decision.md
 
 # Content:
 # Your First Decision

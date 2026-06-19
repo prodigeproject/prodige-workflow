@@ -1,4 +1,18 @@
-# Skill: implementation-planning
+---
+name: implementation-planning
+description: "Translates approved designs into safe, modular, testable implementation plans with ordered phases, dependency mapping, risk mitigation, and verification checkpoints."
+auto_load: ["/design", "/magic"]
+applies_to: [architect, planner, backend, frontend]
+---
+
+# Implementation Planning
+
+## Quick Protocol (your next action)
+1. Break the approved design into ordered phases of small (0.5-2 day) testable tasks.
+2. Map dependencies (what blocks what) and what can run in parallel.
+3. Assess risks high-first, with mitigation and a rollback path per phase.
+4. Define a testing strategy and a verification checkpoint for each phase.
+5. List files to create/modify/delete and estimate effort. Base it on the real codebase.
 
 ## Purpose
 
@@ -384,3 +398,67 @@ Output:
 - Include verification at each phase
 - Communicate risks clearly and early
 - Update plans as implementation reveals new information
+
+---
+
+## Bite-Sized Task Authoring (merged from `writing-plans`)
+
+> This section absorbs the former `writing-plans` skill. Use it when turning a phase
+> into a written, hand-off-ready plan document. A companion reviewer prompt lives at
+> [plan-document-reviewer-prompt.md](./plan-document-reviewer-prompt.md).
+
+Write the plan assuming the implementer has zero context for the codebase: name exact
+files, show real code, give exact commands with expected output. DRY. YAGNI. TDD.
+Frequent commits.
+
+### Task Right-Sizing
+
+A task is the smallest unit that carries its own test cycle and is worth a fresh
+reviewer's gate. Fold setup/config/scaffolding/docs into the task whose deliverable
+needs them; split only where a reviewer could meaningfully reject one task while
+approving its neighbor. Each task ends with an independently testable deliverable.
+
+### Each step is one action (2-5 minutes)
+- "Write the failing test" — step
+- "Run it to make sure it fails" — step
+- "Implement the minimal code to make the test pass" — step
+- "Run the tests and make sure they pass" — step
+- "Commit" — step
+
+### Task Structure Template
+
+```markdown
+### Task N: [Component Name]
+
+**Files:**
+- Create: `exact/path/to/file.py`
+- Modify: `exact/path/to/existing.py:123-145`
+- Test: `tests/exact/path/to/test.py`
+
+**Interfaces:**
+- Consumes: [exact signatures used from earlier tasks]
+- Produces: [exact names/types later tasks rely on]
+
+- [ ] Step 1: Write the failing test   (show the test code)
+- [ ] Step 2: Run test to verify it fails   (exact command + expected FAIL)
+- [ ] Step 3: Write minimal implementation   (show the code)
+- [ ] Step 4: Run test to verify it passes   (exact command + expected PASS)
+- [ ] Step 5: Commit   (exact git command)
+```
+
+### No Placeholders (plan failures — never write these)
+- "TBD", "TODO", "implement later", "fill in details"
+- "Add appropriate error handling / validation / handle edge cases"
+- "Write tests for the above" without the actual test code
+- "Similar to Task N" — repeat the code; the implementer may read tasks out of order
+- References to types/functions/methods not defined in any task
+
+### Self-Review before handoff
+1. **Spec coverage:** every spec requirement maps to a task (list gaps).
+2. **Placeholder scan:** remove every red flag above.
+3. **Type consistency:** signatures/names used in later tasks match earlier definitions.
+
+### Execution Handoff
+Offer the implementer a choice: **subagent-driven-development** (recommended, fresh
+subagent per task + review between tasks) or **executing-plans** (inline, batched with
+checkpoints).

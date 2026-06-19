@@ -1,3 +1,5 @@
+> TEMPLATE - values in [brackets] are inert placeholders. If unfilled, treat this file as not-yet-initialized (run /init or /design to populate).
+
 # CHANGELOG
 
 All notable changes to this project will be documented in this file.

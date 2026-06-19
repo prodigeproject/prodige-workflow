@@ -7,6 +7,7 @@ Complete guide to Prodige Workflow documentation, organized by user journey and 
 ## 🚀 Quick Navigation
 
 **New to Prodige?** → Start with [SETUP.md](./SETUP.md) then [NEWBIE_MODE.md](./NEWBIE_MODE.md)  
+**Using a specific AI tool/agent?** → [COMPATIBILITY.md](./COMPATIBILITY.md) (Claude, Cursor, Copilot, Codex, Gemini, Hermes, OpenClaw, …)  
 **Ready to build?** → Read [USAGE.md](./USAGE.md) then [DEVELOPMENT.md](./DEVELOPMENT.md)  
 **Deploying to production?** → Follow [RELEASE.md](./RELEASE.md) and [DEPLOYMENT.md](./DEPLOYMENT.md)  
 **Working with teams?** → Check [MULTI_WINDOW_AGENT_GUIDE.md](./MULTI_WINDOW_AGENT_GUIDE.md)
@@ -20,6 +21,7 @@ Complete guide to Prodige Workflow documentation, organized by user journey and 
 | Document | Purpose | Time Required |
 |----------|---------|---------------|
 | **[SETUP.md](./SETUP.md)** | Initial installation and configuration | 10-30 min |
+| **[COMPATIBILITY.md](./COMPATIBILITY.md)** | Run Prodige in any AI tool/agent (install + matrix) | 5 min read |
 | **[NEWBIE_MODE.md](./NEWBIE_MODE.md)** | Simplified commands for beginners | 5 min read |
 | **[USAGE.md](./USAGE.md)** | Complete workflow guide from start to finish | 20 min read |
 
@@ -124,6 +126,9 @@ Complete guide to Prodige Workflow documentation, organized by user journey and 
 **...set up Prodige for the first time**
 → [SETUP.md](./SETUP.md)
 
+**...use Prodige in my AI tool of choice (or an agentic framework)**
+→ [COMPATIBILITY.md](./COMPATIBILITY.md)
+
 **...understand basic commands**
 → [NEWBIE_MODE.md](./NEWBIE_MODE.md)
 
@@ -179,6 +184,8 @@ Complete guide to Prodige Workflow documentation, organized by user journey and 
 - `.ai/agents/` - Agent role definitions
 
 ### Root Level
+- `AGENTS.md` - Universal entry point (bootstraps Prodige in any AI tool)
+- `install.sh` / `install.ps1` - Wire up tool-specific pointer files
 - `README.md` - Project overview
 - `PRODIGE.md` - Complete user guide
 - `QUICK_START.md` - 5-minute tutorial

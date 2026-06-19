@@ -1,58 +1,53 @@
 {
+  "version": "3.0.0",
+  "lastUpdated": "2026-06-18",
+  "description": "Authoritative registry of all Prodige skills. Must list every skill folder under .ai/skills/. Validated by .ai/scripts/lint-skills.* — do not let this drift.",
+  "globalSkills": {
+    "clean-code": { "path": ".ai/skills/clean-code/SKILL.md" },
+    "efficient-communication": { "path": ".ai/skills/efficient-communication/SKILL.md" }
+  },
   "skills": {
-    "repomap": {
-      "path": ".ai/skills/repomap/SKILL.md"
-    },
-    "ripgrep": {
-      "path": ".ai/skills/ripgrep/SKILL.md"
-    },
-    "reuse-rebuild": {
-      "path": ".ai/skills/reuse-rebuild/SKILL.md"
-    },
-    "rtk": {
-      "path": ".ai/skills/rtk/SKILL.md"
-    },
-    "clean-code": {
-      "path": ".ai/skills/clean-code/SKILL.md"
-    },
-    "roastme": {
-      "path": ".ai/skills/roastme/SKILL.md"
-    },
-    "security-review": {
-      "path": ".ai/skills/security-review/SKILL.md"
-    },
-    "dependency-review": {
-      "path": ".ai/skills/dependency-review/SKILL.md"
-    },
-    "debt-detection": {
-      "path": ".ai/skills/debt-detection/SKILL.md"
-    },
-    "context-sync": {
-      "path": ".ai/skills/context-sync/SKILL.md"
-    },
-    "cache-manager": {
-      "path": ".ai/skills/cache-manager/SKILL.md"
-    },
-    "snapshot-manager": {
-      "path": ".ai/skills/snapshot-manager/SKILL.md"
-    },
-    "lock-manager": {
-      "path": ".ai/skills/lock-manager/SKILL.md"
-    },
-    "handoff-manager": {
-      "path": ".ai/skills/handoff-manager/SKILL.md"
-    },
-    "parallel-planner": {
-      "path": ".ai/skills/parallel-planner/SKILL.md"
-    },
-    "documentation": {
-      "path": ".ai/skills/documentation/SKILL.md"
-    },
-    "test-planning": {
-      "path": ".ai/skills/test-planning/SKILL.md"
-    },
-    "implementation-planning": {
-      "path": ".ai/skills/implementation-planning/SKILL.md"
-    }
+    "accessibility-review": { "path": ".ai/skills/accessibility-review/SKILL.md" },
+    "brainstorming": { "path": ".ai/skills/brainstorming/SKILL.md" },
+    "cache-manager": { "path": ".ai/skills/cache-manager/SKILL.md" },
+    "clean-code": { "path": ".ai/skills/clean-code/SKILL.md" },
+    "context-sync": { "path": ".ai/skills/context-sync/SKILL.md" },
+    "debt-detection": { "path": ".ai/skills/debt-detection/SKILL.md" },
+    "dependency-review": { "path": ".ai/skills/dependency-review/SKILL.md" },
+    "dispatching-parallel-agents": { "path": ".ai/skills/dispatching-parallel-agents/SKILL.md" },
+    "documentation": { "path": ".ai/skills/documentation/SKILL.md" },
+    "efficient-communication": { "path": ".ai/skills/efficient-communication/SKILL.md" },
+    "executing-plans": { "path": ".ai/skills/executing-plans/SKILL.md" },
+    "finishing-a-development-branch": { "path": ".ai/skills/finishing-a-development-branch/SKILL.md" },
+    "grill-with-docs": { "path": ".ai/skills/grill-with-docs/SKILL.md" },
+    "handoff-manager": { "path": ".ai/skills/handoff-manager/SKILL.md" },
+    "implementation-planning": { "path": ".ai/skills/implementation-planning/SKILL.md" },
+    "lock-manager": { "path": ".ai/skills/lock-manager/SKILL.md" },
+    "memory-search": { "path": ".ai/skills/memory-search/SKILL.md" },
+    "parallel-planner": { "path": ".ai/skills/parallel-planner/SKILL.md" },
+    "performance-review": { "path": ".ai/skills/performance-review/SKILL.md" },
+    "project-history": { "path": ".ai/skills/project-history/SKILL.md" },
+    "reality-check": { "path": ".ai/skills/reality-check/SKILL.md" },
+    "receiving-code-review": { "path": ".ai/skills/receiving-code-review/SKILL.md" },
+    "repomap": { "path": ".ai/skills/repomap/SKILL.md" },
+    "requesting-code-review": { "path": ".ai/skills/requesting-code-review/SKILL.md" },
+    "reuse-rebuild": { "path": ".ai/skills/reuse-rebuild/SKILL.md" },
+    "review-learning": { "path": ".ai/skills/review-learning/SKILL.md" },
+    "ripgrep": { "path": ".ai/skills/ripgrep/SKILL.md" },
+    "roastme": { "path": ".ai/skills/roastme/SKILL.md" },
+    "security-review": { "path": ".ai/skills/security-review/SKILL.md" },
+    "snapshot-manager": { "path": ".ai/skills/snapshot-manager/SKILL.md" },
+    "subagent-driven-development": { "path": ".ai/skills/subagent-driven-development/SKILL.md" },
+    "systematic-debugging": { "path": ".ai/skills/systematic-debugging/SKILL.md" },
+    "test-driven-development": { "path": ".ai/skills/test-driven-development/SKILL.md" },
+    "test-planning": { "path": ".ai/skills/test-planning/SKILL.md" },
+    "using-git-worktrees": { "path": ".ai/skills/using-git-worktrees/SKILL.md" },
+    "verification-before-completion": { "path": ".ai/skills/verification-before-completion/SKILL.md" },
+    "writing-skills": { "path": ".ai/skills/writing-skills/SKILL.md" }
+  },
+  "aliases": {
+    "tdd": "test-driven-development",
+    "diagnose": "systematic-debugging",
+    "writing-plans": "implementation-planning"
   }
 }

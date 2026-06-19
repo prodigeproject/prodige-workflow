@@ -1,4 +1,18 @@
-# Skill: context-sync
+---
+name: context-sync
+description: "Detects and resolves drift between code, documentation, and contextual knowledge, classifying each drift and recommending concrete sync actions to keep artifacts consistent."
+auto_load: ["/build", "/fix", "/review", "/audit", "/sync"]
+applies_to: [architect, backend, frontend, reviewer, qa]
+---
+
+# Context Sync
+
+## Quick Protocol (your next action)
+1. Pick the code plus its docs/comments/ADRs/knowledge and compare them side by side.
+2. Flag each drift with evidence (file:line) and classify: code-ahead, doc-ahead, or conflicting.
+3. Decide the source of truth (default: code, unless docs define requirements).
+4. State the concrete sync action and severity for each drift.
+Compare actual content; never invent behavior.
 
 ## Purpose
 

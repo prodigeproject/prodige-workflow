@@ -3,50 +3,59 @@
 Governance keeps speed from becoming chaos.
 
 ## Purpose
-Menyediakan framework untuk memastikan kualitas, keamanan, dan keberlanjutan dalam pengembangan AI-assisted workflow.
+Provides a framework to ensure quality, security, and sustainability in the AI-assisted workflow.
 
 ## Structure
 
 ### 1. Review Gates (`review-gates.md`)
-Checkpoint kualitas di setiap fase pengembangan untuk memastikan output memenuhi standar sebelum melanjutkan ke fase berikutnya.
+Quality checkpoints at each development phase to ensure output meets the standard before advancing to the next phase.
 
-### 2. Risk Register (`risk-register.md`)
-Tracking dan mitigasi risiko proyek secara proaktif untuk menghindari masalah yang dapat menghambat progress.
+### 2. Quality Gates (`quality-gates.md`)
+Structural and behavioral quality bars (TDD, verification before completion) enforced at the `/design`, `/build`, and merge stages.
 
-### 3. Debt Management (`debt/`)
-Sistem tracking untuk berbagai jenis debt yang perlu dikelola:
+### 3. Rules (`rules.md`)
+General engineering rules and conventions that apply across the project.
+
+### 4. Rules by Stack (`rules-by-stack.md`)
+Language- and stack-specific best practices (JS/TS, Python, Rust, Go, React, SQL, security).
+
+### 5. Risk Register (`risk-register.md`)
+Proactive tracking and mitigation of project risks to avoid problems that could block progress.
+
+### 6. Debt Management (`debt/`)
+A tracking system for the various kinds of debt that need to be managed:
 - **Technical Debt**: Code quality issues, refactoring needs
-- **Architecture Debt**: Design decisions yang perlu diperbaiki
-- **Documentation Debt**: Missing atau outdated documentation
-- **Knowledge Debt**: Knowledge gaps dalam tim atau sistem
+- **Architecture Debt**: Design decisions that need improvement
+- **Documentation Debt**: Missing or outdated documentation
+- **Knowledge Debt**: Knowledge gaps in the team or system
 
 ## How to Use
 
 ### Daily Workflow
-1. Sebelum memulai task baru, check review gates yang relevan
-2. Saat menemukan debt, catat di file debt yang sesuai
-3. Update risk register jika menemukan risiko baru
+1. Before starting a new task, check the relevant review gates
+2. When you find debt, record it in the appropriate debt file
+3. Update the risk register if you find a new risk
 
 ### Weekly Review
-1. Review semua open debt items
-2. Prioritaskan debt items untuk diselesaikan
-3. Update status risk register
+1. Review all open debt items
+2. Prioritize debt items to resolve
+3. Update the risk register status
 
 ### Before Major Milestones
-1. Ensure semua review gates terpenuhi
+1. Ensure all review gates are satisfied
 2. Resolve critical debt items
 3. Mitigate high-priority risks
 
 ## Integration with Workflow
 
-Governance terintegrasi dengan:
-- **State Management**: Status tracking mengikuti governance checkpoints
-- **Memory System**: Decisions dan learnings dari governance issues
-- **Agent System**: Agents enforce governance rules secara otomatis
+Governance integrates with:
+- **State Management**: Status tracking follows governance checkpoints
+- **Memory System**: Decisions and learnings from governance issues
+- **Agent System**: Agents enforce governance rules automatically
 
 ## Principles
 
 1. **Preventive > Reactive**: Catch issues early
-2. **Transparent**: All issues visible dan tracked
-3. **Actionable**: Every item memiliki clear action plan
-4. **Balanced**: Governance tidak menghambat velocity
+2. **Transparent**: All issues visible and tracked
+3. **Actionable**: Every item has a clear action plan
+4. **Balanced**: Governance does not block velocity

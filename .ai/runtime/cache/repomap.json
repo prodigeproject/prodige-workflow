@@ -1,1 +1,25 @@
-{}
+{
+  "schema_version": "1.0",
+  "generated_at": null,
+  "project": {
+    "type": "",
+    "framework": "",
+    "language": "",
+    "database": "",
+    "deployment": ""
+  },
+  "entry_points": [
+    { "path": "src/index.ts", "purpose": "Application entry point" }
+  ],
+  "modules": [
+    { "path": "src/", "purpose": "Source root", "children": [] }
+  ],
+  "critical_files": [
+    { "path": "package.json", "category": "configuration", "purpose": "Dependencies and scripts" }
+  ],
+  "relationships": [
+    { "from": "src/index.ts", "to": "src/app.ts", "kind": "imports" }
+  ],
+  "architecture_patterns": [],
+  "notes": "Skeleton repo map. Populated by the repomap skill via /cache update. Arrays document expected entry shapes; replace examples with real data on first sync."
+}

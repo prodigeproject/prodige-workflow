@@ -1,4 +1,4 @@
-# Karpathy Anti-Pattern Library
+# Engineering Anti-Pattern Library
 
 Learn from common AI coding mistakes. Each example shows what AI typically does wrong and what should happen instead.
 
@@ -642,4 +642,4 @@ Use this checklist to catch anti-patterns:
 
 ---
 
-**Remember:** These anti-patterns are COMMON. AI agents naturally drift toward complexity. Karpathy principles keep you disciplined.
+**Remember:** These anti-patterns are COMMON. AI agents naturally drift toward complexity. engineering principles keep you disciplined.

@@ -1,3 +1,5 @@
+> **⚠️ ARCHIVED historical status report (2024 one-time report).** Point-in-time log, NOT a live index. Figures and statuses are unverified/approximate and should not be relied upon.
+
 # Context Files Improvement Summary
 
 **Date:** 2024-01-XX  

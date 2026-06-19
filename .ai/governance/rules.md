@@ -18,7 +18,7 @@
 - **Follow systematic debugging** when fixing bugs (4-phase protocol)
 - **Provide evidence** for all completion claims (command + output + result)
 
-## Always (Karpathy Behavioral)
+## Always (Behavioral)
 
 - **Ask before assuming:** If requirements are vague, ask clarifying questions.
 - **Present tradeoffs:** If multiple approaches exist, show options with pros/cons.
@@ -43,7 +43,7 @@
 - **Do not skip verification steps:** Every completion needs evidence (command output)
 - **Do not attempt 4th fix:** After 3 failed fixes, escalate to Architect
 
-## Never (Karpathy Behavioral)
+## Never (Behavioral)
 
 - **Do not assume silently:** Don't pick an interpretation without asking.
 - **Do not overcomplicate:** No abstractions for single use cases.

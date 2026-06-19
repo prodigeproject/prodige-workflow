@@ -23,7 +23,7 @@ Verify `.ai` folder completeness and organization.
 - [ ] `.ai/context/` folder complete (PROJECT, PRD, ARCHITECTURE, IMPLEMENTATION)
 - [ ] `.ai/context/manifest.json` valid
 - [ ] `.ai/governance/` folder complete (rules, quality-gates, review-gates)
-- [ ] `.ai/agents/` folder has all 7 agents
+- [ ] `.ai/agents/` folder has all 11 agents (architect, backend, docs, frontend, git-guardian, magic-orchestrator, memory-manager, orchestrator, qa, reviewer, verification-runner)
 - [ ] `.ai/commands/` folder has command registry
 
 **Possible Issues:**

@@ -185,7 +185,7 @@ const query = `SELECT * FROM users WHERE name LIKE '%${searchTerm}%'`;
 ## Related Files
 
 - `.ai/workflows/review.md` - Review workflow
-- `.ai/skills/code-review.md` - Code review skill
+- `.ai/skills/requesting-code-review/SKILL.md` - Code review skill
 - `docs/HITL_REVIEW_GATES.md` - Human approval gates
 
 ---

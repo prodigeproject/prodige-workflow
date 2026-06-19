@@ -225,7 +225,7 @@ glab mr create --title "<feature-name>" --description "<description>" --target-b
 
 ## Related
 - Spec: `.ai/context/designs/<spec-file>.md`
-- Implementation plan: `docs/superpowers/plans/<plan-file>.md`
+- Implementation plan: `.ai/context/IMPLEMENTATION.md`
 ```
 
 **Do NOT clean up worktree** — user needs it alive to iterate on PR feedback.

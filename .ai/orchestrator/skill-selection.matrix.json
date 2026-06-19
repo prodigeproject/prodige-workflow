@@ -1,39 +1,55 @@
 {
+  "_canonical": "../skills/skill-selection-matrix.json",
+  "_note": "Derived flat view (required + optional combined) of the canonical matrix. Keep consistent with it. Every name here must exist in .ai/skills/manifest.json — no ghost skills.",
   "/init": [
     "repomap",
-    "context-bootstrap",
-    "rtk",
-    "documentation"
+    "reality-check",
+    "documentation",
+    "brainstorming",
+    "context-sync"
   ],
   "/design": [
+    "repomap",
+    "roastme",
+    "reality-check",
     "brainstorming",
-    "writing-plans",
-    "rtk",
-    "prd-design",
-    "architecture-design",
     "implementation-planning",
-    "roastme"
+    "memory-search",
+    "grill-with-docs"
   ],
   "/build": [
     "test-driven-development",
     "verification-before-completion",
-    "subagent-driven-development",
-    "executing-plans",
     "repomap",
     "ripgrep",
     "reuse-rebuild",
+    "subagent-driven-development",
+    "executing-plans",
     "clean-code",
     "test-planning",
-    "roastme",
-    "context-sync"
+    "context-sync",
+    "memory-search",
+    "grill-with-docs"
   ],
   "/fix": [
     "systematic-debugging",
     "test-driven-development",
     "verification-before-completion",
+    "repomap",
     "ripgrep",
-    "root-cause",
-    "minimal-change",
+    "clean-code",
+    "test-planning",
+    "context-sync",
+    "memory-search"
+  ],
+  "/refactor": [
+    "test-driven-development",
+    "verification-before-completion",
+    "clean-code",
+    "repomap",
+    "reuse-rebuild",
+    "roastme",
+    "debt-detection",
     "test-planning",
     "context-sync"
   ],
@@ -41,27 +57,44 @@
     "requesting-code-review",
     "receiving-code-review",
     "roastme",
-    "clean-code",
+    "verification-before-completion",
+    "review-learning",
     "security-review",
+    "performance-review",
+    "accessibility-review",
+    "clean-code",
+    "debt-detection",
     "context-sync"
+  ],
+  "/test": [
+    "test-driven-development",
+    "verification-before-completion",
+    "test-planning"
+  ],
+  "/verify": [
+    "verification-before-completion"
+  ],
+  "/magic": [
+    "test-driven-development",
+    "verification-before-completion",
+    "repomap",
+    "brainstorming",
+    "implementation-planning",
+    "roastme",
+    "memory-search"
   ],
   "/audit": [
     "repomap",
     "ripgrep",
     "roastme",
     "security-review",
-    "dependency-review",
     "debt-detection",
-    "context-sync"
-  ],
-  "/refactor": [
-    "test-driven-development",
-    "verification-before-completion",
-    "repomap",
-    "reuse-rebuild",
-    "clean-code",
-    "test-planning",
-    "context-sync"
+    "dependency-review",
+    "performance-review",
+    "accessibility-review",
+    "context-sync",
+    "memory-search",
+    "project-history"
   ],
   "/docs": [
     "documentation",
@@ -69,7 +102,6 @@
   ],
   "/release": [
     "finishing-a-development-branch",
-    "review-gate",
     "test-planning",
     "documentation",
     "context-sync"
@@ -80,13 +112,16 @@
     "documentation"
   ],
   "/parallel": [
-    "using-git-worktrees",
-    "dispatching-parallel-agents",
     "parallel-planner",
     "snapshot-manager",
-    "cache-manager",
     "lock-manager",
-    "handoff-manager"
+    "handoff-manager",
+    "repomap",
+    "using-git-worktrees",
+    "dispatching-parallel-agents",
+    "cache-manager",
+    "test-driven-development",
+    "verification-before-completion"
   ],
   "/cache": [
     "cache-manager",

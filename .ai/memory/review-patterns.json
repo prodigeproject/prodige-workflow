@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "updated": "2026-06-18",
+  "config": {
+    "focus_threshold": 3,
+    "monthly_decay": 0.9
+  },
+  "paths": {}
+}

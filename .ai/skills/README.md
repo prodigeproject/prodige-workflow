@@ -1,9 +1,9 @@
 # Prodige Skills Library
 ## Quality Enforcement Through Systematic Processes
 
-**Version:** 1.0 (Phase 1)  
-**Last Updated:** 2026-06-17  
-**Status:** Production Ready
+**Version:** 3.0  
+**Last Updated:** 2026-06-18  
+**Status:** Production Ready — 37 skills + 2 global
 
 ---
 
@@ -16,6 +16,40 @@ Prodige Skills are **process documentation files** that agents must follow to en
 - Skills are mandatory protocols
 - Skills are auto-loaded (agents don't choose)
 - Skills enforce quality gates
+
+---
+
+## Skill Index, Canonical Merges & Disambiguation
+
+> **Status (v3.0, 2026-06-18):** 37 skills + 2 global. The authoritative list is
+> `manifest.json`. The authoritative auto-load config is `skill-selection-matrix.json`
+> (the orchestrator's flat `skill-selection.matrix.json` is a derived view kept in sync).
+> Run `.ai/scripts/lint-skills.ps1` (or `.sh`) to verify no drift.
+
+### Canonical merges (duplicates removed)
+These pairs were duplicates and have been merged. Old names are **aliases** (see `manifest.json`):
+
+| Old name | Canonical skill | Notes |
+|----------|-----------------|-------|
+| `tdd` | **`test-driven-development`** | Single TDD source of truth (rationalization table + sub-docs) |
+| `diagnose` (skill) | **`systematic-debugging`** | 6-phase protocol. NB: `/diagnose` *command* (health check) is unrelated |
+| `writing-plans` | **`implementation-planning`** | Plan authoring absorbed; see its "Bite-Sized Task Authoring" section |
+
+### When to use look-alike skills (NOT duplicates — keep them distinct)
+
+| Need | Use |
+|------|-----|
+| Sharpen vague requirements / surface assumptions & risks | `reality-check` |
+| Explore an idea into an approved design/spec | `brainstorming` |
+| Adversarially stress an existing design vs docs/ADRs | `grill-with-docs` |
+| Pinpoint recall of a specific past decision/fact | `memory-search` |
+| Synthesize the whole project narrative/history | `project-history` |
+| Detect code-vs-docs drift | `context-sync` |
+| Classify & quantify debt for paydown | `debt-detection` |
+| Deep supply-chain/CVE/license audit | `dependency-review` (security-review defers here) |
+| Logic-level vulnerability review | `security-review` |
+| Split a plan into parallel streams | `parallel-planner` |
+| Execute/dispatch the parallel work | `dispatching-parallel-agents` |
 
 ## How Skills Work
 
@@ -64,7 +98,34 @@ Skills are enforced through multiple layers:
    - Mandatory evidence before completion claims
    - No "done" without verification
 
-## Current Skills (Phase 1)
+## Core Skills (detailed)
+
+> The full set of **37 skills + 2 global** is authoritatively listed in `manifest.json`,
+> with auto-load wiring in `skill-selection-matrix.json`. The three skills detailed below
+> are the universal quality backbone; every other skill builds on the same enforcement model.
+
+### 0. efficient-communication (global)
+**Status:** ✅ Production Ready  
+**Auto-Loaded:** ALL commands (global skill)  
+**Required For:** ALL agents  
+
+**Purpose:** Communicate clearly and concisely — natural, on-point, helpful for everyone from vibe coders to experts
+
+**Key Rules:**
+- Natural and conversational (not robotic, not cryptic)
+- Efficient but complete (include necessary context, spell out terms)
+- Action-oriented (tell users what to DO)
+- Adaptive complexity (match response length to question)
+- Length targets: simple 1-3, standard 3-6, complex 6-10 lines
+
+**Integration:**
+- Global skill (loaded for every command via skill-selection-matrix.json)
+- Defined in SOUL.md communication style
+- Replaces the "Caveman" anti-pattern (too cryptic to understand)
+
+**File:** `.ai/skills/efficient-communication/SKILL.md`
+
+---
 
 ### 1. test-driven-development.md
 **Status:** ✅ Production Ready  
@@ -85,7 +146,7 @@ Skills are enforced through multiple layers:
 - Verified by `verification-before-completion`
 - Tracked in quality gates
 
-**File:** `.ai/skills/test-driven-development.md`
+**File:** `.ai/skills/test-driven-development/SKILL.md`
 
 ---
 
@@ -107,7 +168,7 @@ Skills are enforced through multiple layers:
 - Required in pre-merge checklist
 - Evidence recorded in handoffs
 
-**File:** `.ai/skills/verification-before-completion.md`
+**File:** `.ai/skills/verification-before-completion/SKILL.md`
 
 ---
 
@@ -130,7 +191,7 @@ Skills are enforced through multiple layers:
 - Uses `verification-before-completion` for verification
 - Updates context if architecture changes
 
-**File:** `.ai/skills/systematic-debugging.md`
+**File:** `.ai/skills/systematic-debugging/SKILL.md`
 
 ---
 
@@ -139,18 +200,18 @@ Skills are enforced through multiple layers:
 | Command | Auto-Loaded Skills | Mandatory |
 |---------|-------------------|-----------|
 | `/init` | - | No |
-| `/design` | *Phase 2: brainstorming, writing-plans* | Yes |
+| `/design` | repomap, roastme, reality-check (+brainstorming, implementation-planning) | Yes |
 | `/build` | test-driven-development, verification-before-completion | Yes |
 | `/fix` | systematic-debugging, test-driven-development, verification-before-completion | Yes |
-| `/review` | *Phase 3: requesting-code-review* | Yes |
-| `/audit` | - | No |
+| `/review` | requesting-code-review, receiving-code-review, security-review | Yes |
+| `/audit` | dependency-review, debt-detection, performance-review | No |
 | `/refactor` | test-driven-development, verification-before-completion | Yes |
-| `/docs` | verification-before-completion | Yes |
+| `/docs` | documentation, verification-before-completion | Yes |
 | `/release` | verification-before-completion | Yes |
-| `/parallel` | *Phase 4: using-git-worktrees, dispatching-parallel-agents* | Yes |
-| `/sync` | verification-before-completion | Yes |
+| `/parallel` | using-git-worktrees, dispatching-parallel-agents, parallel-planner | Yes |
+| `/sync` | context-sync, verification-before-completion | Yes |
 
-*Italic = Future phases (not yet implemented)*
+*See `skill-selection-matrix.json` for the authoritative, complete mapping.*
 
 ---
 
@@ -161,10 +222,10 @@ Skills are enforced through multiple layers:
 | **Backend** | test-driven-development, verification-before-completion | systematic-debugging |
 | **Frontend** | test-driven-development, verification-before-completion | systematic-debugging |
 | **QA** | test-driven-development, verification-before-completion | systematic-debugging |
-| **Reviewer** | verification-before-completion | *requesting-code-review (Phase 3)* |
-| **Docs** | verification-before-completion | - |
-| **Architect** | verification-before-completion | *brainstorming, writing-plans (Phase 2)* |
-| **Orchestrator** | verification-before-completion | *skill-loading logic* |
+| **Reviewer** | verification-before-completion, requesting-code-review | security-review, performance-review |
+| **Docs** | verification-before-completion, documentation | context-sync |
+| **Architect** | verification-before-completion | brainstorming, implementation-planning, reality-check |
+| **Orchestrator** | verification-before-completion | parallel-planner, dispatching-parallel-agents |
 
 ---
 
@@ -282,27 +343,33 @@ Bug fixed with evidence.
 
 ---
 
-## Roadmap: Future Skills (Phase 2-5)
+## Skill Catalog (37 + 2 global)
 
-### Phase 2: Design Enhancement (Week 3-4)
-- [ ] **brainstorming.md** - Socratic exploration before design
-- [ ] **writing-plans.md** - Detailed implementation plans
+All skills below are implemented and production-ready. See `manifest.json` for the
+authoritative list and `skill-selection-matrix.json` for auto-load wiring.
 
-### Phase 3: Execution Enhancement (Week 5-6)
-- [ ] **subagent-driven-development.md** - Automated task dispatch
-- [ ] **executing-plans.md** - Fallback for non-subagent platforms
-- [ ] **requesting-code-review.md** - Automated reviewer dispatch
-- [ ] **receiving-code-review.md** - Systematic feedback handling
+**Global (always loaded):** efficient-communication, verification-before-completion
 
-### Phase 4: Parallel Work Safety (Week 7-8)
-- [ ] **using-git-worktrees.md** - Workspace isolation
-- [ ] **dispatching-parallel-agents.md** - Concurrent work patterns
+**Design & planning:** brainstorming, implementation-planning, reality-check, roastme, repomap,
+parallel-planner, test-planning
 
-### Phase 5: Polish & Documentation (Week 9-10)
-- [ ] **finishing-a-development-branch.md** - Branch completion protocol
-- [ ] **writing-skills.md** - TDD for creating new skills
+**Implementation & debugging:** test-driven-development, systematic-debugging, clean-code,
+reuse-rebuild
 
----
+**Review & quality:** requesting-code-review, receiving-code-review, security-review,
+performance-review, accessibility-review, dependency-review, debt-detection, review-learning,
+grill-with-docs
+
+**Execution & parallelism:** subagent-driven-development, executing-plans,
+dispatching-parallel-agents, using-git-worktrees, finishing-a-development-branch,
+lock-manager, snapshot-manager
+
+**Knowledge & context:** documentation, context-sync, memory-search, project-history,
+cache-manager, handoff-manager
+
+**Tooling & meta:** ripgrep, writing-skills
+
+> Note: a few entries above are aliases/merges — see the Canonical merges table at the top.
 
 ## For Developers: Creating New Skills
 
@@ -363,10 +430,10 @@ Bug fixed with evidence.
 **Related Skills:** [List related skills]
 ```
 
-### Skill Development Process (Phase 5)
+### Skill Development Process
 
-When creating new skills (after Phase 5):
-1. Use **writing-skills.md** skill (TDD for documentation)
+When creating or revising a skill, use the **writing-skills** skill (TDD for documentation):
+1. Use **writing-skills** skill (TDD for documentation)
 2. Test skill with subagent pressure testing
 3. Document baseline behavior (without skill)
 4. Write skill addressing rationalizations
@@ -417,7 +484,7 @@ When creating new skills (after Phase 5):
 
 ---
 
-## Quality Metrics (Phase 1 Target)
+## Quality Metrics
 
 ### Success Indicators
 - ✅ Test coverage ≥90% (TDD enforced)
@@ -434,7 +501,7 @@ Track these metrics weekly:
 4. Number of failed fixes before success
 5. Number of regressions introduced
 
-**Target:** Achieve metrics within 4 weeks of Phase 1 deployment
+**Target:** Sustain these metrics across all 37 skills in production
 
 ---
 
@@ -504,38 +571,21 @@ Skills should evolve based on real usage:
 
 ## Version History
 
-### v1.0 - Phase 1 (2026-06-17)
-- ✅ test-driven-development.md
-- ✅ verification-before-completion.md
-- ✅ systematic-debugging.md
-- ✅ Skills README
-- ✅ Integration with quality gates
-- ✅ Integration with checklists
-- ✅ Agent instructions updated
+### v3.0 (2026-06-18) — current
+- 37 skills + 2 global, all production-ready
+- Canonical merges applied: `tdd`→`test-driven-development`, `diagnose`→`systematic-debugging`, `writing-plans`→`implementation-planning` (old names kept as aliases)
+- Disambiguation table added for look-alike skills
+- All skills carry YAML frontmatter; auto-load wired via `skill-selection-matrix.json`
+- Drift verified by `.ai/scripts/lint-skills.ps1` (or `.sh`)
 
-### Planned
-
-**v1.1 - Phase 2** (Week 3-4)
-- brainstorming.md
-- writing-plans.md
-
-**v1.2 - Phase 3** (Week 5-6)
-- subagent-driven-development.md
-- executing-plans.md
-- requesting-code-review.md
-- receiving-code-review.md
-
-**v1.3 - Phase 4** (Week 7-8)
-- using-git-worktrees.md
-- dispatching-parallel-agents.md
-
-**v1.4 - Phase 5** (Week 9-10)
-- finishing-a-development-branch.md
-- writing-skills.md
+### v1.0 (2026-06-17) — initial
+- test-driven-development, verification-before-completion, systematic-debugging
+- Skills README, integration with quality gates and checklists
+- Agent instructions updated
 
 ---
 
-**Document Version:** 1.0  
-**Last Updated:** 2026-06-17  
-**Status:** Production Ready (Phase 1)  
-**Next Review:** After 2 weeks of Phase 1 usage
+**Document Version:** 3.0  
+**Last Updated:** 2026-06-18  
+**Status:** Production Ready — 37 skills + 2 global  
+**Next Review:** Periodic — keep in sync with `manifest.json`

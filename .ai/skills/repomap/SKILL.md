@@ -58,6 +58,33 @@ This skill is automatically selected by the orchestrator when:
 - Map data flow through the system
 - Find integration points with external services
 
+## Outline Before Read
+
+Build the map **cheaply**. Never read an entire large file just to learn what it contains.
+
+- For any code file larger than ~100 lines, view its **structure** (symbol/signature outline) first.
+- Read the full body only for the specific symbol(s) the map needs.
+- Reading a whole large file to find one function is the anti-pattern to eliminate.
+
+Use ripgrep to outline a file's symbols before reading it in full:
+
+```bash
+# Outline signatures in a single file (portable, no AST needed)
+rg -n "^(export\s+)?(async\s+)?(function|class|const|interface|type|def|enum)\b" path/to/file
+```
+
+Then open only the relevant region for the symbol you actually need.
+
+## Token Economics
+
+Pick the cheapest path that answers the question. Outline first, narrow to a symbol, and read the full file only when you truly need everything.
+
+| Approach | Tokens | Use case |
+| --- | --- | --- |
+| Outline (rg signatures) | ~200–600 | "What's in this file?" |
+| Read one symbol/region | ~300–1,500 | "Show me this function" |
+| Read full file | ~6,000–12,000+ | "I truly need everything" |
+
 ## Output Format
 
 Provide a hierarchical, scannable map:
@@ -141,6 +168,36 @@ app/page.tsx
 - API follows RESTful conventions
 - Components use Radix UI primitives via Shadcn
 
+## Structured Output (`repomap.json`)
+
+Alongside the markdown map, emit a machine-readable map at
+`.ai/runtime/cache/repomap.json`. Its schema is canonical and matches the skeleton
+shipped at that path — populate these exact keys (replace the example entries with
+real data on first sync):
+
+```json
+{
+  "schema_version": "1.0",
+  "generated_at": "<iso8601 timestamp>",
+  "project": {
+    "type": "", "framework": "", "language": "", "database": "", "deployment": ""
+  },
+  "entry_points":   [ { "path": "src/index.ts", "purpose": "Application entry point" } ],
+  "modules":        [ { "path": "src/", "purpose": "Source root", "children": [] } ],
+  "critical_files": [ { "path": "package.json", "category": "configuration", "purpose": "Dependencies and scripts" } ],
+  "relationships":  [ { "from": "src/index.ts", "to": "src/app.ts", "kind": "imports" } ],
+  "architecture_patterns": [],
+  "notes": ""
+}
+```
+
+Field meanings: `entry_points`, `modules`, and `critical_files` correspond to the
+**Entry Points**, **Core Modules**, and **Critical Files** sections above;
+`relationships` encodes the **Key Relationships** edges (`from`/`to`/`kind`); and
+`architecture_patterns` lists the **Architecture Patterns**. Set `generated_at` on
+every regeneration. This file is tracked in `CACHE_MANIFEST.json` under the
+`repomap_json` key.
+
 ## Rules
 
 - **Be concise:** Focus on what helps navigate and understand, not exhaustive listing
@@ -165,7 +222,10 @@ app/page.tsx
 **Maintainable Documentation:**
 - Keep map update-able as project evolves
 - Focus on stable structure, not volatile details
-- Store as markdown in docs/ for version control
+- Store the human-readable map as `.ai/runtime/cache/repo-map.md` and the
+  structured map as `.ai/runtime/cache/repomap.json` (both tracked in
+  `.ai/runtime/cache/CACHE_MANIFEST.json` under the `repo_map` and `repomap_json`
+  keys)
 
 ## Integration Points
 

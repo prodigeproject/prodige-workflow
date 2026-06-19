@@ -1,7 +1,7 @@
 # Workflow: Init
 
 ## Purpose
-Initialize project brain by analyzing repository, idea, or notes to build foundational context for the AI system. Creates structured knowledge base without code generation.
+Initialize project context by analyzing repository, idea, or notes to build foundational context for the AI system. Creates structured knowledge base under `.ai/context/` without code generation.
 
 **Core principle:** Evidence-based initialization. Extract what exists, mark what doesn't, ask only critical questions.
 
@@ -123,43 +123,59 @@ Backend (Node.js)
 
 ### 5. Fill Context Scaffold
 
-**Create structured brain files:**
+**Create structured context files (all under `.ai/context/`):**
 
-**`.ai/brain/ARCHITECTURE.md`**
+Produce the full canonical context set: `PROJECT.md`, `PRD.md`, `ARCHITECTURE.md`,
+`IMPLEMENTATION.md`, `DECISIONS.md`, `CONTEXT.md`, `CHANGELOG.md`, and `manifest.json`.
+Create only what evidence supports; scaffold the rest with `[UNKNOWN]` markers.
+
+**`.ai/context/manifest.json`** — context index with canonical schema fields:
+- `schema_version` (string)
+- `context_version` (integer, starts at 1)
+- `last_sync` (ISO 8601 timestamp)
+
+**`.ai/context/ARCHITECTURE.md`** — single architecture/tech source of truth, organized into sections:
+
+**Architecture section**
 - System type (monolith, microservices, serverless)
 - Component structure
 - Integration points
 - Design patterns identified
 
-**`.ai/brain/TECH_STACK.md`**
+**Tech Stack section**
 - Languages and versions
 - Frameworks and libraries
 - Build and deployment tools
 - Development dependencies
 
-**`.ai/brain/DEPENDENCIES.md`**
+**Dependencies section**
 - Production dependencies with purposes
 - Development dependencies
 - Peer dependencies
 - Vulnerability notes (if any)
 
-**`.ai/brain/PATTERNS.md`**
+**Patterns section**
 - Code organization patterns
 - Naming conventions observed
 - Error handling approach
 - Testing patterns
 
-**`.ai/state/CURRENT_STATE.md`**
+**`.ai/state/CURRENT.md`**
 - Initialization timestamp
 - Source mode used
 - Completeness assessment
 - Verification status
 
+**Also scaffold the remaining canonical state files:**
+- `.ai/state/SPRINT.md` — active sprint scope and goals (empty/initial sprint)
+- `.ai/state/BACKLOG.md` — outstanding work items (seed from unknowns/next steps)
+- `.ai/state/STATUS.md` — project status snapshot
+
 **Rule:** Every statement must trace to evidence. Use `[UNKNOWN]` liberally.
 
 ### 6. Mark Unknowns Explicitly
 
-**Create `.ai/brain/UNKNOWNS.md` with categorized gaps:**
+**Record gaps as an "Open Questions" section in `.ai/context/PRD.md`:**
 
 **Categorize by priority:**
 
@@ -226,13 +242,13 @@ Backend (Node.js)
 - Blocking: Technology selection, protocol design
 ```
 
-**Rule:** Ask only what's critical. Everything else goes in UNKNOWNS.md.
+**Rule:** Ask only what's critical. Everything else goes in the PRD "Open Questions" section.
 
-**Skill:** `karpathy-behavioral` (Thinking before doing - asking right questions)
+**Skill:** `clean-code` (Thinking before doing - asking right questions)
 
 ### 8. Create Initial State Document
 
-**Generate `.ai/state/CURRENT_STATE.md`:**
+**Generate `.ai/state/CURRENT.md`:**
 
 ```markdown
 # Current State
@@ -295,7 +311,7 @@ Backend (Node.js)
 
 **Verify:**
 - [ ] No .js, .ts, .py, .java files created
-- [ ] No code snippets generated in brain files
+- [ ] No code snippets generated in context files
 - [ ] No implementation suggestions embedded
 - [ ] Only analysis and documentation created
 
@@ -313,7 +329,7 @@ Backend (Node.js)
 **Mode:** Repository Analysis
 **Duration:** [time]
 **Files Scanned:** [count]
-**Brain Files Created:** [count]
+**Context Files Created:** [count]
 
 ## What We Learned
 
@@ -344,7 +360,7 @@ Backend (Node.js)
 
 ## Next Steps
 
-1. Review `.ai/brain/` files for accuracy
+1. Review `.ai/context/` files for accuracy
 2. Answer critical questions (if any)
 3. Run `/sync` to validate consistency
 4. Run `/cache update` to refresh cache
@@ -372,7 +388,7 @@ Recommended: /design to create PRD and architecture
 
 **If Notes Mode:**
 ```
-Recommended: Review brain accuracy, then /design or /build
+Recommended: Review context accuracy, then /design or /build
 ```
 
 ---
@@ -380,17 +396,21 @@ Recommended: Review brain accuracy, then /design or /build
 ## Output Structure
 
 ```
-.ai/brain/
-├── ARCHITECTURE.md       # System architecture analysis
-├── TECH_STACK.md        # Technologies and versions
-├── DEPENDENCIES.md      # Package dependencies map
-├── PATTERNS.md          # Code patterns identified
-├── UNKNOWNS.md          # Categorized missing information
-└── DECISIONS.md         # Architectural decisions discovered
+.ai/context/
+├── PROJECT.md           # Project identity, vision, stakeholders
+├── PRD.md               # Requirements, constraints, concept, and Open Questions (gaps)
+├── ARCHITECTURE.md      # System architecture + tech stack + dependencies + patterns
+├── IMPLEMENTATION.md    # Technical implementation plan
+├── DECISIONS.md         # Architectural decisions discovered
+├── CONTEXT.md           # Domain glossary and key terms
+├── CHANGELOG.md         # Notable changes log
+└── manifest.json        # schema_version, context_version (int), last_sync (ISO)
 
 .ai/state/
-├── CURRENT_STATE.md     # Initialization state
-└── NEXT_ACTIONS.md      # Recommended workflow
+├── CURRENT.md           # Initialization / current state
+├── SPRINT.md            # Active sprint scope and goals
+├── BACKLOG.md           # Outstanding work items
+└── STATUS.md            # Project status snapshot
 
 .ai/runtime/cache/
 └── [initialized cache entries]
@@ -403,7 +423,7 @@ Recommended: Review brain accuracy, then /design or /build
 | Principle | Meaning | Test |
 |-----------|---------|------|
 | **Evidence-based** | Only use discoverable facts | Every statement traces to source |
-| **Mark unknowns** | Explicit about gaps | UNKNOWNS.md is comprehensive |
+| **Mark unknowns** | Explicit about gaps | PRD "Open Questions" is comprehensive |
 | **Limited questions** | Ask only critical items | Max 3 questions |
 | **No invention** | No assumptions without marking | No `[UNKNOWN]` missing |
 | **Analysis only** | No code generation | No implementation files created |
@@ -414,7 +434,7 @@ Recommended: Review brain accuracy, then /design or /build
 
 - Generated code files during init
 - Made up technical details without evidence
-- Skipped UNKNOWNS.md creation
+- Skipped PRD "Open Questions" creation
 - Asked more than 3 questions
 - Created implementation suggestions
 - Assumed architecture without evidence
@@ -426,7 +446,7 @@ Recommended: Review brain accuracy, then /design or /build
 ## Integration Points
 
 **Skills:**
-- `karpathy-behavioral` - Think before coding, ask questions (Step 7)
+- `clean-code` - Think before coding, ask questions (Step 7)
 - Repository scanning patterns
 - Cache management (Step 9)
 
@@ -441,7 +461,7 @@ Recommended: Review brain accuracy, then /design or /build
 - `sync.md` - Validate initialization accuracy
 
 **Agents:**
-- `architect` - May use brain for decisions
+- `architect` - May use context for decisions
 - `orchestrator` - Routes based on init results
 
 ---
@@ -460,7 +480,7 @@ Recommended: Review brain accuracy, then /design or /build
 
 ### Documentation-Heavy (Notes Mode)
 ```
-/init from notes → Review brain → /design (if needed) → /build
+/init from notes → Review context → /design (if needed) → /build
 ```
 
 ---

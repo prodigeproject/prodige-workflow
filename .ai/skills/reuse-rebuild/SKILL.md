@@ -7,6 +7,13 @@ description: "Enforces disciplined decision-making: prefer reuse, then refactor,
 
 Make evidence-based decisions about whether to reuse existing code, refactor it, or rebuild from scratch.
 
+## Quick Protocol (your next action)
+1. Search the codebase for existing code that already does this (do this first).
+2. Evaluate what you find: functionality, quality, performance, compatibility.
+3. Apply the ladder: REUSE as-is > REFACTOR > REBUILD (last resort).
+4. If rebuilding, justify why reuse/refactor fail and extract any salvageable logic.
+Bias toward working code; never propose building without searching.
+
 ## Purpose
 
 Prevent wasteful rebuilding by establishing a clear decision framework:

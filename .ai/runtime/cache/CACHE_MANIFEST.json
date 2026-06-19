@@ -2,7 +2,19 @@
   "cache_version": 1,
   "last_updated": null,
   "entries": {
-    "repomap": {
+    "snapshot": {
+      "path": ".ai/runtime/cache/snapshot.json",
+      "status": "missing"
+    },
+    "dependencies": {
+      "path": ".ai/runtime/cache/dependencies.json",
+      "status": "missing"
+    },
+    "repo_map": {
+      "path": ".ai/runtime/cache/repo-map.md",
+      "status": "missing"
+    },
+    "repomap_json": {
       "path": ".ai/runtime/cache/repomap.json",
       "status": "missing"
     },
@@ -10,16 +22,8 @@
       "path": ".ai/runtime/cache/architecture-summary.md",
       "status": "missing"
     },
-    "routes": {
-      "path": ".ai/runtime/cache/routes.md",
-      "status": "missing"
-    },
-    "database": {
-      "path": ".ai/runtime/cache/database.md",
-      "status": "missing"
-    },
-    "tests": {
-      "path": ".ai/runtime/cache/tests.md",
+    "module_summaries": {
+      "path": ".ai/runtime/cache/module-summaries/",
       "status": "missing"
     }
   }

@@ -13,7 +13,7 @@ Code must be:
 
 ---
 
-## TDD Enforcement (Superpowers Integration)
+## TDD Enforcement
 
 ### For All Implementation Work
 
@@ -43,11 +43,11 @@ Code must be:
 
 **If violated:** DELETE code, start with test first
 
-**Skills:** `.ai/skills/test-driven-development.md`
+**Skills:** `.ai/skills/test-driven-development/SKILL.md`
 
 ---
 
-## Verification Before Completion (Superpowers Integration)
+## Verification Before Completion
 
 ### For All Completion Claims
 
@@ -81,11 +81,11 @@ Result: [X tests passed, Y failed]
 
 **If violated:** Run verification, provide evidence, THEN claim
 
-**Skills:** `.ai/skills/verification-before-completion.md`
+**Skills:** `.ai/skills/verification-before-completion/SKILL.md`
 
 ---
 
-## Karpathy Behavioral Quality
+## Behavioral Discipline Quality
 
 Code must demonstrate:
 - ✅ **No silent assumptions:** Ambiguities were clarified before coding
@@ -131,7 +131,7 @@ Code must demonstrate:
 
 ---
 
-### For /merge Stage
+### For Merge Stage
 
 **Run:** Pre-merge checklist
 
@@ -154,8 +154,8 @@ Code must demonstrate:
 |-------------|--------|
 | Structural quality issue | Block merge, require fix |
 | Behavioral quality issue | Run roastme, require revision |
-| 3-5 Karpathy violations | Request changes, re-review |
-| 6+ Karpathy violations | Major revision required, restart review |
+| 3-5 discipline violations | Request changes, re-review |
+| 6+ discipline violations | Major revision required, restart review |
 
 ---
 
@@ -175,6 +175,36 @@ Track quality metrics in manifest.json:
   }
 }
 ```
+
+---
+
+## Relationship to Review Gates
+
+These quality gates and the review gates in `.ai/governance/review-gates.md` form one
+coherent system, viewed from two angles:
+
+- **Quality gates (this file)** are *content* checkpoints: they judge whether the work
+  itself is good, on two axes - structural quality (correct, modular, tested via TDD,
+  secure, documented, verified) and behavioral discipline (no silent assumptions,
+  minimum viable complexity, surgical changes, verifiable success). They are enforced
+  at the `/design`, `/build`, and merge stages.
+- **Review gates** are *lifecycle / phase* checkpoints: they decide when a phase
+  (PRD -> Architecture -> Implementation -> Code Review -> Release) is complete enough
+  to advance, and who must approve.
+
+### Mapping
+
+| Quality-gate stage | Review gate (phase) it backs |
+|--------------------|------------------------------|
+| Pre-design discipline (clarify, simplest scope) | Gate 1 PRD |
+| `/design` stage (`/roastme design`) | Gate 2 Architecture |
+| `/design` -> `/build` handoff (verifiable success criteria) | Gate 3 Implementation |
+| `/build` stage + merge stage (surgical diff, TDD evidence, debt + context synced) | Gate 4 Code Review |
+| Structural quality bar (tests/build/security verified) | Gate 5 Release |
+
+Rule of thumb: a phase cannot pass its review gate until the matching quality-gate
+checks pass. Review gates decide *when* to advance; quality gates decide *whether the
+work is good enough* to advance.
 
 ---
 

@@ -1,14 +1,14 @@
 # Technical Debt
 
-Tracking code quality issues dan refactoring needs.
+Tracking code quality issues and refactoring needs.
 
 ## How to Use
 
-1. **Log**: Catat technical debt saat discovered
-2. **Categorize**: Assign severity dan category
+1. **Log**: Record technical debt when discovered
+2. **Categorize**: Assign severity and category
 3. **Prioritize**: Determine when to address
-4. **Resolve**: Complete refactoring dan move to Resolved
-5. **Prevent**: Learn dan update standards
+4. **Resolve**: Complete refactoring and move to Resolved
+5. **Prevent**: Learn and update standards
 
 ## Debt Template
 
@@ -161,7 +161,7 @@ Tracking code quality issues dan refactoring needs.
 
 ## Debt Metrics
 
-Track untuk visibility dan improvement:
+Track for visibility and improvement:
 
 ```markdown
 ## Current Metrics
@@ -211,7 +211,7 @@ Track untuk visibility dan improvement:
 **Effort**: Medium
 
 **Description**:
-User listing query mengambil semua users tanpa pagination dan melakukan N+1 queries untuk loading related data. Saat ini dengan 10K users, query time >2 seconds.
+The user listing query fetches all users without pagination and performs N+1 queries to load related data. Currently, with 10K users, query time is >2 seconds.
 
 **Impact**:
 - Slow page load (>2s)
@@ -221,7 +221,7 @@ User listing query mengambil semua users tanpa pagination dan melakukan N+1 quer
 
 **Proposed Solution**:
 1. Add pagination (limit 50 per page)
-2. Add eager loading untuk related data
+2. Add eager loading for related data
 3. Add database index on frequently queried columns
 4. Implement caching for user counts
 

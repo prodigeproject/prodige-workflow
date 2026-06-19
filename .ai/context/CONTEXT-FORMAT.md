@@ -471,7 +471,61 @@ Inline updates: Don't batch
 
 ---
 
-**Related**: [CONTEXT.md](./CONTEXT.md) template, [CONTEXT-MAP.md](./CONTEXT-MAP.md) template  
+## manifest.json Schema
+
+`manifest.json` is the **canonical** metadata file for the context folder. It is the single source of truth for context versioning and approval state. The `/sync` workflow reads and writes `last_sync` and `context_version` against this schema — keep the schema stable so automation stays reliable.
+
+### Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `name` | string | Project name. Placeholder `[project-name]` until populated via `/init`. |
+| `version` | string | Semantic version of the project (e.g. `1.0.0`). |
+| `context_version` | integer | Monotonic counter bumped by `/sync` whenever context changes. Always an integer. |
+| `last_sync` | string \| null | ISO-8601 timestamp of the last `/sync` (e.g. `2026-06-17T14:30:00Z`). `null` until the first sync. |
+| `approvals` | object | Per-document approval flags. Each key is a context document; each value is a boolean (`true` = approved for build, `false` = draft/unapproved). |
+| `files` | array | List of tracked context files/paths that make up the project context. |
+
+### Canonical Example
+
+```json
+{
+  "name": "[project-name]",
+  "version": "1.0.0",
+  "context_version": 1,
+  "last_sync": null,
+  "approvals": {
+    "PROJECT.md": false,
+    "PRD.md": false,
+    "ARCHITECTURE.md": false,
+    "IMPLEMENTATION.md": false,
+    "DECISIONS.md": false,
+    "CONTEXT.md": false
+  },
+  "files": [
+    "PROJECT.md",
+    "PRD.md",
+    "ARCHITECTURE.md",
+    "IMPLEMENTATION.md",
+    "DECISIONS.md",
+    "CONTEXT.md",
+    "CHANGELOG.md",
+    "docs/adr/"
+  ]
+}
+```
+
+### Rules
+
+- **Valid JSON only** — no comments, no trailing commas.
+- **`last_sync` is `null` or a real ISO-8601 string** — never a placeholder like `"2024-01-XX"`.
+- **`context_version` is always an integer**, never a string.
+- **`approvals` keys** should track the approval-gated documents; flip to `true` only after explicit human approval.
+- **`/sync` owns** updates to `last_sync` and `context_version`. Other tooling should treat those fields as managed.
+
+---
+
+**Related**: [CONTEXT.md](./CONTEXT.md) template, [CONTEXT-MAP.md](./CONTEXT-MAP.md) template, [manifest.json](./manifest.json)  
 **Source**: Matt Pocock grill-with-docs skill  
 **Version**: 2.0
 

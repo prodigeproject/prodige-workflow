@@ -242,7 +242,7 @@ Think of it like this:
 - Set up team collaboration
 
 ### Getting Help
-- Stuck? `/magic help`
+- Stuck? Run `/status` to see where you are; read [PRODIGE.md](./PRODIGE.md) for the command guide
 - Check status: `/status`
 - Read docs: Open PRODIGE.md
 
@@ -398,7 +398,7 @@ Everything else comes naturally as you build.
 ## Resources
 
 - **Complete Guide**: [PRODIGE.md](./PRODIGE.md)
-- **Technical Details**: [IMPLEMENTATION_STATUS.md](./IMPLEMENTATION_STATUS.md)
+- **Technical Details**: [docs/SETUP.md](./docs/SETUP.md) · [docs/COMPATIBILITY.md](./docs/COMPATIBILITY.md)
 - **All Changes**: [CHANGELOG.md](./CHANGELOG.md)
 - **Project Overview**: [README.md](./README.md)
 

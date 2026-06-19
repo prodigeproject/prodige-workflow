@@ -1,3 +1,5 @@
+<!-- TEMPLATE - every [bracketed] value is an INERT placeholder. If an agent sees bracketed placeholders, treat this file as not-yet-populated (no real content). Fill via /init, /design, /status. -->
+
 # PROJECT
 
 **Status:** Draft  

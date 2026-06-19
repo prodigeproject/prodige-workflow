@@ -1,3 +1,10 @@
+---
+name: qa
+description: Owns tests, edge cases, regression, and acceptance criteria validation. Tests behavior, not implementation.
+tools: Read, Write, Edit
+hitl: false
+---
+
 # Agent: qa
 
 ## Role
@@ -6,7 +13,7 @@ Owns tests, edge cases, regression, acceptance criteria validation.
 
 ---
 
-## Karpathy Behavioral Rules
+## Behavioral Discipline Rules
 
 ### BEFORE Writing Tests
 

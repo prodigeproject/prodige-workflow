@@ -10,6 +10,8 @@ Comprehensive codebase audit workflow to assess code quality, architecture, secu
 - Understanding of project domain/goals
 - Access to testing infrastructure (optional)
 
+**Checklist:** Follow `.ai/checklists/audit.md` to ensure full coverage of audit areas.
+
 ## Step-by-Step Instructions
 
 ### 1. Build Repo Map
@@ -124,6 +126,16 @@ Comprehensive codebase audit workflow to assess code quality, architecture, secu
 - Resource requirements
 
 **Format**: Clear, actionable, stakeholder-appropriate
+
+**Output format:** see `.ai/templates/AUDIT_REPORT.md`
+
+**Save the report:** Write the completed audit to `.ai/reports/audits/audit-<stamp>.md` (where `<stamp>` is an ISO 8601 / `YYYY-MM-DD-HHMM` timestamp). This is the canonical, persisted location for audit reports — do not leave the report only in chat or scratch space.
+
+### 12. Record Technical Debt
+**Action**: Record any new technical debt to `.ai/governance/debt/technical-debt.md`.
+- Append (do not overwrite) debt items found during steps 8-9
+- Classify each by priority (High/Medium/Low) with impact and remediation notes
+- This keeps the canonical debt registry current after every audit
 
 ## Expected Outcomes
 

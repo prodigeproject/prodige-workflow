@@ -1,3 +1,10 @@
+---
+name: orchestrator
+description: Owns routing, parallel planning, snapshots, locks, cache, handoffs, and skill auto-loading across workflows.
+tools: Read, Write, Edit
+hitl: false
+---
+
 # Agent: orchestrator
 
 ## Role
@@ -8,7 +15,7 @@ Owns routing, parallel planning, snapshots, locks, cache, handoffs, **skill auto
 
 ## Skill Auto-Loading System
 
-**The orchestrator uses `.ai/skills/skill-selection.matrix.json` for centralized skill management.**
+**The orchestrator uses `.ai/skills/skill-selection-matrix.json` for centralized skill management.**
 
 All skill loading decisions reference this matrix file. This ensures:
 - Consistent skill loading across all workflows
@@ -16,13 +23,13 @@ All skill loading decisions reference this matrix file. This ensures:
 - Easy addition of new commands/skills
 - Validation of skill existence before loading
 
-**Karpathy behavioral guidelines are GLOBALLY loaded for ALL commands.**
+**Engineering discipline guidelines are GLOBALLY loaded for ALL commands.**
 
 ---
 
-## Karpathy Integration
+## Engineering Discipline Integration
 
-Every agent MUST follow Karpathy principles: Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution.
+Every agent MUST follow engineering principles: Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution.
 
 ---
 
@@ -30,66 +37,13 @@ Every agent MUST follow Karpathy principles: Think Before Coding, Simplicity Fir
 
 ### Skill Loading Reference
 
-**All skill loading rules are defined in:** `.ai/skills/skill-selection.matrix.json`
+**All skill loading rules are defined in:** `.ai/skills/skill-selection-matrix.json`
 
-**Key Commands:**
+Skills are auto-loaded per the canonical `.ai/skills/skill-selection-matrix.json` (do not hand-maintain a copy here). The flat projection used at runtime lives at `.ai/orchestrator/skill-selection.matrix.json` and is generated from the canonical matrix — never edited by hand.
 
-### `/init` - Initialization
-**Required:** repomap
-**Global:** karpathy-behavioral (auto)
-**Enforce:** Mark unknowns, ask questions, don't invent facts
+For every command, the matrix defines its `required`, `optional`, and globally-loaded skills, plus the discipline enforcement notes. The orchestrator reads that matrix to decide what to load; this file intentionally does not duplicate the per-command lists to avoid drift.
 
-### `/design` - Design  
-**Required:** repomap, roastme
-**Global:** karpathy-behavioral (auto)
-**Enforce:** Surface assumptions, present options, run `/roastme design`
-
-### `/build` - Build with TDD
-**Required:** test-driven-development, verification-before-completion, repomap, ripgrep
-**Global:** karpathy-behavioral (auto)
-**Optional:** clean-code, context-sync
-**Enforce:** 
-- Write test first (RED)
-- Minimal code to pass (GREEN)  
-- Refactor while staying green
-- Surgical changes only
-- Run `/verify` before done
-
-### `/fix` - Bug Fix with Debugging
-**Required:** systematic-debugging, test-driven-development, verification-before-completion, repomap, ripgrep
-**Global:** karpathy-behavioral (auto)
-**Enforce:**
-- Write regression test first
-- Follow 4-phase debugging protocol
-- Test must fail before fix, pass after fix
-
-### `/test` - Explicit TDD
-**Required:** test-driven-development
-**Global:** karpathy-behavioral (auto)
-**Modes:** red (failing test), green (pass test), refactor (clean up), coverage (analyze gaps)
-**Enforce:** 3 Laws of TDD strictly
-
-### `/review` - Code Review
-**Required:** roastme, verification-before-completion
-**Global:** karpathy-behavioral (auto)
-**Optional:** security-review, clean-code
-**Enforce:** Check overcomplication, scope creep, surgical precision
-
-### `/magic` - Beginner Entry Point
-**Required:** test-driven-development, verification-before-completion, repomap
-**Global:** karpathy-behavioral (auto)
-**Optional:** brainstorming, implementation-planning, roastme
-**Note:** Still enforces all quality gates despite UX simplicity
-
-### `/verify` - Quality Check
-**Required:** verification-before-completion
-**Global:** karpathy-behavioral (auto)
-**Enforce:** Run all quality checks, auto-fix when possible
-
-### `/roastme` - Self-Critique
-**Purpose:** Detect Karpathy + TDD principle violations
-**Run:** After design or build to catch issues early
-**Categories:** Simplicity, Surgical Precision, Assumptions, Test Coverage
+**Engineering discipline guidelines (Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution) are GLOBALLY loaded for ALL commands**, alongside `clean-code`.
 
 ---
 
@@ -120,8 +74,8 @@ Every agent MUST follow Karpathy principles: Think Before Coding, Simplicity Fir
 - Use snapshot, not live changing context, unless instructed.
 - Do not silently change architecture.
 - Write handoff when finished.
-- Enforce Karpathy behavioral principles at all stages.
+- Enforce engineering behavioral principles at all stages.
 
 ---
 
-**Remember:** Enforce Karpathy principles AUTOMATICALLY. Agents don't skip behavioral rules.
+**Remember:** Enforce engineering principles AUTOMATICALLY. Agents don't skip behavioral rules.

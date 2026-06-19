@@ -7,6 +7,13 @@ description: "Prevents parallel agents from editing conflicting resources throug
 
 Coordinate resource access across parallel agent sessions to prevent edit conflicts, data races, and merge collisions.
 
+## Quick Protocol (your next action)
+1. Identify the resources/files the task needs and check the lock registry.
+2. Detect conflicts via dependency/import analysis before acquiring (flag risk level).
+3. Acquire file-level locks (not directories); record agent ID + timestamp.
+4. If a resource is contested, suggest work reordering rather than just blocking.
+5. Release locks as soon as work completes. Watch for deadlocks and stale locks.
+
 ## Purpose
 
 Prevent parallel agents from editing conflicting resources by:

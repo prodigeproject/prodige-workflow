@@ -6,7 +6,7 @@ Synchronization workflow to detect and resolve drift between repository state, d
 ## Prerequisites
 - Active project repository
 - Existing context files in `.ai/context/`
-- Cache system initialized (`.ai/cache/`)
+- Cache system initialized (`.ai/runtime/cache/`)
 - Git repository with commit history
 - Read/write permissions for context and cache files
 
@@ -84,7 +84,7 @@ diff actual-routes.txt documented-routes.txt
 **Action**: Verify cache freshness and detect stale cached data.
 
 **Check cache state:**
-- Read `.ai/cache/snapshot.json` - When was last snapshot?
+- Read `.ai/runtime/cache/snapshot.json` - When was last snapshot?
 - Compare cached file hashes with current file hashes
 - Check if cached summaries reflect current code
 - Verify cached dependencies match `package.json`/`requirements.txt`
@@ -100,13 +100,13 @@ diff actual-routes.txt documented-routes.txt
 **Tools:**
 ```bash
 # Check last cache update
-ls -l .ai/cache/snapshot.json
+ls -l .ai/runtime/cache/snapshot.json
 
 # Check file modification times
-find src/ -newer .ai/cache/snapshot.json
+find src/ -newer .ai/runtime/cache/snapshot.json
 
 # Compare dependency files
-diff <(cat .ai/cache/dependencies.json) <(cat package.json)
+diff <(cat .ai/runtime/cache/dependencies.json) <(cat package.json)
 ```
 
 **Output**: Cache freshness report, list of stale cache entries
@@ -282,7 +282,7 @@ git add .ai/context/
 - [✓] Updated ARCHITECTURE.md (updated database schema diagram)
 - [✓] Updated API.md (corrected endpoint documentation)
 - [✓] Refreshed cache snapshot
-- [✓] Updated manifest version to 1.2.1
+- [✓] Bumped manifest context_version to 13
 - [ ] Pending: CONTEXT.md terminology update (awaiting approval)
 
 **Applied:** 5/6 changes
@@ -291,23 +291,24 @@ git add .ai/context/
 
 ### 8. Update Manifest Version
 
-**Action**: Increment manifest version to track sync history.
+**Action**: Update the context manifest to track sync history.
 
 **Manifest update:**
-- Read `.ai/manifest.json`
-- Increment sync version (e.g., 1.2.0 → 1.2.1)
-- Update `lastSyncDate` timestamp
+- Read `.ai/context/manifest.json`
+- Bump `context_version` (integer, e.g., 12 → 13)
+- Update `last_sync` timestamp (ISO 8601)
 - Record sync summary
 
 **Manifest format:**
 ```json
 {
-  "version": "1.2.1",
-  "lastSyncDate": "2024-01-20T10:30:00Z",
+  "schema_version": "1.0",
+  "context_version": 13,
+  "last_sync": "2024-01-20T10:30:00Z",
   "syncHistory": [
     {
-      "version": "1.2.1",
-      "date": "2024-01-20T10:30:00Z",
+      "context_version": 13,
+      "last_sync": "2024-01-20T10:30:00Z",
       "itemsFixed": 5,
       "driftDetected": ["context", "docs", "cache"],
       "summary": "Synchronized auth module documentation and cache"
@@ -317,9 +318,9 @@ git add .ai/context/
 ```
 
 **Versioning scheme:**
-- Major (1.0.0): Complete project restructure or major sync overhaul
-- Minor (1.1.0): Significant context/architecture updates
-- Patch (1.1.1): Regular sync, minor fixes, cache refresh
+- `schema_version`: Fixed string describing the manifest schema; only changes when the manifest structure itself changes.
+- `context_version`: Monotonic integer; incremented by `/sync` on every successful sync.
+- `last_sync`: ISO 8601 timestamp of the most recent sync.
 
 ### 9. Refresh Cache
 
@@ -357,6 +358,10 @@ cache verify
 
 **Action**: Create comprehensive report of sync operation.
 
+**Output format:** see `.ai/templates/SYNC_REPORT.md`
+
+**Record any new technical debt to `.ai/governance/debt/technical-debt.md`** — append (do not overwrite) any drift items or shortcuts uncovered during sync that won't be fixed now, so the canonical debt registry stays current.
+
 **Report sections:**
 
 ```markdown
@@ -364,7 +369,7 @@ cache verify
 
 **Date:** 2024-01-20T10:30:00Z
 **Duration:** 8 minutes
-**Manifest Version:** 1.2.0 → 1.2.1
+**Manifest context_version:** 12 → 13
 
 ## Summary
 - **Drift items detected:** 6
@@ -391,7 +396,7 @@ cache verify
 - `.ai/context/PROJECT.md` (1 section updated)
 - `.ai/context/ARCHITECTURE.md` (schema diagram updated)
 - `docs/api/API.md` (endpoint documentation corrected)
-- `.ai/cache/snapshot.json` (full refresh)
+- `.ai/runtime/cache/snapshot.json` (full refresh)
 
 ## Next Sync Recommended
 Based on project activity: 7 days
@@ -407,7 +412,7 @@ Based on project activity: 7 days
 
 **Commit format:**
 ```bash
-git add .ai/context/ .ai/cache/ docs/
+git add .ai/context/ .ai/runtime/cache/ docs/
 git commit -m "chore: sync context, docs, and cache
 
 Drift resolution:
@@ -415,7 +420,7 @@ Drift resolution:
 - Updated ARCHITECTURE.md: corrected database schema
 - Updated API.md: fixed endpoint documentation
 - Refreshed cache: 142 entries updated
-- Manifest version: 1.2.0 → 1.2.1
+- Manifest context_version: 12 → 13
 
 Sync report: 5/6 items fixed, 1 pending approval"
 ```
@@ -429,7 +434,7 @@ Sync report: 5/6 items fixed, 1 pending approval"
 2. **Updated Context Files**: All context files synchronized with codebase
 3. **Updated Documentation**: Docs match implementation
 4. **Fresh Cache**: Cache reflects current repository state
-5. **Updated Manifest**: Version incremented, sync history recorded
+5. **Updated Manifest**: `context_version` bumped, `last_sync` updated, sync history recorded
 
 ### Success Criteria
 - All high-priority drift resolved
@@ -437,7 +442,7 @@ Sync report: 5/6 items fixed, 1 pending approval"
 - Documentation matches implementation
 - Cache is fresh (< 24 hours old)
 - No breaking inconsistencies remain
-- Manifest version updated
+- Manifest `context_version` bumped and `last_sync` updated
 
 ## Troubleshooting Tips
 
@@ -459,7 +464,7 @@ Sync report: 5/6 items fixed, 1 pending approval"
 **Solution**:
 ```bash
 # Full cache reset
-rm -rf .ai/cache/*
+rm -rf .ai/runtime/cache/*
 cache init
 cache rebuild --full
 ```
@@ -467,7 +472,7 @@ cache rebuild --full
 ### Issue: Human approval required but human unavailable
 **Solution**:
 - Apply only auto-fixable changes
-- Document pending approvals in `.ai/pending-approvals.md`
+- Document pending approvals in `.ai/runtime/queue/approvals.md`
 - Set reminder for follow-up when human available
 - Generate interim sync report showing partial progress
 
@@ -509,10 +514,10 @@ git stash pop
 
 **Context Files:**
 - Reads/Updates: `PROJECT.md`, `ARCHITECTURE.md`, `CONTEXT.md`, `DECISIONS.md`
-- Reads/Updates: `manifest.json`
+- Reads/Updates: `.ai/context/manifest.json` (`schema_version`, `context_version`, `last_sync`)
 
 **Cache:**
-- Reads/Updates: `.ai/cache/snapshot.json`
+- Reads/Updates: `.ai/runtime/cache/snapshot.json`
 - Regenerates: All cache entries
 
 **Documentation:**

@@ -19,6 +19,8 @@ Create or update comprehensive design documentation including PRD, Architecture,
 - Review existing `.ai/context/PRD.md` (if updating)
 - Check technical debt in `.ai/governance/debt/`
 
+**Checklist:** Work through `.ai/checklists/pre-design.md` before drafting the design.
+
 **Understand:**
 - What is the current state of the project?
 - What domain constraints exist?
@@ -55,7 +57,7 @@ Impact: [what parts of system are affected]
 
 **Wait for confirmation before proceeding.**
 
-**Skill:** `karpathy-behavioral` (State assumptions, clarify goal)
+**Skill:** `clean-code` (State assumptions, clarify goal)
 
 ### 3. Draft/Update PRD (Product Requirements Document)
 
@@ -157,7 +159,7 @@ Impact: [what parts of system are affected]
 
 **Key principle:** Simplicity first. Avoid overengineering. Start with simplest solution that solves the problem.
 
-**Skill:** `karpathy-behavioral` (Simplicity, avoid premature optimization)
+**Skill:** `clean-code` (Simplicity, avoid premature optimization)
 
 ### 5. Draft/Update Implementation Plan
 
@@ -272,7 +274,7 @@ rtk analyze design
 
 **If NEEDS WORK or FAIL:** Revise design before proceeding.
 
-**Skill:** `roastme` mental framework (Karpathy deep check)
+**Skill:** `roastme` mental framework (deep behavioral check)
 
 ### 8. Explain in Simple Language
 
@@ -323,7 +325,7 @@ Write a concise summary explaining:
 
 **Key principle:** If you can't explain it simply, you don't understand it well enough.
 
-**Skill:** `karpathy-behavioral` (Clear communication)
+**Skill:** `clean-code` (Clear communication)
 
 ### 9. Ask for Approval (HITL Gate)
 
@@ -449,7 +451,7 @@ Next workflow: `/build` (implementation)
 - Updates: `PRD.md`, `ARCHITECTURE.md`, `IMPLEMENTATION.md`
 
 **Skills:**
-- `karpathy-behavioral` - Think before coding, simplicity, clarity (Steps 2, 4, 8)
+- `clean-code` - Think before coding, simplicity, clarity (Steps 2, 4, 8)
 - `roastme` - Self-critique framework (Step 7)
 
 **Commands:**
@@ -488,8 +490,10 @@ Design workflow produces three key documents:
 **3. IMPLEMENTATION.md** - Implementation plan
 
 Plus optional:
-**4. ADRs** - Architecture Decision Records (in `.ai/docs/adr/`)
+**4. ADRs** - Architecture Decision Records (in `.ai/context/docs/adr/`)
 **5. Design explanation** - Plain-language summary
+
+**Output format:** see `.ai/templates/DESIGN_REVIEW.md`
 
 ---
 

@@ -1,6 +1,6 @@
 # /roastme
 
-Self-critique command to detect violations of Karpathy behavioral principles.
+Self-critique command to detect violations of engineering behavioral principles.
 
 ## Usage
 
@@ -11,7 +11,7 @@ Self-critique command to detect violations of Karpathy behavioral principles.
 
 ## Purpose
 
-Implements Karpathy's "Would a senior engineer say this is overcomplicated?" test.
+Implements the "Would a senior engineer say this is overcomplicated?" test.
 
 Detects:
 - ❌ Overcomplication and premature abstraction
@@ -171,7 +171,7 @@ Detects:
 
 ### ✅ Good Practices Found
 
-- [List things agent did well per Karpathy principles]
+- [List things agent did well per engineering principles]
 
 ---
 
@@ -192,7 +192,7 @@ Detects:
 
 ### 📋 Verdict
 
-[ ] **APPROVED** - Follows Karpathy principles (0-2 minor issues)
+[ ] **APPROVED** - Follows engineering principles (0-2 minor issues)
 [ ] **NEEDS REVISION** - Some violations found (3-5 issues)
 [ ] **MAJOR REVISION REQUIRED** - Significant violations (6+ issues)
 
@@ -331,7 +331,7 @@ In `manifest.json`:
 ```json
 {
   "behavioral_compliance": {
-    "karpathy_enabled": true,
+    "discipline_enabled": true,
     "roastme_auto_run": true,
     "roastme_after_design": true,
     "roastme_after_build": true,

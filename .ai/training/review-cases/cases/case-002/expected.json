@@ -1,0 +1,11 @@
+{
+  "case": "case-002",
+  "description": "Signup form: missing input validation (Important) + accessibility label gap (Minor). Exercises the input_validation and accessibility buckets that must NOT be collapsed. must_not_flag guards a self-documenting constant against a magic_numbers false positive.",
+  "expected_findings": [
+    { "severity": "Important", "theme": "input_validation", "location": "src/ui/SignupForm.jsx:42" },
+    { "severity": "Minor", "theme": "accessibility", "location": "src/ui/SignupForm.jsx:58" }
+  ],
+  "must_not_flag": [
+    { "location": "src/ui/SignupForm.jsx:12", "reason": "named constant MAX_RETRIES is self-documenting, not a magic number" }
+  ]
+}

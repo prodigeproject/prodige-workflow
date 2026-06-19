@@ -320,7 +320,7 @@ Use this checklist to ensure comprehensive test coverage and quality.
 ## 📖 References
 
 ### Internal
-- Skill: `tdd-workflow.md` - TDD methodology
+- Skill: `test-driven-development/SKILL.md` - TDD methodology
 - Command: `/test` - Testing commands
 - Governance: `quality-gates.md` - Quality requirements
 - Workflow: `build.md` - Integration with build process

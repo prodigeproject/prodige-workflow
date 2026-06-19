@@ -1,11 +1,66 @@
 ---
 name: security-review
 description: "Comprehensive security assessment: checks for exposed secrets, authentication/authorization flaws, injection vulnerabilities, unsafe dependencies, and data exposure risks."
+auto_load: ["/review", "/audit"]
+applies_to: [reviewer, backend, frontend, qa]
+mandatory_when: ["src/auth/**", "src/api/payment/**", "src/security/**", "config/security*", "files matching: password|token|auth|encrypt|crypto"]
 ---
 
 # Security Review
 
 Systematically identify security vulnerabilities and risks in code, architecture, and implementation plans.
+
+## Quick Protocol (your next action)
+1. Run the automated scanner first (`.ai/scripts/security-scan.*`) to catch the obvious flaws.
+2. Manually review for logic flaws: auth/authz, IDOR, injection, secrets, data exposure.
+3. Map each finding to Prodige severity: any exploitable vuln = Critical (blocks merge).
+4. Report file:line, the vulnerable code, the impact, and a concrete fix for each.
+Think like an attacker; verify before flagging to avoid false positives.
+
+## Prodige Severity Alignment (IMPORTANT)
+
+This skill previously used a Critical/High/Medium/Low scale that did **not** map to
+Prodige's workflow-blocking model. Use this canonical mapping so security findings
+plug directly into the merge gate:
+
+| Security label | Prodige severity | Workflow effect |
+|----------------|------------------|-----------------|
+| 🔴 Critical / 🟠 High | **Critical (🚫)** | Blocks merge — fix immediately, re-review required |
+| 🟡 Medium | **Important (⚠️)** | Blocks next task — fix before proceeding |
+| 🟢 Low | **Minor (💡)** | Record in debt register — fix when convenient |
+
+**Rule:** Any exploitable vulnerability (injection, auth bypass, secret exposure,
+data loss) is **Critical** regardless of "likelihood". Security severity reflects
+*exploitability + impact*, not effort to fix.
+
+## Automated First Pass
+
+Before manual review, run the scanner to catch the obvious:
+
+```bash
+bash .ai/scripts/security-scan.sh origin/main      # Unix / Git Bash
+pwsh .ai/scripts/security-scan.ps1 -BaseRef origin/main   # Windows
+```
+
+The scanner greps for hardcoded secrets, string-interpolated SQL, `eval`/`Function`,
+`dangerouslySetInnerHTML`, weak hashing (md5/sha1), and runs `npm audit`/`pip-audit`
+when available. Manual review then focuses on logic-level flaws the scanner cannot
+see (IDOR, broken access control, business-logic abuse).
+
+## OWASP Top 10 (2021) Coverage Map
+
+| OWASP | Covered in section | Auto-scannable |
+|-------|--------------------|----------------|
+| A01 Broken Access Control | §3 Authorization, IDOR checks | Partial |
+| A02 Cryptographic Failures | §1 Secrets, weak hashing | Yes |
+| A03 Injection | §4 Injection scan | Yes |
+| A04 Insecure Design | Architecture review | No (manual) |
+| A05 Security Misconfiguration | §7 headers, CORS | Partial |
+| A06 Vulnerable Components | §5 Dependencies (defers to `dependency-review`) | Yes |
+| A07 Auth Failures | §2 Authentication | Partial |
+| A08 Data Integrity Failures | Deserialization, CI/CD | Partial |
+| A09 Logging Failures | §6 Data exposure | No (manual) |
+| A10 SSRF | URL validation | Partial |
 
 ## Purpose
 
@@ -61,12 +116,12 @@ Look for injection attack vectors:
 - **Path Traversal:** User-controlled file paths
 - **NoSQL Injection:** Unsafe database queries
 
-### 5. Dependency Security
-Evaluate third-party code:
-- Known vulnerabilities in dependencies (npm audit, etc.)
-- Outdated packages with security issues
-- Suspicious or unmaintained dependencies
-- Excessive permissions requested by packages
+### 5. Dependency Security (quick pass — defer deep audit)
+Do a quick check for obviously dangerous third-party code, then hand off:
+- The `security-scan` script already runs `npm audit`/`pip-audit` for a fast signal.
+- For the full supply-chain analysis (CVEs, transitive vulns, license compliance,
+  version conflicts, unused/lockfile integrity), **defer to the `dependency-review` skill.**
+  Do not duplicate that work here — flag it and let dependency-review own it.
 
 ### 6. Data Exposure Check
 Find sensitive data leaks:

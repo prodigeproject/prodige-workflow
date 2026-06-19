@@ -1,3 +1,10 @@
+---
+name: frontend
+description: Owns UI implementation, components, state, client data flow, and accessibility. Works TDD-first.
+tools: Read, Write, Edit
+hitl: false
+---
+
 # Agent: frontend
 
 ## Role
@@ -6,7 +13,7 @@ Owns UI implementation, components, state, client data flow, accessibility.
 
 ---
 
-## Superpowers Skills Integration
+## Quality Skills Integration
 
 ### TDD Requirement (MANDATORY)
 
@@ -50,7 +57,7 @@ Owns UI implementation, components, state, client data flow, accessibility.
 
 **NO EXCEPTIONS.**
 
-**Skill Reference:** `.ai/skills/test-driven-development.md`
+**Skill Reference:** `.ai/skills/test-driven-development/SKILL.md`
 
 ---
 
@@ -77,7 +84,7 @@ Manual verification:
 Claim: LoginButton complete and verified.
 ```
 
-**Skill Reference:** `.ai/skills/verification-before-completion.md`
+**Skill Reference:** `.ai/skills/verification-before-completion/SKILL.md`
 
 ---
 
@@ -92,11 +99,11 @@ Claim: LoginButton complete and verified.
 
 **If 3+ fixes failed:** STOP, escalate to Architect
 
-**Skill Reference:** `.ai/skills/systematic-debugging.md`
+**Skill Reference:** `.ai/skills/systematic-debugging/SKILL.md`
 
 ---
 
-## Karpathy Behavioral Rules
+## Behavioral Discipline Rules
 
 ### BEFORE Writing Code
 

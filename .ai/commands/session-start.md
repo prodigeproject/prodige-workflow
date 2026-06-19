@@ -20,13 +20,13 @@ Solves the "20-minute re-explanation problem" by loading persistent context from
 Invoke the **memory-manager** agent to execute session start protocol:
 
 ### Tasks
-1. Read all 6 memory files:
-   - `projectContext.md` - Project identity
-   - `activeContext.md` - Current state
-   - `progress.md` - Task tracking
-   - `decisionLog.md` - Decisions made
-   - `conventions.md` - Patterns learned
-   - `sessionHistory.md` - Past sessions
+1. **Orient cheaply using the `memory-search` skill (3-layer retrieval) — do NOT read every memory file in full:**
+   - Read `activeContext.md` + `progress.md` directly (small, current state).
+   - Read `.ai/memory/index.md` (the entry table) to see recent sessions, decisions, and patterns.
+   - Fetch full entries from `sessionHistory.md` / `decisionLog.md` / `conventions.md` ONLY for the IDs relevant to resuming work (typically the last session + any open decisions).
+   - This replaces the old "read all 6 files" approach and cuts orientation cost ~5-10x.
+
+   Fallback: if `.ai/memory/index.md` is missing or stale, read the files in full AND rebuild the index per its maintenance section.
 
 2. Generate comprehensive summary for user
 
@@ -50,12 +50,16 @@ Then ask: "What would you like to work on?"
 
 ## First Time Using This Project?
 
-If memory files don't exist or are empty:
+Memory files should be treated as **empty / uninitialized** if they don't exist, are empty, **or still contain unfilled `[...]` bracket placeholders** (e.g. `[Timestamp]`, `[What we're working on now]`). A file full of bracket placeholders is an inert template — it is NOT real content. In that case:
+
+- Do **NOT** hallucinate a "last session," active task, or recent changes from placeholder text.
+- Treat the state as "no active session" and prompt to initialize.
 
 ```markdown
 📚 Memory Bank Not Initialized
 
-This appears to be the first session or memory bank is empty.
+This appears to be the first session, or the memory bank still contains
+unfilled [bracket] placeholders (no real content yet).
 
 Would you like to:
 1. Initialize memory bank (`/memory-init`)

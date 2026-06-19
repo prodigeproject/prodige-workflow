@@ -1,14 +1,18 @@
 # Risk Register
 
-Tracking dan mitigasi risiko proyek secara proaktif.
+Proactive tracking and mitigation of project risks.
+
+> **Maintenance:** This register is **maintained manually**. There is no automated
+> writer that appends to it. Add, update, and close risk entries by hand following the
+> Risk Template and the How to Use steps below.
 
 ## How to Use
 
-1. **Identify**: Catat risiko baru segera setelah discovered
-2. **Assess**: Tentukan probability dan impact
-3. **Mitigate**: Plan dan execute mitigation strategy
-4. **Monitor**: Review status secara regular
-5. **Close**: Move ke Mitigated saat resolved
+1. **Identify**: Record a new risk as soon as it is discovered
+2. **Assess**: Determine probability and impact
+3. **Mitigate**: Plan and execute a mitigation strategy
+4. **Monitor**: Review status regularly
+5. **Close**: Move to Mitigated once resolved
 
 ## Risk Template
 
@@ -101,12 +105,14 @@ Tracking dan mitigasi risiko proyek secara proaktif.
 
 ## Priority Matrix
 
-| Priority | Probability | Impact | Response Time |
-|----------|-------------|---------|---------------|
-| P0 | High | High | Immediate |
-| P1 | High | Medium OR Medium | High | Within 1 week |
-| P2 | Medium | Medium | Within 1 month |
-| P3 | Low | Low/Medium | Monitor |
+Priority is determined by the combination of probability and impact:
+
+| Priority | Probability × Impact | Response Time |
+|----------|----------------------|---------------|
+| P0 | High × High | Immediate |
+| P1 | High × Medium, or Medium × High | Within 1 week |
+| P2 | Medium × Medium | Within 1 month |
+| P3 | Low × Low, or Low × Medium | Monitor |
 
 ---
 
@@ -119,10 +125,10 @@ Eliminate the risk by changing approach
 Take actions to lower probability or impact
 
 ### Transfer
-Share risk with third party (insurance, vendor)
+Share risk with a third party (insurance, vendor)
 
 ### Accept
-Acknowledge risk dan plan response if occurs
+Acknowledge the risk and plan a response if it occurs
 
 ---
 
@@ -139,7 +145,7 @@ Acknowledge risk dan plan response if occurs
 
 1. **P3 → P2**: Notify team lead
 2. **P2 → P1**: Notify project manager
-3. **P1 → P0**: Notify stakeholders dan call emergency meeting
+3. **P1 → P0**: Notify stakeholders and call an emergency meeting
 4. **P0**: Immediate action, daily updates
 
 ---
@@ -154,7 +160,7 @@ Acknowledge risk dan plan response if occurs
 **Priority**: P1
 
 **Description**:
-Third-party API memiliki rate limit 1000 requests/hour. Current usage pattern mendekati limit, risiko service degradation saat peak traffic.
+The third-party API has a rate limit of 1000 requests/hour. The current usage pattern is approaching the limit, risking service degradation during peak traffic.
 
 **Potential Impact**:
 - User-facing feature failures
@@ -163,9 +169,9 @@ Third-party API memiliki rate limit 1000 requests/hour. Current usage pattern me
 
 **Mitigation Strategy**:
 1. Implement request caching (reduce by 60%)
-2. Add request queue with exponential backoff
-3. Negotiate higher rate limit dengan vendor
-4. Setup monitoring dan alerts at 80% threshold
+2. Add a request queue with exponential backoff
+3. Negotiate a higher rate limit with the vendor
+4. Set up monitoring and alerts at the 80% threshold
 
 **Owner**: Backend Team Lead
 **Target Date**: 2024-02-01
@@ -173,4 +179,4 @@ Third-party API memiliki rate limit 1000 requests/hour. Current usage pattern me
 
 **Updates**:
 - 2024-01-20: Caching implemented, reduced requests by 55%
-- 2024-01-25: Vendor contacted, waiting response
+- 2024-01-25: Vendor contacted, awaiting response

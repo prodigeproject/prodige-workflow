@@ -1,9 +1,9 @@
 ---
-name: rtk
+name: reality-check
 description: "Reality check for requirements and plans: identifies assumptions, ambiguities, missing requirements, and hidden risks before implementation."
 ---
 
-# Reality Check (RTK - Requirements Truth Kit)
+# Reality Check
 
 Systematically identify assumptions, ambiguities, and risks in requirements, designs, and plans before implementation starts.
 

@@ -8,7 +8,7 @@
 
 ---
 
-## Karpathy Behavioral Gates
+## Behavioral Discipline Gates
 
 ### 1. Assumption Clarity
 - [ ] All vague requirements identified

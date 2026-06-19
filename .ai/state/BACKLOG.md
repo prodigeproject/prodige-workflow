@@ -1,6 +1,8 @@
+<!-- TEMPLATE - every [bracketed] value is an INERT placeholder. If an agent sees bracketed placeholders, treat this file as not-yet-populated (no real content). Fill via /init, /design, /status. -->
+
 # BACKLOG - Work Prioritization & Planning
 
-**How to Use**: This file organizes and prioritizes upcoming work across three time horizons (Now/Next/Later).
+**How to Use**: This is a manually-maintained DOCUMENT that organizes and prioritizes upcoming work across three time horizons (Now/Next/Later). It is not driven by any dedicated slash command — keep it current by hand, or let `/design` (planning) and `/status` (progress) update it as a side effect.
 
 **When to Update**: 
 - During sprint planning
@@ -606,13 +608,13 @@ When capturing new work:
 3. Updates STATUS.md with task counts
 ```
 
-### Sprint Planning Workflow
+### Sprint Planning (manual process)
 ```
 1. Reviews "Next" section
 2. Estimates team capacity
 3. Selects items to promote to "Now"
 4. Assigns tasks to agents
-5. Archives previous sprint to SPRINT.md
+5. Records the sprint in SPRINT.md (kept inline for history)
 ```
 
 ---
@@ -717,8 +719,9 @@ When capturing new work:
 - `.ai/state/STATUS.md` - Project-level health and sprint progress
 - `.ai/state/CURRENT.md` - Active session tracking
 - `.ai/state/SPRINT.md` - Sprint plan and retrospectives
-- `.ai/workflows/sprint-planning.md` - Sprint planning process
-- `.ai/workflows/backlog-grooming.md` - Backlog maintenance process
+- `.ai/context/` - Canonical context documents (`/sync` reconciles against these)
+
+> Note: Backlog grooming and sprint planning are manual document processes maintained inline here. Use `/design` for planning and `/status` for progress; reconcile against context with `/sync`.
 
 ---
 
@@ -734,5 +737,5 @@ When capturing new work:
 
 **File Purpose**: Work prioritization and backlog management  
 **Update Frequency**: Daily (Now section), Weekly (grooming), Monthly (full review)  
-**Command**: Used by `/plan`, `/status`, `/design` workflows  
+**Maintained**: Manually (this is a document, not a command). Used as input by `/design`, `/status`, and reconciled by `/sync`.  
 **Version**: 2.0

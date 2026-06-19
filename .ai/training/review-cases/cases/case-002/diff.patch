@@ -1,0 +1,24 @@
+diff --git a/src/ui/SignupForm.jsx b/src/ui/SignupForm.jsx
+index 5555555..6666666 100644
+--- a/src/ui/SignupForm.jsx
++++ b/src/ui/SignupForm.jsx
+@@ -9,6 +9,55 @@ import { useState } from 'react';
++const MAX_RETRIES = 3; // line 12 - named constant, self-documenting
++
++export function SignupForm({ onSubmit }) {
++  const [email, setEmail] = useState('');
++
++  function handleSubmit(e) {
++    e.preventDefault();
++    // BUG (line ~42): no validation of email before submit.
++    onSubmit({ email });
++  }
++
++  return (
++    <form onSubmit={handleSubmit}>
++      {/* BUG (line ~58): input has no associated <label>/aria-label (a11y). */}
++      <input value={email} onChange={(e) => setEmail(e.target.value)} />
++      <button type="submit">Sign up</button>
++    </form>
++  );
++}

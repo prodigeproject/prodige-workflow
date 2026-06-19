@@ -11,6 +11,12 @@
         "/magic add API documentation"
       ]
     },
+    "/memory-init": {
+      "workflow": "memory-init",
+      "hitl": false,
+      "description": "🧠 Initialize / scaffold the Memory Bank for a new project",
+      "category": "memory"
+    },
     "/session-start": {
       "workflow": "session-start",
       "hitl": false,
@@ -27,6 +33,18 @@
       "workflow": "verification",
       "hitl": false,
       "description": "🔍 Run automated verification (tests, lint, types, build)",
+      "category": "quality"
+    },
+    "/test": {
+      "workflow": "test",
+      "hitl": false,
+      "description": "🧪 Test-Driven Development cycle (RED-GREEN-REFACTOR)",
+      "category": "quality"
+    },
+    "/roastme": {
+      "workflow": "roastme",
+      "hitl": false,
+      "description": "🔥 Self-critique to catch overcomplication, hidden assumptions, and scope creep",
       "category": "quality"
     },
     "/undo": {
@@ -119,6 +137,12 @@
       "description": "💾 Manage cache",
       "category": "system"
     },
+    "/diagnose": {
+      "workflow": "diagnose-health",
+      "hitl": false,
+      "description": "🩺 Project health check (structure, context, runtime, gates, deps, debt, sync)",
+      "category": "system"
+    },
     "/parallel": {
       "workflow": "parallel",
       "hitl": true,
@@ -128,7 +152,7 @@
     "/agent": {
       "workflow": "agent-session",
       "hitl": false,
-      "description": "🤖 Worker session",
+      "description": "🤖 Single-worker agent session (focused, isolated task execution)",
       "category": "advanced"
     }
   },

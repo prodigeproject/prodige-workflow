@@ -27,10 +27,9 @@ Menganalisis existing codebase untuk membangun project brain.
 7. Generate initial brain structure
 
 **Output:**
-- `.ai/brain/ARCHITECTURE.md`
-- `.ai/brain/TECH_STACK.md`
-- `.ai/brain/DEPENDENCIES.md`
-- `.ai/state/CURRENT_STATE.md`
+- `.ai/context/ARCHITECTURE.md` (system architecture, tech stack, dependencies)
+- `.ai/context/manifest.json` (schema_version, context_version, last_sync)
+- Canonical state files (`.ai/state/CURRENT.md`, `SPRINT.md`, `BACKLOG.md`, `STATUS.md`)
 - Initial cache warming
 
 ### 2. From Idea
@@ -49,9 +48,9 @@ Membuat project brain dari deskripsi ide atau konsep.
 6. Mark unknowns yang perlu clarification
 
 **Output:**
-- `.ai/brain/CONCEPT.md`
-- `.ai/brain/PROPOSED_ARCHITECTURE.md`
-- `.ai/brain/UNKNOWNS.md`
+- `.ai/context/PRD.md` (concept, requirements) + `.ai/context/PROJECT.md` (identity)
+- `.ai/context/ARCHITECTURE.md` (proposed architecture)
+- open-questions section in `.ai/context/PRD.md` (unknowns)
 - Critical questions (max 3)
 
 ### 3. From Notes
@@ -70,9 +69,8 @@ Membangun project brain dari notes atau dokumen planning.
 6. Generate structured brain
 
 **Output:**
-- `.ai/brain/REQUIREMENTS.md`
-- `.ai/brain/CONSTRAINTS.md`
-- `.ai/brain/STAKEHOLDERS.md`
+- `.ai/context/PRD.md` (requirements, constraints)
+- `.ai/context/PROJECT.md` (stakeholders, identity)
 - Gap analysis
 
 ## Parameters
@@ -178,19 +176,23 @@ constraints:
 
 ## Output Structure
 
-### Brain Directory Structure
+### Context Directory Structure
 ```
-.ai/brain/
-├── ARCHITECTURE.md       # System architecture
-├── TECH_STACK.md        # Technologies used
-├── DEPENDENCIES.md      # Package dependencies
-├── PATTERNS.md          # Code patterns identified
-├── UNKNOWNS.md          # Missing information
-└── DECISIONS.md         # Architectural decisions
+.ai/context/
+├── PROJECT.md           # Project identity, vision, stakeholders
+├── PRD.md               # Requirements, concept, constraints, open questions
+├── ARCHITECTURE.md      # System architecture, tech stack, dependencies, patterns
+├── IMPLEMENTATION.md    # Technical implementation plan
+├── DECISIONS.md         # Architectural decisions
+├── CONTEXT.md           # Domain glossary and key terms
+├── CHANGELOG.md         # Notable changes log
+└── manifest.json        # schema_version, context_version (int), last_sync (ISO)
 
 .ai/state/
-├── CURRENT_STATE.md     # Initial state
-└── NEXT_ACTIONS.md      # Suggested next steps
+├── CURRENT.md           # Current phase and active focus
+├── SPRINT.md            # Active sprint scope and goals
+├── BACKLOG.md           # Outstanding work items
+└── STATUS.md            # Project status snapshot
 
 .ai/runtime/cache/
 └── [initialized cache]
@@ -281,10 +283,10 @@ ls docs/
 /init from repo
 
 # Enhance with notes
-# Manually merge docs/planning.md into .ai/brain/
+# Manually merge docs/planning.md into .ai/context/
 
 # Update unknowns
-# Edit .ai/brain/UNKNOWNS.md
+# Edit the open-questions section in .ai/context/PRD.md
 ```
 
 ### 3. Answer Questions Promptly
@@ -303,16 +305,16 @@ ls docs/
 # A: Yes, WebSocket for chat
 ```
 
-### 4. Review Generated Brain
+### 4. Review Generated Context
 ```bash
 # After init, review all files
-ls .ai/brain/
+ls .ai/context/
 
 # Verify accuracy
-cat .ai/brain/TECH_STACK.md
+cat .ai/context/ARCHITECTURE.md
 
 # Fill unknowns
-vim .ai/brain/UNKNOWNS.md
+vim .ai/context/PRD.md  # open-questions section
 ```
 
 ### 5. Validate with Sync
@@ -336,8 +338,8 @@ vim .ai/brain/UNKNOWNS.md
 # 2. Answer questions (max 3)
 # [Respond to prompts]
 
-# 3. Review brain
-cat .ai/brain/CONCEPT.md
+# 3. Review context
+cat .ai/context/PRD.md
 
 # 4. Warm cache
 /cache update
@@ -352,14 +354,14 @@ cat .ai/brain/CONCEPT.md
 git clone [repo-url]
 cd project
 
-# 2. Initialize brain
+# 2. Initialize context
 /init from repo
 
 # 3. Review extracted knowledge
-ls .ai/brain/
+ls .ai/context/
 
 # 4. Check unknowns
-cat .ai/brain/UNKNOWNS.md
+cat .ai/context/PRD.md  # open-questions section
 
 # 5. Validate
 /sync
@@ -371,10 +373,10 @@ cat .ai/brain/UNKNOWNS.md
 /init from repo
 
 # 2. Review unknowns
-cat .ai/brain/UNKNOWNS.md
+cat .ai/context/PRD.md  # open-questions section
 
 # 3. Supplement with documentation
-# Manually add docs/architecture.md insights to brain
+# Manually add docs/architecture.md insights to .ai/context/
 
 # 4. Re-sync
 /sync
@@ -440,8 +442,8 @@ echo "node_modules/\ndist/\nbuild/" > .aiignore
 
 **Solution:**
 ```bash
-# Edit brain manually
-vim .ai/brain/TECH_STACK.md
+# Edit context manually
+vim .ai/context/ARCHITECTURE.md
 
 # Or re-init with notes
 /init from notes: docs/tech-stack.md

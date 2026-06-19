@@ -123,3 +123,11 @@ $RECYCLE.BIN/
 # Git
 # ============================================================================
 *.orig
+
+# ============================================================================
+# Memory Bank - Semantic Cache (DO NOT COMMIT)
+# ============================================================================
+# Optional, opt-in semantic search backend. This is a derived SQLite cache
+# rebuildable from the canonical markdown (.ai/memory/*.md). It must never be
+# committed. See .ai/docs/semantic-memory-backend.md.
+.ai/memory/.cache/

@@ -1,35 +1,36 @@
 # Review Gates
 
-Review gates adalah checkpoint kualitas di setiap fase untuk memastikan output memenuhi standar sebelum melanjutkan ke fase berikutnya.
+Review gates are quality checkpoints at each phase that ensure the output meets the
+required standard before moving on to the next phase.
 
 ## Gate 1: PRD Gate
-**Trigger**: Setelah PRD draft complete  
-**Required Before**: Architecture design dimulai
+**Trigger**: After the PRD draft is complete
+**Required Before**: Architecture design starts
 
 ### Checklist
-- [ ] Problem statement jelas dan tervalidasi
-- [ ] User stories lengkap dengan acceptance criteria
-- [ ] Success metrics terdefinisi
-- [ ] Constraints dan assumptions documented
+- [ ] Problem statement is clear and validated
+- [ ] User stories complete with acceptance criteria
+- [ ] Success metrics defined
+- [ ] Constraints and assumptions documented
 - [ ] Stakeholder approval obtained
 
 ### Reviewer
-- Product Owner atau Architect
-- Minimal 1 peer review
+- Product Owner or Architect
+- At least 1 peer review
 
 ### Outputs
 - Approved PRD document
-- Go/No-go decision untuk architecture phase
+- Go/No-go decision for the architecture phase
 
 ---
 
 ## Gate 2: Architecture Gate
-**Trigger**: Setelah architecture design complete  
-**Required Before**: Implementation plan dimulai
+**Trigger**: After the architecture design is complete
+**Required Before**: Implementation plan starts
 
 ### Checklist
 - [ ] System design diagram complete
-- [ ] Component boundaries jelas
+- [ ] Component boundaries clear
 - [ ] Data flow documented
 - [ ] Technology stack justified
 - [ ] Scalability considerations addressed
@@ -38,8 +39,8 @@ Review gates adalah checkpoint kualitas di setiap fase untuk memastikan output m
 - [ ] Trade-offs explicitly stated
 
 ### Reviewer
-- Tech Lead atau Senior Architect
-- Security review (jika applicable)
+- Tech Lead or Senior Architect
+- Security review (if applicable)
 
 ### Outputs
 - Approved architecture document
@@ -49,11 +50,11 @@ Review gates adalah checkpoint kualitas di setiap fase untuk memastikan output m
 ---
 
 ## Gate 3: Implementation Gate
-**Trigger**: Setelah implementation plan complete  
-**Required Before**: Build/coding dimulai
+**Trigger**: After the implementation plan is complete
+**Required Before**: Build/coding starts
 
 ### Checklist
-- [ ] Tasks breakdown complete dan realistic
+- [ ] Task breakdown complete and realistic
 - [ ] Dependencies identified
 - [ ] Timeline estimated
 - [ ] Resource allocation clear
@@ -63,7 +64,7 @@ Review gates adalah checkpoint kualitas di setiap fase untuk memastikan output m
 
 ### Reviewer
 - Development Lead
-- QA Lead (untuk testing strategy)
+- QA Lead (for the testing strategy)
 
 ### Outputs
 - Approved implementation plan
@@ -73,12 +74,12 @@ Review gates adalah checkpoint kualitas di setiap fase untuk memastikan output m
 ---
 
 ## Gate 4: Code Review Gate
-**Trigger**: Sebelum merge ke main branch  
+**Trigger**: Before merging to the main branch
 **Required Before**: Code merge
 
 ### Checklist
-- [ ] Code follows style guide
-- [ ] Tests written dan passing
+- [ ] Code follows the style guide
+- [ ] Tests written and passing
 - [ ] Documentation updated
 - [ ] No critical security issues
 - [ ] Performance acceptable
@@ -87,24 +88,24 @@ Review gates adalah checkpoint kualitas di setiap fase untuk memastikan output m
 - [ ] No hardcoded secrets
 
 ### Reviewer
-- Minimal 1 senior developer
+- At least 1 senior developer
 - Automated checks passing
 
 ### Outputs
 - Approved PR
-- Merge to main branch
+- Merge to the main branch
 
 ---
 
 ## Gate 5: Release Gate
-**Trigger**: Sebelum production deployment  
+**Trigger**: Before production deployment
 **Required Before**: Release to production
 
 ### Checklist
 - [ ] All tests passing (unit, integration, e2e)
 - [ ] Performance benchmarks met
 - [ ] Security scan passed
-- [ ] Documentation complete dan updated
+- [ ] Documentation complete and updated
 - [ ] Release notes prepared
 - [ ] Rollback plan verified
 - [ ] Monitoring dashboards ready
@@ -113,7 +114,7 @@ Review gates adalah checkpoint kualitas di setiap fase untuk memastikan output m
 ### Reviewer
 - Release Manager
 - Tech Lead approval
-- Product Owner approval (untuk feature releases)
+- Product Owner approval (for feature releases)
 
 ### Outputs
 - Production deployment
@@ -124,12 +125,12 @@ Review gates adalah checkpoint kualitas di setiap fase untuk memastikan output m
 
 ## Emergency Bypass
 
-Dalam situasi emergency (production down, critical security fix):
+In an emergency (production down, critical security fix):
 
-1. **Document**: Catat alasan bypass
+1. **Document**: Record the reason for the bypass
 2. **Notify**: Inform stakeholders
-3. **Fast-track**: Minimal 1 reviewer approval
-4. **Follow-up**: Complete full review post-deployment
+3. **Fast-track**: At least 1 reviewer approval
+4. **Follow-up**: Complete the full review after deployment
 
 ### Emergency Checklist
 - [ ] Incident documented
@@ -142,15 +143,44 @@ Dalam situasi emergency (production down, critical security fix):
 
 ## Gate Metrics
 
-Track untuk continuous improvement:
-- Average time at each gate
+Track for continuous improvement:
+- Average time spent at each gate
 - Gate rejection rate
 - Issues found at each gate
-- Bypass frequency dan reasons
+- Bypass frequency and reasons
 
 ## Best Practices
 
-1. **Early Feedback**: Involve reviewers early, jangan tunggu gate
-2. **Async Reviews**: Use async communication untuk efisiensi
-3. **Clear Criteria**: Semua checklist items harus objective
-4. **Learn**: Update gates berdasarkan lessons learned
+1. **Early Feedback**: Involve reviewers early, do not wait for the gate
+2. **Async Reviews**: Use async communication for efficiency
+3. **Clear Criteria**: Every checklist item must be objective
+4. **Learn**: Update gates based on lessons learned
+
+---
+
+## Relationship to Quality Gates
+
+These review gates and the quality gates in `.ai/governance/quality-gates.md` are two
+views of one coherent system, not competing models:
+
+- **Review gates (this file)** are *lifecycle / phase* checkpoints. They answer
+  "is this phase complete enough to advance?" across the PRD -> Architecture ->
+  Implementation -> Code Review -> Release flow. They are about process and approval.
+- **Quality gates** are *content* checkpoints. They answer "is the work itself good?"
+  across two axes: structural quality (correct, modular, tested, secure) and
+  behavioral discipline (no silent assumptions, minimum complexity, surgical changes,
+  verified completion), enforced at the `/design`, `/build`, and `/merge` stages.
+
+### Mapping
+
+| Review gate (phase) | Quality-gate stage that enforces content here |
+|---------------------|-----------------------------------------------|
+| Gate 1 PRD          | Pre-design discipline (clarify assumptions, simplest scope) |
+| Gate 2 Architecture | `/design` stage gate (`/roastme design`: simplicity, tradeoffs surfaced) |
+| Gate 3 Implementation | `/design` -> `/build` handoff (plan has verifiable success criteria) |
+| Gate 4 Code Review  | `/build` stage gate + `/merge` stage gate (surgical diff, TDD evidence, structural + behavioral checks, debt + context synced) |
+| Gate 5 Release      | Structural quality bar (all tests/build/security verified with evidence) |
+
+In short: a phase does not pass its review gate until the matching quality-gate checks
+pass. Use this file to decide *when* to advance; use `quality-gates.md` to decide
+*whether the work is good enough* to advance.

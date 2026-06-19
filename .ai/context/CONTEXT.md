@@ -1,3 +1,5 @@
+<!-- TEMPLATE - every [bracketed] value is an INERT placeholder. If an agent sees bracketed placeholders, treat this file as not-yet-populated (no real content). Fill via /init, /design, /status. -->
+
 # Project Context
 
 **This file is a template.** Replace this content with your project's domain-specific terms and concepts.
@@ -152,7 +154,7 @@ _Avoid_: User, client, buyer
 
 ---
 
-**Related**: [CONTEXT-FORMAT.md](./CONTEXT-FORMAT.md), [CONTEXT-MAP.md](./CONTEXT-MAP.md), [ADR-FORMAT.md](../docs/adr/ADR-FORMAT.md)  
+**Related**: [CONTEXT-FORMAT.md](./CONTEXT-FORMAT.md), [CONTEXT-MAP.md](./CONTEXT-MAP.md), [ADR-FORMAT.md](./docs/adr/ADR-FORMAT.md)  
 **Created**: When first domain term needs definition  
 **Updated**: Inline during design/build sessions
 

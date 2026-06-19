@@ -507,7 +507,7 @@ When you catch yourself making these mistakes:
 3. **Fix immediately** - Revert and do it right
 4. **Update the pattern** - Add to your mental checklist
 
-The goal: Build muscle memory for Karpathy principles until they're automatic.
+The goal: Build muscle memory for engineering principles until they're automatic.
 
 ---
 

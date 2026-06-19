@@ -1,4 +1,18 @@
-# Skill: documentation
+---
+name: documentation
+description: "Maintains accurate, up-to-date project documentation (README, API docs, changelogs, ADRs, knowledge) by comparing docs against code reality and recommending specific updates."
+auto_load: ["/docs", "/release", "/sync"]
+applies_to: [architect, backend, frontend, reviewer]
+---
+
+# Documentation
+
+## Quick Protocol (your next action)
+1. Compare current docs (README/API/CHANGELOG/ADR/knowledge) against code reality.
+2. Flag each gap or inaccuracy and tag its doc type, severity, and audience.
+3. Recommend the specific update or new file needed (not just "update docs").
+4. Name the exact files affected and the risk of leaving it stale.
+Document reality, not aspirations; keep docs close to code.
 
 ## Purpose
 
@@ -140,13 +154,13 @@ Output:
   Doc type: Knowledge/Context
   Severity: Medium
   Recommended action:
-    - Update .ai/knowledge/patterns.md with repository pattern
+    - Update .ai/context/ARCHITECTURE.md with the repository pattern
     - Add examples showing correct usage
     - Document when to use repositories vs direct access
     - Update code generation templates
   Audience: AI agents, Developers
   Risks: AI generates code using outdated patterns
-  Files affected: .ai/knowledge/patterns.md, .ai/templates/service.template
+  Files affected: .ai/context/ARCHITECTURE.md, .ai/context/docs/ (generic example — use your project's actual knowledge/template locations)
 ```
 
 ### Example 6: Tutorial creation

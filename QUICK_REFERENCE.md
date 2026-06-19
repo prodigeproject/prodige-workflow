@@ -43,9 +43,30 @@
 | `/design` | Architecture planning | Before building |
 | `/build` | Implement feature | After design |
 | `/fix` | Fix bugs | When bugs found |
-| `/refactor` | Improve code | Tech debt |
 | `/review` | Code review | Before merge |
+| `/audit` | Security/dependency/debt analysis | Pre-release / health |
+| `/refactor` | Improve code | Tech debt |
 | `/docs` | Update docs | After changes |
+| `/release` | Prepare a release | Shipping |
+
+### Quality & System
+
+| Command | What | When |
+|---------|------|------|
+| `/test` | TDD red-green-refactor | Writing tested code |
+| `/roastme` | Brutal self-critique | Sanity-check a design/build |
+| `/diagnose` | Project health check | Things feel off |
+| `/sync` | Fix context drift | After manual edits |
+| `/status` | Project status | Anytime |
+| `/cache` | Manage token cache | Large repos |
+| `/memory-init` | Scaffold Memory Bank | First run |
+
+### Multi-agent
+
+| Command | What | When |
+|---------|------|------|
+| `/parallel` | Multi-agent / multi-window build | Big features |
+| `/agent` | Single focused worker session | Scoped task / worker window |
 
 ---
 
@@ -286,8 +307,9 @@ Think of these as "save game" shortcuts:
 
 ### Need Help
 ```bash
-/magic help
+/status        # where am I?
 ```
+See [PRODIGE.md](./PRODIGE.md) for the full command guide.
 
 ---
 
@@ -335,7 +357,7 @@ Think of these as "save game" shortcuts:
 
 - **Full Guide**: [PRODIGE.md](./PRODIGE.md)
 - **README**: [README.md](./README.md)
-- **Status**: [IMPLEMENTATION_STATUS.md](./IMPLEMENTATION_STATUS.md)
+- **Use in your AI tool**: [docs/COMPATIBILITY.md](./docs/COMPATIBILITY.md) · [docs/SETUP.md](./docs/SETUP.md)
 
 ---
 

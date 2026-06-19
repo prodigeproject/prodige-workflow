@@ -9,7 +9,7 @@ An AI workflow system designed for everyone - from vibe coders to enterprise tea
 ## 🎯 What is Prodige?
 
 Prodige is a hybrid AI workflow system that combines:
-- **Beginner-friendly UX** from Claude-Boris
+- **Beginner-friendly UX** - simple commands, automatic routing
 - **Enterprise governance** from original Prodige
 - **Memory persistence** for session continuity
 - **Safety features** for confident development
@@ -21,6 +21,22 @@ Prodige is a hybrid AI workflow system that combines:
 ✅ **Professional Developers** - Full control, powerful workflows, quality gates  
 ✅ **Teams** - Governance, documentation, collaboration features  
 ✅ **Enterprise** - Compliance, audit trails, formal processes  
+
+---
+
+## 🧩 Works in Any AI Tool
+
+Prodige is prompt-level — no binary, no plugin, no per-tool folders. One file bootstraps it
+everywhere: **`AGENTS.md`** (read natively by Codex, opencode, Cursor, Zed, Jules, RooCode, and
+most agentic frameworks). Tools with their own instruction file get a one-line pointer:
+
+```bash
+./install.sh claude,cursor          # or: all
+powershell -File install.ps1 -Tools claude,cursor
+```
+
+Agentic frameworks (Hermes, OpenClaw, Pi, custom): point the agent's system/instructions at
+`AGENTS.md`. Full matrix: [docs/COMPATIBILITY.md](./docs/COMPATIBILITY.md).
 
 ---
 
@@ -356,12 +372,11 @@ Or read [PRODIGE.md](./PRODIGE.md) for detailed guide.
 
 ---
 
-## 🙏 Credits
+## 🙏 Influences
 
-- **Claude-Boris** by [@llcoolblaze](https://x.com/llcoolblaze) - UX patterns and workflow design
-- **Boris Cherny** - Creator of Claude Code, workflow philosophy
-- **Original Prodige** - Governance and enterprise patterns
-- **Karpathy Behavioral Principles** - Code quality philosophy
+Prodige is built in-house. Its design draws lessons from prior art across the
+AI-workflow space — beginner-friendly UX, enterprise governance, and code-quality
+discipline — but the architecture, structure, and skills here are our own work.
 
 ---
 
@@ -373,7 +388,7 @@ Or read [PRODIGE.md](./PRODIGE.md) for detailed guide.
 
 ---
 
-**Version**: 2.0 (Boris-Prodige Hybrid)  
+**Version**: 2.0  
 **Release Date**: 2026-06-17  
 **Status**: Production Ready ✅
 

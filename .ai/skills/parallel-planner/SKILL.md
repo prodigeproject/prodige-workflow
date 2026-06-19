@@ -7,6 +7,13 @@ description: "Analyzes work and splits it into safe, independent parallel agent 
 
 Design and orchestrate parallel agent work distribution for maximum efficiency and safety.
 
+## Quick Protocol (your next action)
+1. Break the task into atomic subtasks and map their dependencies.
+2. Find the critical path and the work that can safely run in parallel.
+3. Detect file-overlap conflicts; never parallelize tasks that write the same files.
+4. Group subtasks into agent tracks and define merge order + verification points.
+5. Keep a serial fallback. Don't parallelize when overhead exceeds the benefit.
+
 ## Purpose
 
 Split complex work into safe parallel agent sessions by:
@@ -137,10 +144,13 @@ Parallel Track 3 (QA Agent):
 
 ## Integration Points
 
-- Works with **lock-manager** to coordinate resource access
-- Works with **snapshot-manager** to provide stable starting points
-- Works with **orchestrator** to dispatch actual agent sessions
+- Works with **lock-manager** to coordinate resource access (`.ai/runtime/locks/`)
+- Works with **snapshot-manager** to provide stable starting points (`.ai/runtime/snapshots/`)
+- Works with **orchestrator** to dispatch actual agent sessions (`.ai/runtime/sessions/`, per [`SESSION_TEMPLATE.json`](../../runtime/sessions/SESSION_TEMPLATE.json))
 - Works with **git-guardian** for merge strategy and conflict resolution
+
+All coordination state lives under `.ai/runtime/` (sessions, snapshots, locks,
+handoffs, briefs, queue, worktrees) — never top-level `.ai/` equivalents.
 
 ## Anti-Patterns
 

@@ -15,7 +15,7 @@ Load relevant context for refactoring scope:
 - Read affected files completely
 - Review ARCHITECTURE.md for current boundaries
 - Check DECISIONS.md for past design choices
-- Review technical-debt.md for known issues
+- Review `.ai/governance/debt/technical-debt.md` for known issues
 
 **Verify:** You understand what code does and why it's structured this way.
 
@@ -43,7 +43,7 @@ Refactor scope:
 Proceed?
 ```
 
-**Skill:** `karpathy-behavioral` (Think before coding - state assumptions)
+**Skill:** `clean-code` (Think before coding - state assumptions)
 
 ### 3. Confirm Zero Behavior Change
 
@@ -124,7 +124,7 @@ Step 4: Simplify conditional in function W
   → Verify: Tests still pass, same outputs
 ```
 
-**Karpathy principle:** Surgical changes. One thing at a time.
+**Engineering principle:** Surgical changes. One thing at a time.
 
 **Ask for approval:** Present plan before starting.
 
@@ -141,7 +141,7 @@ Implement step 1 from plan:
 - Don't add features
 - Touch only what's necessary for THIS step
 
-**Skill:** `karpathy-behavioral` (Surgical changes only)
+**Skill:** `clean-code` (Surgical changes only)
 
 ### 8. Verify Tests Still Pass (After Each Step)
 
@@ -194,7 +194,7 @@ Work through refactoring plan:
 - Stay surgical
 
 **If you discover new refactoring opportunities:**
-- Note them in technical-debt.md
+- Note them in `.ai/governance/debt/technical-debt.md`
 - Don't expand scope mid-refactoring
 - Finish current plan first
 
@@ -234,7 +234,7 @@ Execute self-critique for surgical precision:
 
 **If violations found:** Revert non-surgical changes.
 
-**Skill:** `roastme` command (Karpathy behavioral check)
+**Skill:** `roastme` command (behavioral discipline check)
 
 ### 13. Update Architecture Documentation (If Boundaries Changed)
 
@@ -321,7 +321,7 @@ Ready for review.
 - `systematic-debugging` - Analyze code structure (Step 5)
 - `test-driven-development` - Ensure test coverage (Step 4)
 - `verification-before-completion` - Verify after each step (Step 8, 11)
-- `karpathy-behavioral` - Surgical changes, simplicity (Steps 2, 7, 12)
+- `clean-code` - Surgical changes, simplicity (Steps 2, 7, 12)
 
 **Commands:**
 - `/roastme build` - Self-critique (Step 12)

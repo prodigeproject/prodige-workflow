@@ -4,7 +4,7 @@ Prodige Workflow favors **explicit over clever**. Code generated should be strai
 
 ## Why This Is Out of Scope
 
-Aligned with Karpathy Behavioral Guidelines (Simplicity First):
+Aligned with Engineering Discipline Guidelines (Simplicity First):
 > "No abstractions for single-use code"
 > "No flexibility that wasn't requested"
 
@@ -190,7 +190,7 @@ Clever abstractions feel smart but hurt maintainability.
 
 Magic abstractions create tight coupling to abstract interfaces.
 
-From Karpathy guidelines:
+From the engineering discipline guidelines:
 > "If you write 200 lines and it could be 50, rewrite it"
 
 Abstractions often add 4x code for no benefit.
@@ -240,12 +240,12 @@ def validate_email(email: str) -> bool:
 
 ## Prior Requests
 
-- None yet (boundary aligned with existing Karpathy guidelines)
+- None yet (boundary aligned with existing engineering discipline guidelines)
 
 ## Related Guidelines
 
 See also:
-- `.ai/skills/karpathy-behavioral.md` (Simplicity First)
+- `.ai/skills/clean-code/SKILL.md` (Simplicity First)
 - `.ai/governance/rules.md` (The Overcomplication Test)
 - `.ai/SOUL.md` (Principle 3: Simple beats clever)
 

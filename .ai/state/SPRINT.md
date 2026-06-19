@@ -1,6 +1,8 @@
+<!-- TEMPLATE - every [bracketed] value is an INERT placeholder. If an agent sees bracketed placeholders, treat this file as not-yet-populated (no real content). Fill via /init, /design, /status. -->
+
 # SPRINT - Sprint Planning & Execution Tracker
 
-**How to Use**: This file tracks the current sprint's execution from planning through retrospective.
+**How to Use**: This is a manually-maintained DOCUMENT that tracks the current sprint's execution from planning through retrospective. It is not driven by any dedicated slash command — keep it current by hand, or let `/design` (planning), `/status` (progress), and `/sync` (reconcile with context) update it as a side effect.
 
 **When to Update**: 
 - Sprint Planning (start of sprint)
@@ -766,88 +768,40 @@ Enable customers to cancel full or partial orders with automated refund processi
 ```
 
 ---
-## Integration with Workflows
+## Maintaining This Document
 
-### `/sprint-start` Command
+**SPRINT.md is a manually-maintained document.** No slash command drives it directly — the sprint sections below are structures you fill in by hand. The registered commands touch this file only as a side effect:
+
+### Planning a sprint (use `/design` or edit by hand)
 ```
-**Purpose**: Initialize new sprint from backlog
-
-**Actions**:
-1. Read BACKLOG.md "Next" section
-2. Prompt for sprint goal and duration
-3. Select tasks for sprint (based on capacity)
-4. Move tasks to SPRINT.md
-5. Initialize Sprint Overview section
-6. Create initial burndown table
-7. Update STATUS.md with new sprint info
-8. Schedule daily standups
-
-**Output**: SPRINT.md populated with sprint plan
+1. Review BACKLOG.md "Next" section
+2. Decide sprint goal and duration
+3. Select tasks for the sprint (based on capacity)
+4. Fill in the Sprint Overview and Sprint Tasks sections below
+5. Start the burndown table
+6. Reflect the new sprint in STATUS.md
 ```
 
-### `/standup` Command
+### Tracking progress (use `/status` or edit by hand)
 ```
-**Purpose**: Daily standup update
-
-**Actions**:
-1. Read SPRINT.md current tasks
-2. Prompt each agent/person for update:
-   - What did you complete yesterday?
-   - What are you working on today?
-   - Any blockers?
-3. Update task status and progress
-4. Update burndown table
-5. Flag new risks or blockers
-6. Update STATUS.md quick status
-
-**Output**: SPRINT.md updated with standup notes
+1. Update task status and progress in Sprint Tasks
+2. Add a row to the Sprint Burndown table
+3. Record new risks or blockers in Risks & Issues
+4. Update the daily standup notes section
 ```
 
-### `/sprint-review` Command
+### Reconciling with context (use `/sync`)
 ```
-**Purpose**: End-of-sprint review and demo
-
-**Actions**:
-1. Read SPRINT.md for completed work
-2. Calculate velocity and completion rate
-3. Generate Sprint Review section
-4. Identify incomplete work
-5. Prompt for stakeholder feedback
-6. Update STATUS.md with sprint outcome
-7. Archive sprint to reports/
-
-**Output**: SPRINT.md with Sprint Review section
+1. Cross-check sprint work against .ai/context/ documents
+2. Surface drift between planned work and current task state
+3. Update STATUS.md / CURRENT.md as needed
 ```
 
-### `/retrospective` Command
+### Review & retrospective (edit by hand)
 ```
-**Purpose**: Team reflection and improvement
-
-**Actions**:
-1. Read sprint metrics and standup notes
-2. Prompt for What Went Well / Didn't Go Well / Learned
-3. Facilitate action item generation
-4. Assign owners to action items
-5. Update SPRINT.md with Retrospective section
-6. Archive previous sprint action items
-7. Prepare input for next sprint planning
-
-**Output**: SPRINT.md with Sprint Retrospective section
-```
-
-### `/sprint-status` Command
-```
-**Purpose**: Quick sprint health check
-
-**Actions**:
-1. Read SPRINT.md current state
-2. Calculate progress (completed vs. remaining)
-3. Check burndown (on track?)
-4. List active blockers
-5. Display sprint metrics
-6. Highlight risks
-
-**Output**: Console report + STATUS.md update
+1. Fill in the Sprint Review section (outcomes, metrics, feedback)
+2. Fill in the Sprint Retrospective section (what went well / didn't / learned)
+3. Keep the completed sprint inline here for history (no separate report archive)
 ```
 
 ---
@@ -1013,11 +967,9 @@ Enable customers to cancel full or partial orders with automated refund processi
 - `.ai/state/STATUS.md` - Project-level health and current status
 - `.ai/state/BACKLOG.md` - Work prioritization and backlog management
 - `.ai/state/CURRENT.md` - Real-time session state
-- `.ai/workflows/sprint-planning.md` - Detailed sprint planning process
-- `.ai/workflows/daily-standup.md` - Daily standup facilitation guide
-- `.ai/workflows/sprint-review.md` - Sprint review and demo guide
-- `.ai/workflows/retrospective.md` - Retrospective facilitation guide
-- `.ai/reports/sprints/` - Archived sprint reports
+- `.ai/context/` - Canonical context documents (`/sync` reconciles against these)
+
+> Note: Sprint history lives inline in this document — there is no separate sprint report archive and no dedicated sprint-ceremony workflow files. Use `/status` to record progress and `/sync` to reconcile against `.ai/context/`.
 
 ---
 
@@ -1076,7 +1028,7 @@ Enable customers to cancel full or partial orders with automated refund processi
 4. Document Sprint Review section
 5. Conduct Sprint Retrospective
 6. Document Sprint Retrospective section
-7. Archive sprint to reports/
+7. Keep the completed sprint inline here for history
 8. Update STATUS.md with sprint outcome
 9. Move incomplete work to BACKLOG.md
 10. Prepare for next sprint planning
@@ -1122,5 +1074,5 @@ Enable customers to cancel full or partial orders with automated refund processi
 
 **File Purpose**: Sprint planning, execution, and retrospective tracker  
 **Update Frequency**: Daily (standup, burndown), End of Sprint (review, retrospective)  
-**Command**: Use `/sprint-start`, `/standup`, `/sprint-review`, `/retrospective`  
+**Maintained**: Manually (this is a document, not a command). `/design` plans, `/status` tracks, `/sync` reconciles.  
 **Version**: 2.0

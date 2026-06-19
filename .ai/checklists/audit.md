@@ -1,20 +1,20 @@
 # Audit Checklist
 
-Gunakan checklist ini saat melakukan audit kode atau sistem untuk memastikan kualitas dan kelengkapan.
+Use this checklist when auditing code or systems to ensure quality and completeness.
 
 ## Checklist Items
 
-- [ ] **Architecture**: Verifikasi struktur, pola desain, dan organisasi kode sesuai best practices
-- [ ] **Security**: Periksa vulnerabilities, validasi input, autentikasi, dan autorisasi
-- [ ] **Performance**: Identifikasi bottlenecks, optimasi query, dan resource usage
-- [ ] **Tests**: Pastikan coverage memadai dengan unit, integration, dan e2e tests
-- [ ] **Docs**: Verifikasi dokumentasi API, README, dan komentar kode up-to-date
-- [ ] **Technical Debt**: Identifikasi code smells, deprecated code, dan area yang perlu refactoring
-- [ ] **Knowledge Debt**: Dokumentasikan keputusan arsitektur, edge cases, dan konteks bisnis
+- [ ] **Architecture**: Verify structure, design patterns, and code organization follow best practices
+- [ ] **Security**: Check for vulnerabilities, input validation, authentication, and authorization
+- [ ] **Performance**: Identify bottlenecks, query optimization, and resource usage
+- [ ] **Tests**: Ensure adequate coverage with unit, integration, and e2e tests
+- [ ] **Docs**: Verify API documentation, README, and code comments are up to date
+- [ ] **Technical Debt**: Identify code smells, deprecated code, and areas needing refactoring
+- [ ] **Knowledge Debt**: Document architecture decisions, edge cases, and business context
 
-## Cara Penggunaan
+## How to Use
 
-1. Salin checklist ini ke dalam task atau issue
-2. Centang setiap item setelah review selesai
-3. Dokumentasikan temuan di setiap area
-4. Prioritaskan action items berdasarkan severity
+1. Copy this checklist into the task or issue
+2. Check off each item once the review is complete
+3. Document findings in each area
+4. Prioritize action items based on severity

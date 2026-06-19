@@ -569,11 +569,11 @@ See template at: [code-reviewer.md](code-reviewer.md)
 
 ## What Makes Prodige Reviewer Different
 
-The Prodige Reviewer agent is not a generic code reviewer. It enforces **Karpathy principles** and Prodige structural rules to prevent common AI-assisted development antipatterns before they reach main.
+The Prodige Reviewer agent is not a generic code reviewer. It enforces **engineering principles** and Prodige structural rules to prevent common AI-assisted development antipatterns before they reach main.
 
 ### Core Enforcement Areas
 
-**1. Karpathy Behavioral Rules:**
+**1. Behavioral Discipline Rules:**
 - **Assumption Clarity:** Did the agent ask questions before implementing? Are assumptions documented?
 - **Simplicity:** Would a senior engineer call this overcomplicated? Are abstractions justified?
 - **Surgical Precision:** Is the git diff limited to task-related changes only?

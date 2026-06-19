@@ -111,7 +111,7 @@ git blame [file-path]
 
 ### 5. Apply Minimal Surgical Fix
 
-**Karpathy principle:** Change only what's necessary to fix the bug.
+**Engineering principle:** Change only what's necessary to fix the bug.
 
 **The fix should:**
 - Address the root cause directly
@@ -150,7 +150,7 @@ function getUserDisplayName(currentUser) {  // Renamed function
 
 **The test:** Would git diff show only the bug fix? Or extra changes?
 
-**Skill:** `karpathy-behavioral` (Surgical precision)
+**Skill:** `clean-code` (Surgical precision)
 
 ### 6. Write Test That Catches the Bug
 
@@ -176,6 +176,8 @@ npm test
 - Be clear about what it's testing
 
 **Why:** Test prevents regression. Proves fix works.
+
+**Checklist:** Follow `.ai/checklists/testing.md` to ensure the bug test and coverage are adequate.
 
 **Skill:** `test-driven-development` (Test for bug)
 
@@ -280,7 +282,7 @@ git diff
 - Code style updates
 - Refactoring unrelated functions
 
-**Skill:** `karpathy-behavioral` (Clean, surgical diff)
+**Skill:** `clean-code` (Clean, surgical diff)
 
 ### 11. Commit with Clear Bug Fix Message
 
@@ -385,13 +387,14 @@ Ready for review.
 - `systematic-debugging` - Root cause analysis (Steps 1, 2, 4)
 - `test-driven-development` - Write test for bug (Step 6)
 - `verification-before-completion` - Complete verification (Step 7)
-- `karpathy-behavioral` - Surgical changes, simplicity (Steps 5, 10)
+- `clean-code` - Surgical changes, simplicity (Steps 5, 10)
 - `requesting-code-review` - Prepare for review (Step 13)
 
 **Commands:**
 - `/roastme build` - Self-critique (optional supplement)
 
 **Checklists:**
+- `testing.md` - Test depth and coverage (Step 6)
 - `pre-merge.md` - Final verification (Step 12)
 
 **Agents:**

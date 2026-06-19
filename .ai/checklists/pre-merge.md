@@ -9,7 +9,7 @@
 
 ---
 
-## Superpowers Quality Checks
+## Quality Checks
 
 ### 1. TDD Compliance
 - [ ] Every new function/component has test
@@ -69,7 +69,7 @@ Coverage: Z%
 
 ---
 
-## Karpathy Behavioral Checks
+## Engineering Discipline Checks
 
 ### 1. Simplicity Verification
 - [ ] Code uses minimum abstractions needed
@@ -173,11 +173,11 @@ If any shortcuts taken, must be recorded:
 
 | If... | Then record in... |
 |-------|------------------|
-| Added TODO or FIXME | technical-debt.md |
-| Skipped optimization | technical-debt.md |
-| Hardcoded value that should be config | technical-debt.md |
-| Simplified architecture temporarily | architecture-debt.md |
-| Missing documentation | documentation-debt.md |
+| Added TODO or FIXME | `.ai/governance/debt/technical-debt.md` |
+| Skipped optimization | `.ai/governance/debt/technical-debt.md` |
+| Hardcoded value that should be config | `.ai/governance/debt/technical-debt.md` |
+| Simplified architecture temporarily | `.ai/governance/debt/architecture-debt.md` |
+| Missing documentation | `.ai/governance/debt/documentation-debt.md` |
 
 ---
 

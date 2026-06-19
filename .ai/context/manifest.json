@@ -1,102 +1,24 @@
 {
-  "schema_version": "1.0",
-  "last_updated": "2024-01-XX",
+  "name": "[project-name]",
+  "version": "1.0.0",
   "context_version": 1,
-  "project_status": "draft",
-  "prd_status": "draft",
-  "architecture_status": "draft",
-  "implementation_status": "draft",
-  "decisions_status": "draft",
-  "changelog_status": "active",
   "last_sync": null,
-  "approved_for_build": false,
-  "current_snapshot": null,
-  "approval_workflow": {
-    "require_human_approval": true,
-    "approval_stages": [
-      "draft",
-      "review",
-      "approved",
-      "implemented"
-    ],
-    "current_stage": "draft"
+  "approvals": {
+    "PROJECT.md": false,
+    "PRD.md": false,
+    "ARCHITECTURE.md": false,
+    "IMPLEMENTATION.md": false,
+    "DECISIONS.md": false,
+    "CONTEXT.md": false
   },
-  "document_metadata": {
-    "project": {
-      "version": "1.0",
-      "status": "draft",
-      "last_modified": null,
-      "approved_by": null,
-      "approved_date": null
-    },
-    "prd": {
-      "version": "1.0",
-      "status": "draft",
-      "last_modified": null,
-      "approved_by": null,
-      "approved_date": null
-    },
-    "architecture": {
-      "version": "1.0",
-      "status": "draft",
-      "last_modified": null,
-      "approved_by": null,
-      "approved_date": null
-    },
-    "implementation": {
-      "version": "1.0",
-      "status": "draft",
-      "last_modified": null,
-      "approved_by": null,
-      "approved_date": null
-    },
-    "decisions": {
-      "version": "1.0",
-      "status": "draft",
-      "last_modified": null,
-      "total_adrs": 0,
-      "active_adrs": 0
-    }
-  },
-  "behavioral_compliance": {
-    "karpathy_enabled": true,
-    "karpathy_version": "1.0",
-    "last_roastme_design": null,
-    "last_roastme_build": null,
-    "simplicity_violations": 0,
-    "assumption_clarity_score": null,
-    "surgical_precision_score": null,
-    "goal_verification_score": null
-  },
-  "quality_gates": {
-    "prd_completeness": {
-      "user_stories_defined": false,
-      "acceptance_criteria_clear": false,
-      "edge_cases_documented": false,
-      "success_metrics_defined": false
-    },
-    "architecture_completeness": {
-      "tech_stack_justified": false,
-      "diagrams_present": false,
-      "security_model_defined": false,
-      "scalability_addressed": false
-    },
-    "implementation_readiness": {
-      "file_plan_complete": false,
-      "test_strategy_defined": false,
-      "rollback_plan_present": false,
-      "risks_identified": false
-    }
-  },
-  "change_tracking": {
-    "total_changes": 0,
-    "last_changelog_update": null,
-    "pending_updates": []
-  },
-  "cross_references": {
-    "orphaned_decisions": [],
-    "unlinked_requirements": [],
-    "deprecated_references": []
-  },
-  "notes": "Context files updated with enhanced structure and comprehensive templates. All files follow consistent formatting with proper sections, checklists, and cross-references."
+  "files": [
+    "PROJECT.md",
+    "PRD.md",
+    "ARCHITECTURE.md",
+    "IMPLEMENTATION.md",
+    "DECISIONS.md",
+    "CONTEXT.md",
+    "CHANGELOG.md",
+    "docs/adr/"
+  ]
 }

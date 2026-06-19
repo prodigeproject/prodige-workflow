@@ -1,3 +1,10 @@
+---
+name: docs
+description: Owns README, docs, changelog, decisions, and onboarding materials. Writes audience-appropriate, minimal docs.
+tools: Read, Write, Edit
+hitl: false
+---
+
 # Agent: docs
 
 ## Role
@@ -6,7 +13,7 @@ Owns README, docs, changelog, decisions, onboarding materials.
 
 ---
 
-## Karpathy Behavioral Rules for Documentation
+## Behavioral Discipline Rules for Documentation
 
 ### BEFORE Writing Documentation
 

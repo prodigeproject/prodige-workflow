@@ -2,7 +2,7 @@
 
 ## Selamat Datang! 🎉
 
-Anda tidak perlu jadi expert untuk membuat aplikasi berkualitas dengan **Prodige + Karpathy Workflow**.
+Anda tidak perlu jadi expert untuk membuat aplikasi berkualitas dengan **Prodige Workflow**.
 
 Workflow ini akan:
 - ✅ Memandu Anda step-by-step dari ide ke production
@@ -177,7 +177,7 @@ Verdict: APPROVED - Ready to merge
 ```
 
 ```bash
-/merge
+/release
 ```
 
 **Jika semua checks pass, code ready untuk production!**
@@ -194,7 +194,7 @@ User: "Add authentication"
 AI: *langsung implement JWT + Redis + OAuth + 2FA*
 ```
 
-**✅ Prodige + Karpathy:**
+**✅ Prodige:**
 ```
 User: "Add authentication"
 
@@ -235,7 +235,7 @@ class PercentageDiscount(DiscountStrategy):
     # ... 100 lines of boilerplate
 ```
 
-**✅ Prodige + Karpathy:**
+**✅ Prodige:**
 ```python
 # 10 lines, simple function
 
@@ -259,7 +259,7 @@ def calculate_discount(amount: float, percent: float) -> float:
 - *Sekalian ubah quote style* (tidak diminta)
 - *Sekalian tambah type hints* (tidak diminta)
 
-**✅ Prodige + Karpathy:**
+**✅ Prodige:**
 - Fix bug di login.py
 - Done. (Cuma itu.)
 
@@ -298,7 +298,7 @@ Anda hanya perlu:
 
 **Real example:**
 - AI biasa: 2 hari coding + 3 hari debugging + 2 hari refactoring = **7 hari**
-- Prodige + Karpathy: 1 hari planning + 3 hari coding clean = **4 hari**
+- Prodige: 1 hari planning + 3 hari coding clean = **4 hari**
 
 ---
 
@@ -371,7 +371,7 @@ Edit sesuai kebutuhan:
                  │
                  ▼
          ┌───────────────┐
-         │   /merge      │  ← Final checks, tests, deploy!
+         │   /release    │  ← Final checks, tests, deploy!
          └───────────────┘
 
                  ▼
@@ -442,9 +442,9 @@ After 2-3 iterations, you'll appreciate the quality of code produced.
 
 **Ready to start?**
 
-1. **Try Tutorial:** [Build Your First App in 30 Minutes](./tutorials/first-app.md)
-2. **Read Examples:** [Anti-Patterns to Avoid](../.ai/examples/anti-patterns.md)
-3. **Understand Workflow:** [Command Reference](./reference/commands.md)
+1. **Try Tutorial:** [Usage Guide](../../docs/USAGE.md)
+2. **Read Examples:** [Anti-Patterns to Avoid](../examples/anti-patterns.md)
+3. **Understand Workflow:** [Compatibility & Commands](../../docs/COMPATIBILITY.md)
 
 **Need Help?**
 

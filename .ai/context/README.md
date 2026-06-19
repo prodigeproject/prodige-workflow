@@ -1,6 +1,6 @@
 # Context Documentation
 
-This folder contains the **approved project brain** - the single source of truth for project understanding, architecture, and implementation plans.
+This folder contains the **approved project context** - the single source of truth for project understanding, architecture, and implementation plans.
 
 ---
 
@@ -112,6 +112,23 @@ The context folder provides structured documentation that guides both human deve
 
 ---
 
+### 📚 [CONTEXT.md](./CONTEXT.md)
+**Purpose:** Domain glossary - the project's ubiquitous language
+
+**Contains:**
+- Domain-specific terms and definitions
+- Preferred terms with `_Avoid_` alternatives
+- Ambiguity flags where a term has multiple meanings
+
+**When to use:**
+- Clarifying fuzzy requirements during `/design`
+- Ensuring consistent terminology in code and docs
+- Onboarding to the project's vocabulary
+
+**See also:** [CONTEXT-FORMAT.md](./CONTEXT-FORMAT.md) (writing guide) and [CONTEXT-MAP.md](./CONTEXT-MAP.md) (multi-context projects)
+
+---
+
 ### 📝 [CHANGELOG.md](./CHANGELOG.md)
 **Purpose:** Project change history
 
@@ -131,19 +148,35 @@ The context folder provides structured documentation that guides both human deve
 ---
 
 ### ⚙️ [manifest.json](./manifest.json)
-**Purpose:** Context metadata and approval tracking
+**Purpose:** Context metadata and approval tracking (canonical)
 
 **Contains:**
-- Context version
-- Document approval status
-- Last sync timestamps
-- Build approval status
-- Behavioral compliance settings
+- `name` and `version` - project identity
+- `context_version` - integer, bumped by `/sync`
+- `last_sync` - ISO-8601 timestamp or null
+- `approvals` - per-document approved true/false
+- `files` - tracked context files
+
+See [CONTEXT-FORMAT.md](./CONTEXT-FORMAT.md#manifestjson-schema) for the full schema.
 
 **When to use:**
 - Checking approval status
 - Version tracking
 - Workflow automation
+
+---
+
+### 🗂️ [docs/adr/](./docs/adr/)
+**Purpose:** Architecture Decision Records (canonical ADR location)
+
+**Contains:**
+- Individual ADR files named `NNNN-slug.md`
+- [ADR-FORMAT.md](./docs/adr/ADR-FORMAT.md) - tight ADR format guide
+- [README.md](./docs/adr/README.md) - when and how to create ADRs
+
+**When to use:**
+- Recording hard-to-reverse technical decisions
+- Linking detailed ADRs from DECISIONS.md
 
 ---
 
@@ -294,8 +327,10 @@ Memory stores interaction history and decisions that feed into context updates.
 | Tech stack | ARCHITECTURE.md | Tech Stack |
 | Implementation steps | IMPLEMENTATION.md | Implementation Strategy |
 | Past decisions | DECISIONS.md | All ADRs |
+| Detailed ADRs | docs/adr/ | `NNNN-slug.md` files |
+| Domain vocabulary | CONTEXT.md | Language |
 | Change history | CHANGELOG.md | Version entries |
-| Approval status | manifest.json | *_status fields |
+| Approval status | manifest.json | `approvals` object |
 
 ---
 

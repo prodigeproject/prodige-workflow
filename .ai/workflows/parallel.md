@@ -28,7 +28,9 @@ Execute large features across multiple independent work streams simultaneously. 
 - STOP. Complete `/design` workflow first, or
 - Use standard `/build` workflow instead (no parallel needed)
 
-**Skill:** `karpathy-behavioral` (Think before coding - verify foundation)
+**Checklist:** Work through `.ai/checklists/parallel.md` before splitting work into parallel streams.
+
+**Skill:** `clean-code` (Think before coding - verify foundation)
 
 ### 2. Create Context Snapshot
 
@@ -36,10 +38,10 @@ Execute large features across multiple independent work streams simultaneously. 
 
 **Create snapshot file:**
 ```bash
-mkdir -p .ai/parallel/snapshots
+mkdir -p .ai/runtime/snapshots
 ```
 
-Create `.ai/parallel/snapshots/[feature-name]-[timestamp].md`:
+Create `.ai/runtime/snapshots/[feature-name]-[timestamp].md`:
 
 ```markdown
 # Parallel Execution Snapshot: [Feature Name]
@@ -147,7 +149,7 @@ C ──┘
 
 **For each parallel work stream, create dedicated session file:**
 
-Create `.ai/parallel/sessions/[stream-name].md`:
+Create `.ai/runtime/sessions/[stream-name].md`:
 
 ```markdown
 # Parallel Session: [Stream Name]
@@ -177,7 +179,7 @@ Create `.ai/parallel/sessions/[stream-name].md`:
 
 ## Context
 
-**Snapshot:** `.ai/parallel/snapshots/[snapshot-file].md`
+**Snapshot:** `.ai/runtime/snapshots/[snapshot-file].md`
 
 **Dependencies:**
 - Depends on: [other streams, or "None"]
@@ -235,7 +237,7 @@ Create `.ai/parallel/sessions/[stream-name].md`:
 
 **Prevent conflicts on shared/critical files:**
 
-Create `.ai/parallel/locks.md`:
+Create `.ai/runtime/locks/locks.md`:
 
 ```markdown
 # Parallel Execution Locks
@@ -287,7 +289,7 @@ Locks released after streams merge to main window.
 
 **Prepare structured handoff for each stream:**
 
-Create `.ai/parallel/handoffs/[stream-name]-handoff.md`:
+Create `.ai/runtime/handoffs/[stream-name]-handoff.md`:
 
 ```markdown
 # Handoff: [Stream Name]
@@ -415,9 +417,9 @@ You are working on a parallel execution stream.
 **Context:**
 - Feature: [feature name]
 - Stream: [stream name]
-- Session file: `.ai/parallel/sessions/[stream-name].md`
-- Snapshot: `.ai/parallel/snapshots/[snapshot].md`
-- Locks: `.ai/parallel/locks.md`
+- Session file: `.ai/runtime/sessions/[stream-name].md`
+- Snapshot: `.ai/runtime/snapshots/[snapshot].md`
+- Locks: `.ai/runtime/locks/locks.md`
 
 **Your task:**
 1. Read session file for complete scope
@@ -437,11 +439,11 @@ You are working on a parallel execution stream.
 - Complete handoff checklist
 
 **When complete:**
-- Fill handoff template: `.ai/parallel/handoffs/[stream-name]-handoff.md`
+- Fill handoff template: `.ai/runtime/handoffs/[stream-name]-handoff.md`
 - Notify main window: "Stream [X] complete, ready for review"
 
 **Start now:**
-/build --session .ai/parallel/sessions/[stream-name].md
+/build --session .ai/runtime/sessions/[stream-name].md
 ```
 
 **Create one prompt per stream.**
@@ -477,7 +479,7 @@ You are working on a parallel execution stream.
 - Test continuously
 - Verify before handoff
 
-**Skill:** `karpathy-behavioral` (Surgical, focused execution)
+**Skill:** `clean-code` (Surgical, focused execution)
 
 ### 10. Reviewer Reviews Handoffs and Diffs
 
@@ -623,10 +625,10 @@ npm run test:integration
 **Clean up parallel artifacts:**
 ```bash
 # Archive session files
-mv .ai/parallel/sessions .ai/parallel/archive/[feature]-sessions
+mv .ai/runtime/sessions .ai/runtime/archive/[feature]-sessions
 
 # Archive handoffs
-mv .ai/parallel/handoffs .ai/parallel/archive/[feature]-handoffs
+mv .ai/runtime/handoffs .ai/runtime/archive/[feature]-handoffs
 
 # Keep snapshot for reference
 ```
@@ -678,7 +680,7 @@ Tests: [X/X passing]
 - Creates: Session files, handoffs, locks, snapshots
 
 **Skills:**
-- `karpathy-behavioral` - Think before coding, surgical execution (Steps 1, 9)
+- `clean-code` - Think before coding, surgical execution (Steps 1, 9)
 - `systematic-debugging` - Dependency analysis (Step 4)
 - `verification-before-completion` - Verify each merge (Steps 11, 12)
 - `test-driven-development` - TDD in each stream (Step 9)
@@ -734,6 +736,8 @@ Parallel execution produces:
 Plus updated:
 **6. CHANGELOG.md** - Feature changes
 **7. Cache** - Updated context
+
+**Output format:** see `.ai/templates/PARALLEL_PLAN.md`
 
 ---
 

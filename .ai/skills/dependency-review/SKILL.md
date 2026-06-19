@@ -1,4 +1,18 @@
+---
+name: dependency-review
+description: "Audits project dependencies for security vulnerabilities, license compliance, version conflicts, unused packages, and lockfile integrity. Owns supply-chain analysis (security-review defers here)."
+auto_load: [audit]
+applies_to: [reviewer, backend, frontend]
+---
+
 # Skill: dependency-review
+
+## Quick Protocol (your next action)
+1. Read manifests + lockfiles and run the audit tool (npm audit / pip-audit / equivalent).
+2. Classify each issue: Security, License, Version conflict, Unused, or Lockfile integrity.
+3. Rate severity (security first) and name the exact fix (update/remove/replace/pin).
+4. List affected manifest/lockfile files and the risk of inaction.
+Base findings on real advisories, not guesses.
 
 ## Purpose
 

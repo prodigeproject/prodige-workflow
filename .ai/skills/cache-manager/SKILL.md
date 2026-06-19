@@ -1,4 +1,18 @@
-# Skill: cache-manager
+---
+name: cache-manager
+description: "Manages context caching to optimize token usage and cost by creating, incrementally updating, and invalidating caches while verifying integrity before reuse."
+auto_load: ["/parallel", "/cache"]
+applies_to: [orchestrator, backend, frontend]
+---
+
+# Cache Manager
+
+## Quick Protocol (your next action)
+1. Check existing cache metadata/timestamps and recent file changes.
+2. Decide the operation: create, incremental update, or invalidate (prefer partial over full clear).
+3. Cache stable core/utils; exclude volatile files (tests, configs, generated code).
+4. Verify cache integrity (hashes) before use; estimate token savings vs rebuild cost.
+Measure actual token usage; never invent cache stats.
 
 ## Purpose
 
@@ -45,7 +59,7 @@ Output:
   Cache strategy: Cache stable modules, exclude test files
   Token savings: ~15,000 tokens per session
   Risks: Low - core modules change infrequently
-  Files affected: .ai/cache/manifest.json
+  Files affected: .ai/runtime/cache/CACHE_MANIFEST.json, .ai/runtime/cache/module-summaries/
 ```
 
 ### Example 2: Invalidating stale cache
@@ -58,7 +72,7 @@ Output:
   Cache strategy: Rebuild auth cache, keep utils and core cached
   Token savings: 8,000 tokens saved, 3,000 tokens cost to rebuild
   Risks: Medium - partial invalidation may miss dependencies
-  Files affected: .ai/cache/manifest.json, .ai/cache/auth-*
+  Files affected: .ai/runtime/cache/CACHE_MANIFEST.json, .ai/runtime/cache/module-summaries/auth.md
 ```
 
 ### Example 3: Session continuity
@@ -71,10 +85,30 @@ Output:
   Cache strategy: Incremental update for files modified in last session
   Token savings: ~12,000 tokens
   Risks: Low - recent cache with clear delta
-  Files affected: .ai/cache/session-resume.json
+  Files affected: .ai/runtime/cache/CACHE_MANIFEST.json, .ai/runtime/cache/snapshot.json
 ```
 
 ## Best Practices
+
+### Cache Manifest (canonical)
+
+The cache index lives at `.ai/runtime/cache/CACHE_MANIFEST.json`. Its `entries`
+keys and the file paths they point to are canonical — read and write exactly
+these names so the manifest, this skill, and the files on disk always agree:
+
+| Manifest key | File path it tracks | Produced by |
+|---|---|---|
+| `snapshot` | `.ai/runtime/cache/snapshot.json` | snapshot state + file hashes |
+| `dependencies` | `.ai/runtime/cache/dependencies.json` | dependency snapshot for change detection |
+| `repo_map` | `.ai/runtime/cache/repo-map.md` | repomap skill (markdown view) |
+| `repomap_json` | `.ai/runtime/cache/repomap.json` | repomap skill (structured view) |
+| `architecture_summary` | `.ai/runtime/cache/architecture-summary.md` | architecture overview |
+| `module_summaries` | `.ai/runtime/cache/module-summaries/` | per-module summaries |
+
+Manifest shape: `{ "cache_version": <int>, "last_updated": <iso8601|null>,
+"entries": { <key>: { "path": <string>, "status": "fresh"|"stale"|"missing" } } }`.
+Update `last_updated` and each entry's `status` on every cache operation. Never
+invent a key or path that is not in this table.
 
 ### Cache Strategy
 - Cache stable, frequently accessed code (utilities, core modules, interfaces)

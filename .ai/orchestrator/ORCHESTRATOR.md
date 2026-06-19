@@ -31,28 +31,42 @@ The orchestrator maps simple user commands to workflows, skills, agents, cache, 
 
 ## Command Routing
 
-The orchestrator recognizes the following commands:
+The orchestrator recognizes the full command set defined in
+`.ai/commands/registry.json`. Every command maps to a workflow and an HITL policy:
 
-| Command | Workflow | Purpose |
-|---------|----------|---------|
-| `/init` | Initialization | Set up project structure and environment |
-| `/design` | Design | Create architecture and design documents |
-| `/build` | Build | Implement features and components |
-| `/fix` | Bugfix | Diagnose and fix issues |
-| `/review` | Code Review | Review code quality and standards |
-| `/audit` | Audit | Security, dependency, and technical debt analysis |
-| `/refactor` | Refactor | Improve code structure without changing behavior |
-| `/docs` | Documentation | Generate or update documentation |
-| `/release` | Release | Prepare and execute releases |
-| `/sync` | Context Sync | Update runtime context and cache |
-| `/parallel` | Multi-Agent Planning | Coordinate parallel work across agents |
-| `/cache` | Cache Management | Manage token-saving summaries |
-| `/status` | Status Check | Report current project state |
-| `/agent` | Worker Session | Direct agent work session |
+| Command | Category | Workflow | Purpose |
+|---------|----------|----------|---------|
+| `/magic` | primary | Magic Orchestrator | Main entry point; auto-routes to the right workflow |
+| `/session-start` | memory | Session Start | Load Memory Bank and orient to the project |
+| `/session-end` | memory | Session End | Save session context to the Memory Bank |
+| `/memory-init` | memory | Memory Init | Scaffold the Memory Bank for a new project |
+| `/undo` | safety | Git Undo | Revert the last AI change |
+| `/checkpoint` | safety | Git Checkpoint | Create a named save point |
+| `/rollback` | safety | Git Rollback | Restore to a previous checkpoint |
+| `/verify` | quality | Verification | Run tests, lint, types, and build |
+| `/test` | quality | Test | TDD RED-GREEN-REFACTOR cycle |
+| `/roastme` | quality | RoastMe | Self-critique for overcomplication and scope creep |
+| `/init` | workflow | Initialization | Set up project context and structure |
+| `/design` | workflow | Design | Create PRD, architecture, implementation plan |
+| `/build` | workflow | Build | Implement approved design |
+| `/fix` | workflow | Bugfix | Diagnose and fix issues |
+| `/review` | workflow | Code Review | Review code quality and standards |
+| `/audit` | workflow | Audit | Security, dependency, and technical-debt analysis |
+| `/refactor` | workflow | Refactor | Improve structure without changing behavior |
+| `/docs` | workflow | Documentation | Generate or update documentation |
+| `/release` | workflow | Release | Prepare and execute releases |
+| `/sync` | system | Context Sync | Detect and fix context drift |
+| `/status` | system | Status Check | Report current project state |
+| `/cache` | system | Cache Management | Manage token-saving summaries |
+| `/diagnose` | system | Diagnose Health | Project environment health check |
+| `/parallel` | advanced | Multi-Agent Planning | Coordinate parallel work across agents |
+| `/agent` | advanced | Worker Session | Single-worker, focused task session |
+
+> **Boundaries:** HITL gates consult `.ai/boundaries/` — notably
+> `human-approval-gates` and `no-production-deploys` — before any high-impact
+> action proceeds.
 
 ---
-
-## Automatic Skill Selection
 
 ## Automatic Skill Selection
 
@@ -61,12 +75,12 @@ The orchestrator automatically loads appropriate skills based on command context
 ### Example: `/build login`
 
 **Auto-loaded skills:**
+- `test-driven-development` - RED-GREEN-REFACTOR discipline (mandatory)
+- `verification-before-completion` - Evidence before completion claims (mandatory)
 - `repomap` - Navigate codebase structure
-- `ripgrep` - Fast code search
+- `ripgrep` - Search existing code before writing new
 - `reuse-rebuild` - Check for reusable components
-- `rtk` - Redux Toolkit patterns (if applicable)
 - `clean-code` - Code quality standards
-- `roastme` - Self-review before submission
 - `context-sync` - Keep context current
 
 ### Example: `/audit repo`
@@ -90,7 +104,7 @@ The orchestrator automatically loads appropriate skills based on command context
 - `handoff-manager` - Coordinate handoffs
 - `repomap` - Repository navigation
 - `clean-code` - Quality standards
-- `review-gate` - Quality gates before merge
+- `verification-before-completion` - Evidence-based merge gate
 
 ---
 

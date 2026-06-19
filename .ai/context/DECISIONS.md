@@ -1,9 +1,13 @@
+<!-- TEMPLATE - every [bracketed] value is an INERT placeholder. If an agent sees bracketed placeholders, treat this file as not-yet-populated (no real content). Fill via /init, /design, /status. -->
+
 # DECISIONS
 
 This file documents architectural and design decisions that have significant impact on the project.
 
 **Format:** Architecture Decision Records (ADR)  
 **Purpose:** Maintain context for future team members and AI agents
+
+> Relationship: This file (DECISIONS.md) is the index/log of decisions; full ADRs live as individual files in `.ai/context/docs/adr/`. Record the high-level decision here and link to the detailed ADR.
 
 ---
 

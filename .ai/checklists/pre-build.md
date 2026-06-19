@@ -9,7 +9,7 @@
 
 ---
 
-## Superpowers Quality Gates
+## Quality Gates
 
 ### 1. TDD Readiness
 - [ ] Agent understands TDD requirement (RED-GREEN-REFACTOR)
@@ -32,7 +32,7 @@ Expected: Specific command, expected output, success criteria
 
 ---
 
-## Karpathy Behavioral Gates
+## Behavioral Discipline Gates
 
 ### 1. Assumptions Surfaced
 - [ ] Agent has listed all assumptions explicitly

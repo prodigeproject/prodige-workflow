@@ -26,7 +26,9 @@ Systematic implementation of approved designs into working code. Transform requi
 - STOP. Run `design` workflow first
 - Do not proceed without approval
 
-**Skill:** `karpathy-behavioral` (Think before coding)
+**Checklist:** Work through `.ai/checklists/pre-build.md` before writing code.
+
+**Skill:** `clean-code` (Think before coding)
 
 **Output:** Confirmed approved design loaded into context
 
@@ -35,10 +37,10 @@ Systematic implementation of approved designs into working code. Transform requi
 **Load project context efficiently:**
 
 Read cache files:
-- `.ai/cache/repo-map.md` - Repository structure
-- `.ai/cache/architecture-summary.md` - System overview
-- `.ai/cache/module-summaries/` - Individual module details
-- `.ai/context/memory-bank.md` - Previous session context
+- `.ai/runtime/cache/repo-map.md` - Repository structure
+- `.ai/runtime/cache/architecture-summary.md` - System overview
+- `.ai/runtime/cache/module-summaries/` - Individual module details
+- `.ai/memory/activeContext.md` - Previous session context
 
 **Verify cache freshness:**
 - Check cache timestamps
@@ -122,7 +124,7 @@ Rationale: Matches requirements, well-tested, easy to extend
 Modifications needed: Add email validation
 ```
 
-**Skill:** `karpathy-behavioral` (Goal-driven pragmatism)
+**Skill:** `clean-code` (Goal-driven pragmatism)
 
 ### 6. Create Modular File Plan
 
@@ -172,7 +174,7 @@ File plan created:
 Proceed with implementation?
 ```
 
-**Skill:** `karpathy-behavioral` (Surgical, modular design)
+**Skill:** `clean-code` (Surgical, modular design)
 
 ### 7. Implement with Small Changes (Test-Driven)
 
@@ -234,6 +236,8 @@ npm test validator.test.js
 ### 8. Run Tests and Checks After Each Module
 
 **After implementing each module, run full verification:**
+
+**Checklist:** Follow `.ai/checklists/testing.md` to verify test depth and coverage.
 
 **Run tests:**
 ```bash
@@ -341,7 +345,7 @@ describe('User Registration Flow', () => {
 - Simplify overcomplicated code
 - Ensure fresh verification evidence
 
-**Skill:** `roastme` command (Karpathy behavioral check)
+**Skill:** `roastme` command (behavioral discipline check)
 
 ### 11. Update Documentation
 
@@ -359,9 +363,9 @@ describe('User Registration Flow', () => {
 - [ ] Add entry to CHANGELOG.md
 
 **Context files:**
-- [ ] Update `.ai/context/current-task.md` with completion status
-- [ ] Update `.ai/context/memory-bank.md` with learnings
-- [ ] Document any technical debt in `technical-debt.md`
+- [ ] Update `.ai/state/CURRENT.md` with completion status
+- [ ] Update `.ai/memory/activeContext.md` with learnings
+- [ ] Document any technical debt in `.ai/governance/debt/technical-debt.md`
 
 **Not every change needs docs:**
 - Simple implementations following existing patterns → No docs
@@ -373,9 +377,9 @@ describe('User Registration Flow', () => {
 **Refresh cache with new implementation:**
 
 Update affected cache files:
-- `.ai/cache/repo-map.md` - If structure changed
-- `.ai/cache/module-summaries/[module].md` - For modified modules
-- `.ai/cache/architecture-summary.md` - If architecture evolved
+- `.ai/runtime/cache/repo-map.md` - If structure changed
+- `.ai/runtime/cache/module-summaries/[module].md` - For modified modules
+- `.ai/runtime/cache/architecture-summary.md` - If architecture evolved
 
 **Run cache update:**
 ```bash
@@ -583,7 +587,7 @@ git push origin main
 ## Integration Points
 
 **Skills:**
-- `karpathy-behavioral` - Think before coding, surgical changes, simplicity (Steps 1, 5, 6, 10)
+- `clean-code` - Think before coding, surgical changes, simplicity (Steps 1, 5, 6, 10)
 - `test-driven-development` - RED-GREEN-REFACTOR cycle (Step 7, 8)
 - `verification-before-completion` - Verify after each step (Step 8, 13)
 - `systematic-debugging` - When issues arise during build
@@ -603,6 +607,8 @@ git push origin main
 - **Final:** `/verify` - Quality verification gate
 
 **Checklists:**
+- `pre-build.md` - Pre-implementation readiness (Step 1)
+- `testing.md` - Test depth and coverage (Step 8)
 - `pre-merge.md` - Final checks (Step 13)
 
 **Agents:**

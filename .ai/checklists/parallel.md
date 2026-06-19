@@ -1,35 +1,35 @@
 # Parallel Workflow Checklist
 
-Gunakan checklist ini saat menjalankan parallel build untuk koordinasi multi-agent development.
+Use this checklist when running a parallel build to coordinate multi-agent development.
 
 ## Pre-Build Checklist
 
-- [ ] **Snapshot Created**: Ambil snapshot state saat ini untuk rollback safety
+- [ ] **Snapshot Created**: Take a snapshot of the current state for rollback safety
   - Command: `/parallel build <feature-name>`
-  - Verifikasi snapshot ID tersimpan
+  - Verify the snapshot ID is saved
 
-- [ ] **Sessions Created**: Pastikan session terpisah untuk setiap agent
+- [ ] **Sessions Created**: Ensure a separate session for each agent
   - Backend session: `checkout-backend`
   - Frontend session: `checkout-frontend`
   - QA session: `checkout-qa`
   - Docs session: `checkout-docs`
 
-- [ ] **Locks Created**: File locks aktif untuk mencegah konflik
-  - Periksa `state/LOCKS.md` untuk file assignments
-  - Pastikan tidak ada overlap antar agent
+- [ ] **Locks Created**: File locks active to prevent conflicts
+  - Check `.ai/runtime/locks/` for file assignments
+  - Ensure there is no overlap between agents
 
-- [ ] **Handoffs Assigned**: Setiap agent tahu task dan dependencies mereka
-  - Review `state/HANDOFFS.md`
-  - Konfirmasi setiap agent memiliki context yang cukup
+- [ ] **Handoffs Assigned**: Each agent knows its task and dependencies
+  - Review `.ai/runtime/handoffs/`
+  - Confirm each agent has enough context
 
-- [ ] **Reviewer Assigned**: Reviewer session siap untuk final integration
+- [ ] **Reviewer Assigned**: Reviewer session ready for final integration
   - Session: `checkout-review`
-  - Reviewer memiliki akses ke semua agent outputs
+  - Reviewer has access to all agent outputs
 
 ## Post-Build Checklist
 
-- [ ] **Agent Tasks Complete**: Semua agent menyelesaikan assigned tasks
-- [ ] **Tests Passing**: Unit dan integration tests sukses di setiap session
-- [ ] **Conflicts Resolved**: Tidak ada merge conflicts atau dependency issues
-- [ ] **Review Complete**: Reviewer approve semua changes
-- [ ] **Merge Executed**: Jalankan `/parallel merge <feature-name>` untuk integrasi final
+- [ ] **Agent Tasks Complete**: All agents finished their assigned tasks
+- [ ] **Tests Passing**: Unit and integration tests succeed in every session
+- [ ] **Conflicts Resolved**: No merge conflicts or dependency issues
+- [ ] **Review Complete**: Reviewer approves all changes
+- [ ] **Merge Executed**: Run `/parallel merge <feature-name>` for final integration

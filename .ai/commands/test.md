@@ -315,7 +315,7 @@ insta = "1.34"  # For snapshot testing
 
 When executing `/test` command, agent MUST:
 1. **Read BOOT first** (load context)
-2. **Load tdd-workflow skill** automatically
+2. **Load test-driven-development skill** automatically
 3. **Follow 3 Laws of TDD** strictly
 4. **Run tests after every code change**
 5. **Update context** if architecture changes
@@ -348,7 +348,7 @@ User: /test red - Implement login endpoint
 
 Agent:
 Loading context... PRD.md, ARCHITECTURE.md, IMPLEMENTATION.md
-Skill: tdd-workflow loaded
+Skill: test-driven-development loaded
 
 Next behavior to test: Login with valid credentials returns JWT token
 
@@ -425,7 +425,7 @@ This test reproduces the bug. Run `/test green` to fix.
 ---
 
 ## References
-- Skill: `tdd-workflow.md`
+- Skill: `test-driven-development/SKILL.md`
 - Checklist: `testing.md`
 - Quality Gates: `quality-gates.md`
 - Governance: `rules.md`

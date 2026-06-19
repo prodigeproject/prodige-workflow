@@ -154,6 +154,28 @@ const form = useForm({
 - **Follow patterns:** When creating something new, follow established patterns
 - **Avoid duplication:** If it exists, reuse it rather than recreate it
 - **Be systematic:** Use multiple search strategies to ensure thorough coverage
+- **Outline before reading large files:** For any file >100 lines, grep its signatures first and read only the needed symbol — never read a full large file to find one symbol
+
+## Outline Before Read
+
+Ripgrep is the natural tool for cheap structure-first exploration. For any code file larger than ~100 lines, outline its **symbols/signatures** before reading it in full, then open only the region for the symbol you need.
+
+```bash
+# Outline a file's symbols (portable, no AST/runtime dependency)
+rg -n "^(export\s+)?(async\s+)?(function|class|const|interface|type|def|enum)\b" path/to/file
+```
+
+The `-n` flag gives line numbers so you can jump straight to the symbol's body. Reading an entire large file just to find one function is the anti-pattern to eliminate.
+
+### Token Economics
+
+Pick the cheapest path that answers the question:
+
+| Approach | Tokens | Use case |
+| --- | --- | --- |
+| Outline (rg signatures) | ~200–600 | "What's in this file?" |
+| Read one symbol/region | ~300–1,500 | "Show me this function" |
+| Read full file | ~6,000–12,000+ | "I truly need everything" |
 
 ## Search Strategies
 
@@ -218,6 +240,7 @@ rg "process\.env\." --type ts
 - ❌ **Ignoring results:** Finding existing code but writing new anyway
 - ❌ **Not following patterns:** Finding patterns but inventing your own
 - ❌ **Shallow search:** Not searching for related utilities and dependencies
+- ❌ **Read full large file to find one symbol:** Opening an entire >100-line file instead of grepping signatures and reading only the needed region
 
 ## Search Quality Checklist
 

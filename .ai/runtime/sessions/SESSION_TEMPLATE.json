@@ -1,10 +1,15 @@
 {
-  "session_id": "example-backend-session",
-  "role": "backend",
-  "goal": "Implement backend part of feature",
-  "status": "planned",
-  "snapshot": "context-v1",
-  "allowed_files": [],
+  "session_id": "session-backend-example-20240115-143022",
+  "agent_role": "backend",
+  "snapshot_id": "snapshot-20240115-143022",
+  "task": "Implement backend part of feature",
+  "status": "pending",
+  "priority": "normal",
+  "created_at": null,
+  "timeout_at": null,
+  "worktree": ".ai/runtime/worktrees/backend-agent",
+  "assigned_files": [],
   "locked_files": [],
-  "handoff_file": ".ai/runtime/handoffs/example-backend-session.md"
+  "expected_tests": [],
+  "handoff_file": ".ai/runtime/handoffs/session-backend-example-20240115-143022.md"
 }

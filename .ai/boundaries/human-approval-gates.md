@@ -88,25 +88,32 @@ These can be skipped with flags but are recommended:
 
 ## Escape Hatches
 
-### For Trusted Automation
+> **CONCEPTUAL / ILLUSTRATIVE:** `PRODIGE_AUTO_APPROVE` is a design illustration, not a
+> shipped feature. No code in this workflow reads this environment variable, and setting
+> it changes nothing at runtime. It exists to describe *how* a trusted-automation escape
+> hatch could work and to frame the policy below. Do not expect the examples in this
+> section to actually skip HITL gates today.
 
-If you REALLY trust the AI (e.g., CI/CD environments):
+### For Trusted Automation (illustrative)
+
+If you REALLY trust the AI (e.g., CI/CD environments), the intended model would look
+like this:
 
 ```bash
-# Export environment variable
+# Illustrative only - this variable is not consumed by any shipped code.
 export PRODIGE_AUTO_APPROVE=true
 
-# Now these skip HITL (use with caution!)
-/design feature-name    # Will auto-approve design
-/build feature-name     # Will proceed without review
+# Conceptually, these would skip HITL (use with caution!)
+/design feature-name    # Would auto-approve design
+/build feature-name     # Would proceed without review
 ```
 
-**WARNING**: Only use in:
+**WARNING**: Even as a concept, this pattern would only ever be appropriate in:
 - Automated testing environments
 - Throwaway prototypes
 - Well-tested workflows
 
-**NEVER use** in:
+**NEVER** intended for:
 - Production codebases
 - Team repositories
 - Unfamiliar projects
@@ -117,8 +124,8 @@ Start with full HITL, gradually reduce as confidence grows:
 
 **Week 1-2**: Full HITL for everything  
 **Week 3-4**: Skip HITL for trivial `/fix`, `/docs`  
-**Week 5-6**: Skip HITL for well-tested `/build` patterns  
-**Month 3+**: Consider `AUTO_APPROVE` for specific workflows
+**Week 5-6**: Skip HITL for well-tested `/build` patterns
+**Month 3+**: Consider an `AUTO_APPROVE`-style policy for specific workflows (conceptual; see note above)
 
 But ALWAYS keep HITL for:
 - `/design` (architectural decisions)
@@ -172,6 +179,7 @@ HITL gates prevent silent changes by forcing explicit approval.
 
 ### For Automation (Minimal HITL, Risky!)
 ```bash
+# Illustrative only - PRODIGE_AUTO_APPROVE is not consumed by shipped code.
 export PRODIGE_AUTO_APPROVE=true
 /verify                      # Safe to automate
 # Do NOT automate /design, /refactor, /release
