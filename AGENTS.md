@@ -6,7 +6,7 @@
 > there is exactly one source of truth: this file + the `.ai/` directory.
 
 You are operating inside a project that uses the **Prodige Workflow** — a tool-agnostic AI
-development operating system stored in the `.ai/` directory. Follow it.
+development workflow system stored in the `.ai/` directory. Follow it.
 
 ---
 

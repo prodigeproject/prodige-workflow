@@ -73,6 +73,10 @@ done
 source_changes=0
 test_changes=0
 for file in "${staged_files[@]}"; do
+    if [[ "$file" =~ ^\.ai/ ]] || [ "$file" = "AGENTS.md" ] || [ "$file" = ".gitignore" ] || [ "$file" = ".gitattributes" ]; then
+        continue
+    fi
+    
     if [[ "$file" =~ \.(ts|js|py|go|cs|rs)$ ]]; then
         if [[ "$file" =~ (test|spec)\.(ts|js|py|go|cs|rs)$ ]] || [[ "$file" =~ test_ ]]; then
             test_changes=$((test_changes + 1))
@@ -98,16 +102,16 @@ generic_secret='(password|passwd|secret|apikey|api_key|token)[[:space:]]*[:=][[:
 # Gunakan git diff untuk memeriksa baris yang ditambahkan (berawalan +)
 added_lines=$(git diff --cached | grep -E '^\+[^+]' || true)
 if [ -n "$added_lines" ]; then
-    if echo "$added_lines" | grep -qE "$openai_pat"; then
+    if echo "$added_lines" | grep -qE -- "$openai_pat"; then
         violations+=("Pelanggaran Keamanan: Ditemukan indikasi kebocoran kredensial [OpenAI API Key]!")
     fi
-    if echo "$added_lines" | grep -qE "$aws_pat"; then
+    if echo "$added_lines" | grep -qE -- "$aws_pat"; then
         violations+=("Pelanggaran Keamanan: Ditemukan indikasi kebocoran kredensial [AWS Access Key ID]!")
     fi
-    if echo "$added_lines" | grep -qE "$private_key"; then
+    if echo "$added_lines" | grep -qE -- "$private_key"; then
         violations+=("Pelanggaran Keamanan: Ditemukan berkas kunci privat [Private Key Block]!")
     fi
-    if echo "$added_lines" | grep -iqE "$generic_secret"; then
+    if echo "$added_lines" | grep -iqE -- "$generic_secret"; then
         violations+=("Pelanggaran Keamanan: Ditemukan indikasi kebocoran kredensial [Kunci Rahasia/Password Terhardcode]!")
     fi
 fi
@@ -117,7 +121,7 @@ if [ ${#violations[@]} -gt 0 ]; then
     echo "[ERROR] Prodige Sentinel memblokir komit karena pelanggaran aturan:"
     for v in "${violations[@]}"; do
         echo "  - $v"
-    fi
+    done
     echo "[TIP] Silakan perbaiki rencana tugas Anda di activeContext.md, tambahkan uji unit, atau bersihkan berkas rahasia sebelum melakukan komit."
     exit 1
 fi

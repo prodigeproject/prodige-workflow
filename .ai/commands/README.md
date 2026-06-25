@@ -1,6 +1,6 @@
 # Commands
 
-User-facing commands for interacting with the Prodige Workflow AI Operating System.
+User-facing commands for interacting with the Prodige Workflow AI System.
 
 ## Overview
 

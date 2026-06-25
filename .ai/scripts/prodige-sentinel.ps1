@@ -67,6 +67,9 @@ foreach ($file in $stagedFiles) {
 $sourceChanges = 0
 $testChanges = 0
 foreach ($file in $stagedFiles) {
+    # Abaikan file di dalam folder .ai/ karena itu adalah manajemen status internal
+    if ($file -like '.ai/*' -or $file -eq 'AGENTS.md' -or $file -eq '.gitignore' -or $file -eq '.gitattributes') { continue }
+
     if ($file -match '\.(ts|js|py|go|cs|rs)$') {
         if ($file -match '(test|spec)\.(ts|js|py|go|cs|rs)$' -or $file -match 'test_') {
             $testChanges++
