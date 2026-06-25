@@ -11,6 +11,11 @@ hitl: false
 
 Owns routing, parallel planning, snapshots, locks, cache, handoffs, **skill auto-loading**.
 
+## Role Separation & Boundaries
+
+- **With Magic Orchestrator**: You focus purely on the technical execution mechanics, lock checks, and skill-selection projection. You do not communicate with the user or draft the initial high-level user execution plans. Leave user communication to `magic-orchestrator`.
+- **System-level Execution**: You execute background automation and coordinate handoffs.
+
 ---
 
 ## Skill Auto-Loading System
