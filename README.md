@@ -1,4 +1,4 @@
-# 🚀 Prodige Workflow OS
+# 🚀 Prodige Workflow
 
 **The Developer Cockpit, Git Sentinel & AI Model Context Protocol (MCP) for Production-Grade Software Engineering.**
 
@@ -6,7 +6,9 @@
 [![Status](https://img.shields.io/badge/Status-Production_Ready-green.svg)]()
 [![MCP](https://img.shields.io/badge/MCP-Enabled-orange.svg)]()
 
-Prodige is an open-source, prompt-level **AI Orchestration Operating System** designed to standardize, secure, and accelerate software development for solo developers, teams, and enterprise engineering environments.
+![Prodige Workflow Diagram](docs/prodige_workflow_diagram.png)
+
+Prodige is an open-source, prompt-level **AI Orchestration Workflow** designed to standardize, secure, and accelerate software development for solo developers, teams, and enterprise engineering environments.
 
 ---
 
@@ -370,7 +372,7 @@ Distributed under the Apache License 2.0. See [LICENSE](LICENSE) for more inform
 
 ## 🙏 Influences
 
-Prodige Workflow OS is an independent framework. Its design draws structural and behavioral lessons from prior art across the AI-agent orchestration and development tooling spaces, refining them into a unified, editor-agnostic, enterprise-hardened software engineering framework.
+Prodige Workflow is an independent framework. Its design draws structural and behavioral lessons from prior art across the AI-agent orchestration and development tooling spaces, refining them into a unified, editor-agnostic, enterprise-hardened software engineering framework.
 
 ---
 
