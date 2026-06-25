@@ -1023,7 +1023,7 @@ Then:
 ## Summary
 
 **Core Commands**:
-- `/init from repo` - Add AI OS to existing project
+- `/init from repo` - Add AI Workflow to existing project
 - `/init from idea: ...` - Start new project
 - `/design [feature]` - Plan feature (goes through 3 gates)
 - `/build approved [feature]` - Build after approval

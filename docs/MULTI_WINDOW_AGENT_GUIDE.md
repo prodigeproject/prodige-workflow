@@ -23,7 +23,7 @@ This guide explains how to use **multiple AI coding windows in parallel** to spe
 - ❌ Breaking changes without notice
 - ❌ Merge conflicts
 
-### How This OS Solves It
+### How This Workflow Solves It
 - **Sessions**: Each window has clear scope
 - **Snapshots**: Shared starting point for all windows
 - **Locks**: Prevent overlapping file edits

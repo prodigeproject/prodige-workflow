@@ -35,7 +35,7 @@ if (-not (Test-Path (Join-Path $root 'AGENTS.md'))) {
 $pointer = @"
 # PRODIGE WORKFLOW ENFORCEMENT PROTOCOL (MANDATORY SYSTEM RULE)
 
-You are operating inside a codebase governed by the Prodige Workflow OS.
+You are operating inside a codebase governed by the Prodige Workflow.
 Before responding to any user query or taking any action, you MUST immediately:
 1. Read the universal entry point file: `./AGENTS.md`
 2. Read the mandatory startup sequence: `./.ai/boot/BOOT.md`
